@@ -1,0 +1,42 @@
+{
+  "name": "shanmuga-priya-crackers",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/generate-favicons.mjs && node scripts/optimize-page-images.mjs && node scripts/generate-sitemap.mjs && tsc -b && vite build",
+    "optimize-images": "node scripts/optimize-page-images.mjs",
+    "favicons": "node scripts/generate-favicons.mjs",
+    "catalog": "node scripts/generate-aura-catalog-from-xlsx.mjs",
+    "import:catalog": "node scripts/generate-aura-catalog-from-xlsx.mjs && node scripts/import-catalog.mjs",
+    "db:migrate": "node scripts/run-migrations.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "lucide-react": "^1.31.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-helmet-async": "^3.0.0",
+    "react-router-dom": "^7.18.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "oxlint": "^1.75.0",
+    "postgres": "^3.4.9",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  }
+}

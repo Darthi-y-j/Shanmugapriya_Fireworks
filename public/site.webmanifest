@@ -1,0 +1,31 @@
+{
+  "name": "Shanmugapriya Fire Works",
+  "short_name": "Shanmuga's",
+  "description": "Shanmugapriya Fire Works — We Create Your Happiness. Wholesale & retail crackers from Sivakasi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFF8E1",
+  "theme_color": "#0F2847",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png?v=2",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192x192.png?v=2",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

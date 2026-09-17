@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1410"/>
+      <stop offset="50%" stop-color="#12101a"/>
+      <stop offset="100%" stop-color="#0f1218"/>
+    </linearGradient>
+    <linearGradient id="icon" x1="120" y1="120" x2="280" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect x="118" y="108" width="164" height="164" rx="14" fill="#1f2937" stroke="url(#icon)" stroke-width="2" opacity="0.85"/>
+  <circle cx="200" cy="178" r="28" fill="#334155"/>
+  <path d="M148 258 L200 212 L252 258" stroke="#64748b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="200" y="318" text-anchor="middle" fill="#94a3b8" font-family="Georgia, serif" font-size="17">Image coming soon</text>
+</svg>
