@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { PRIME_BRAND } from '@/lib/primeBrand'
 import { AUTH_LOGIN_CARD_WIDTH } from '@/lib/authLayout'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
@@ -32,7 +32,7 @@ export function LoginSplitLayout({
   return (
     <div className={cn('relative min-h-screen overflow-x-hidden', underNavPullClass)}>
       <img
-        src={SHANMUGA_BRAND.loginBg}
+        src={PRIME_BRAND.loginBg}
         alt=""
         className="pointer-events-none fixed inset-0 z-0 h-screen w-full object-cover object-center"
         loading="eager"

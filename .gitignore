@@ -25,8 +25,14 @@ dist-ssr
 *.sln
 *.sw?
 
-# Large source assets (compressed versions used in public/)
-img/hero-original.mp4
+# Local design/source assets — optimized copies live in public/
+img/
+
+# Demo / scratch files
+parallax_efferctdemo.html
+
+# Legacy import spreadsheets (use data/catalog.json instead)
+data/*.xlsx
 aura-chatbot/venv/
 aura-chatbot/vector_db/
 aura-chatbot/**/__pycache__/

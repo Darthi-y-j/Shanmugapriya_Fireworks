@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
-import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { PRIME_BRAND } from '@/lib/primeBrand'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
 
@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 export function AuthPageBackground() {
   return (
     <img
-      src={SHANMUGA_BRAND.loginBg}
+      src={PRIME_BRAND.loginBg}
       alt=""
       className="pointer-events-none fixed inset-0 z-0 h-screen w-full object-cover object-center"
       loading="eager"
@@ -38,7 +38,7 @@ export function AuthPageShell({ children, wide = false }: { children: ReactNode;
 export function AuthCard({ children, compact = false }: { children: ReactNode; compact?: boolean }) {
   return (
     <div className="relative mt-4 overflow-hidden rounded-2xl border border-[#0F2847]/10 bg-white shadow-[0_12px_40px_rgba(0,77,85,0.12)] sm:mt-5">
-      <OptimizedBackground src={SHANMUGA_BRAND.loginCardBg} priority />
+      <OptimizedBackground src={PRIME_BRAND.loginCardBg} priority />
       <div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.88)_35%,rgba(255,255,255,0.55)_100%)]"
         aria-hidden="true"

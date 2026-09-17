@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { SITE_LOGO_PATH } from '@/lib/siteConfig'
-import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { PRIME_BRAND } from '@/lib/primeBrand'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -56,12 +56,12 @@ export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
           <div className="flex min-w-0 items-center gap-3">
             <img
               src={SITE_LOGO_PATH}
-              alt={SHANMUGA_BRAND.displayName}
+              alt={PRIME_BRAND.displayName}
               className="h-10 w-10 shrink-0 rounded-full border border-gold-400/30 object-cover"
             />
             <div className="min-w-0">
               <p className="truncate font-display text-sm font-bold leading-tight text-white">
-                {SHANMUGA_BRAND.displayName}
+                {PRIME_BRAND.displayName}
               </p>
               <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gold-300/70">
                 Control Panel

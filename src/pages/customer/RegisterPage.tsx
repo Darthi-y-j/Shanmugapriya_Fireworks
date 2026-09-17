@@ -19,7 +19,7 @@ import {
 } from '@/lib/authLayout'
 import { cn, validatePhone } from '@/lib/utils'
 import { COMPANY_EMAIL, COMPANY_EMAIL_SENDER_NAME, getAuthEmailSenderHint } from '@/lib/companyEmail'
-import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { PRIME_BRAND } from '@/lib/primeBrand'
 import { SITE_LOGO_PATH } from '@/lib/siteConfig'
 
 const registerLayoutProps = {
@@ -199,12 +199,12 @@ export function RegisterPage() {
           <div className="text-center">
             <img
               src={SITE_LOGO_PATH}
-              alt={SHANMUGA_BRAND.displayName}
+              alt={PRIME_BRAND.displayName}
               className="mx-auto h-10 w-10 rounded-full border-2 border-[#C9A24A] object-cover shadow-md"
             />
-            <p className={cn('mt-2', authCardBrandClass)}>{SHANMUGA_BRAND.shortName}</p>
+            <p className={cn('mt-2', authCardBrandClass)}>{PRIME_BRAND.shortName}</p>
             <p className={authCardTaglineClass}>
-              {SHANMUGA_BRAND.tagline}
+              {PRIME_BRAND.tagline}
             </p>
           </div>
 
