@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { COMPANY_EMAIL_SENDER_NAME, getAuthEmailSenderHint } from '@/lib/companyEmail'
 import { AuthFormCard } from '@/components/customer/AuthFormCard'
 import { LoginSplitLayout } from '@/components/customer/LoginSplitLayout'
-import { PRIME_BRAND } from '@/lib/primeBrand'
+import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { SITE_LOGO_PATH } from '@/lib/siteConfig'
 import { isSupabaseConfigured } from '@/lib/supabase'
 import {
@@ -130,14 +130,14 @@ export function LoginPage() {
           <div className="text-center">
             <img
               src={SITE_LOGO_PATH}
-              alt={PRIME_BRAND.displayName}
+              alt={SHANMUGA_BRAND.displayName}
               className="mx-auto h-10 w-10 rounded-full border-2 border-[#C9A24A] object-cover shadow-md"
             />
             <p className={cn('mt-2', authCardBrandClass)}>
-              {PRIME_BRAND.shortName}
+              {SHANMUGA_BRAND.shortName}
             </p>
             <p className={authCardTaglineClass}>
-              {PRIME_BRAND.tagline}
+              {SHANMUGA_BRAND.tagline}
             </p>
           </div>
 

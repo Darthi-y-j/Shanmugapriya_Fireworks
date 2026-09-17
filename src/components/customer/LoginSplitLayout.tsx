@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
-import { PRIME_BRAND } from '@/lib/primeBrand'
+import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { AUTH_LOGIN_CARD_WIDTH } from '@/lib/authLayout'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
 
 interface LoginSplitLayoutProps {
-  children: ReactNode
+  children?: ReactNode
   loading?: boolean
   /** Place the login card on the left (admin) or right (customer). */
   cardSide?: 'left' | 'right'
@@ -32,7 +32,7 @@ export function LoginSplitLayout({
   return (
     <div className={cn('relative min-h-screen overflow-x-hidden', underNavPullClass)}>
       <img
-        src={PRIME_BRAND.loginBg}
+        src={SHANMUGA_BRAND.loginBg}
         alt=""
         className="pointer-events-none fixed inset-0 z-0 h-screen w-full object-cover object-center"
         loading="eager"

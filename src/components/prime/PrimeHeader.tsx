@@ -96,7 +96,7 @@ export function PrimeHeader() {
                 <p className="mt-0.5 hidden items-center gap-2 sm:flex">
                   <span className="h-px w-4 bg-[#C9A24A]/80" aria-hidden="true" />
                   <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                    Virudhunagar · Est. 1999
+                    Sivakasi · Est. 1999
                   </span>
                 </p>
               </div>

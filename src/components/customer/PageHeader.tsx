@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react'
 import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
-import { PRIME_BRAND } from '@/lib/primeBrand'
+import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
 
 /** Panoramic fireworks skyline (legacy). */
-export const HERO_HEADER_BG = PRIME_BRAND.aboutHeaderBg
+export const HERO_HEADER_BG = SHANMUGA_BRAND.aboutHeaderBg
 
 /** Festive Diwali illustration — default for all page heroes. */
-export const FESTIVE_HEADER_BG = PRIME_BRAND.festiveHeaderBg
+export const FESTIVE_HEADER_BG = SHANMUGA_BRAND.festiveHeaderBg
 
 export const HERO_HEADER_OVERLAY =
   'bg-gradient-to-b from-[#0F2847]/45 via-[#002830]/35 to-[#0F2847]/55'

@@ -20,7 +20,7 @@ import {
   authCardTitleClass,
 } from '@/lib/authLayout'
 import { cn } from '@/lib/utils'
-import { PRIME_BRAND } from '@/lib/primeBrand'
+import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 
 const fieldClass =
   'w-full rounded-lg border border-[#0F2847]/12 bg-white py-2 pl-10 pr-3 text-[13px] text-[#0F2847] placeholder:text-slate-400 transition focus:border-[#0077B6] focus:outline-none focus:ring-2 focus:ring-[#0077B6]/25'
@@ -78,10 +78,10 @@ export function AdminLoginPage() {
           <div className="text-center">
             <img
               src={SITE_LOGO_PATH}
-              alt={PRIME_BRAND.displayName}
+              alt={SHANMUGA_BRAND.displayName}
               className="mx-auto h-10 w-10 rounded-full border-2 border-[#C9A24A] object-cover shadow-md"
             />
-            <p className={cn('mt-2', authCardBrandClass)}>{PRIME_BRAND.shortName}</p>
+            <p className={cn('mt-2', authCardBrandClass)}>{SHANMUGA_BRAND.shortName}</p>
             <p className={authCardTaglineClass}>Store admin</p>
           </div>
 
