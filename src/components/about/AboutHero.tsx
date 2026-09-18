@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { AboutHeroBirds, AboutHeroHangDecor } from '@/components/about/AboutHeroDecor'
 import { HeroCircleVisual } from '@/components/about/HeroCircleVisual'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 
 const SIDE_WORDS = ['PEOPLE', 'TRADITION', 'CELEBRATION', 'PROGRESS'] as const
@@ -10,13 +11,10 @@ const SIDE_WORDS = ['PEOPLE', 'TRADITION', 'CELEBRATION', 'PROGRESS'] as const
 export function AboutHero() {
   return (
     <section className="about-hero relative min-h-0 overflow-hidden lg:min-h-[92vh]">
-      <img
+      <OptimizedBackground
         src={ABOUT_IMAGES.heroBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-[center_top]"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
+        priority
+        imgClassName="object-[center_top]"
       />
       <AboutHeroHangDecor />
       <AboutHeroBirds />

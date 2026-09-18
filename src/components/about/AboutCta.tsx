@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_IMAGES } from '@/lib/aboutTokens'
 
 export function AboutCta() {
   return (
     <section className="relative overflow-hidden" aria-labelledby="about-cta-heading">
       <div className="relative min-h-[360px] sm:min-h-[420px] lg:min-h-[480px]">
-        <img
-          src={ABOUT_IMAGES.ctaBg}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          loading="lazy"
-          decoding="async"
-        />
+        <OptimizedBackground src={ABOUT_IMAGES.ctaBg} priority={false} />
         <div className="relative z-10 flex min-h-[360px] flex-col items-center justify-center px-4 py-16 text-center sm:min-h-[420px] sm:px-6 sm:py-20 lg:min-h-[480px]">
           <AnimateIn animation="fade-up" duration={800}>
             <h2

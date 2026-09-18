@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { HelpCircle, MessageCircle, ChevronDown, Sparkles, ArrowRight } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { useSettings } from '@/contexts/SettingsContext'
 import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { getWhatsAppNumbers } from '@/lib/businessInfo'
@@ -55,14 +56,7 @@ const topicChips = ['Ordering', 'Pricing', 'Delivery', 'Safety & Support']
 function FAQItem({ faq, index }: { faq: (typeof faqs)[number]; index: number }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-[#C9A24A]/25 shadow-sm transition hover:border-[#C9A24A]/45 hover:shadow-md">
-      <img
-        src={FAQ_ITEM_BG}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+      <OptimizedBackground src={FAQ_ITEM_BG} priority={false} />
       <details className="group relative z-10">
         <summary className="flex cursor-pointer list-none items-start gap-3 px-4 py-4 marker:content-none sm:px-5 sm:py-5 [&::-webkit-details-marker]:hidden">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#C9A24A] font-display text-xs font-extrabold text-[#0F2847]">
@@ -95,14 +89,7 @@ export function FAQPage() {
 
       <div className={cn('overflow-x-hidden', underNavPullClass)}>
         <header className="relative overflow-hidden">
-          <img
-            src={FAQ_PAGE_HERO_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-          />
+          <OptimizedBackground src={FAQ_PAGE_HERO_BG} priority />
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F7F3EC]/45 via-[#F7F3EC]/20 to-[#F7F3EC]/35"
             aria-hidden="true"
@@ -151,21 +138,17 @@ export function FAQPage() {
         </header>
 
         <section className="relative overflow-hidden py-10 sm:py-12">
-          <img
+          <OptimizedBackground
             src={FAQ_PAGE_CONTENT_MOBILE_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-fill object-center md:hidden"
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
+            fit="fill"
+            priority={false}
+            className="md:hidden"
           />
-          <img
+          <OptimizedBackground
             src={FAQ_PAGE_CONTENT_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 hidden h-full w-full object-fill object-center md:block"
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
+            fit="fill"
+            priority={false}
+            className="hidden md:block"
           />
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

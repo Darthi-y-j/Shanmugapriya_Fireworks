@@ -28,24 +28,29 @@ function collectRasterFiles(dir, out = []) {
 }
 
 function maxWidthFor(file) {
-  if (/login-card/i.test(file)) {
-    return 800
+  if (/login-card|card-bg|faq-item|trust-card|purpose-card|why-choose-card|brand-card/i.test(file)) {
+    return 640
   }
   if (/login-bg|account-bg/i.test(file)) {
-    return 1200
+    return 1100
+  }
+  if (/hero-boy|story-center/i.test(file)) {
+    return 720
   }
   if (/step-bg|card\.|wide-variety|competitive|customer-support|trusted-service|fast-delivery|premium-quality/i.test(file)) {
-    return 960
+    return 800
   }
-  if (/hero|header|bg|cta|storefront|works|visit|story|account|login|safety|contact|festive|page-header|why-choose/i.test(file)) {
-    return 1920
+  if (/hero|header|bg|cta|storefront|works|visit|story|account|login|safety|contact|festive|page-header|why-choose|banner/i.test(file)) {
+    return 1280
   }
-  return 1400
+  return 1100
 }
 
 function webpQualityFor(file) {
-  if (/login|account-bg|card\.|step-bg/i.test(file)) return 72
-  return 80
+  if (/card|faq-item/i.test(file)) return 55
+  if (/login|account-bg|step-bg/i.test(file)) return 62
+  if (/rangoli|mobile-bg|content-bg|footer|service-bar/i.test(file)) return 56
+  return 60
 }
 
 async function optimizeImage(relativePath) {
@@ -58,7 +63,7 @@ async function optimizeImage(relativePath) {
 
   await sharp(input)
     .resize(maxWidth, null, { withoutEnlargement: true, fit: 'inside' })
-    .webp({ quality, effort: 4 })
+    .webp({ quality, effort: 5, smartSubsample: true })
     .toFile(output)
 
   const after = fs.statSync(output).size

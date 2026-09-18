@@ -53,11 +53,16 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0F2847" />
-    <link rel="preload" as="image" href="/images/home/home-hero-bg-1200.webp?v=3" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/home/home-top-banner.webp?v=3" type="image/webp" fetchpriority="high" />
-    <link rel="prefetch" as="image" href="/images/about/about-rangoli-bg.webp?v=3" type="image/webp" />
-    <link rel="prefetch" as="image" href="/images/home/home-about-mobile-bg.webp?v=1" type="image/webp" />
-    <link rel="prefetch" as="image" href="/images/about/heritage-temple-parallax.webp" type="image/webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/home/home-hero-bg-800.webp?v=4"
+      type="image/webp"
+      fetchpriority="high"
+      imagesrcset="/images/home/home-hero-bg-800.webp?v=4 800w, /images/home/home-hero-bg-1200.webp?v=4 1200w, /images/home/home-hero-bg-1600.webp?v=4 1600w, /images/home/home-hero-bg.webp?v=4 1920w"
+      imagesizes="100vw"
+    />
+    <link rel="preload" as="image" href="/images/home/home-top-banner.webp?v=4" type="image/webp" fetchpriority="high" />
     <style>
       html,
       body {
@@ -68,11 +73,8 @@
       (function () {
         if (location.pathname !== '/' && location.pathname !== '/home') return
         var urls = [
-          '/images/home/home-hero-bg-1200.webp?v=3',
-          '/images/home/home-top-banner.webp?v=3',
-          '/images/about/about-rangoli-bg.webp?v=3',
-          '/images/home/home-about-mobile-bg.webp?v=1',
-          '/images/about/heritage-temple-parallax.webp',
+          '/images/home/home-hero-bg-800.webp?v=4',
+          '/images/home/home-top-banner.webp?v=4',
         ]
         for (var i = 0; i < urls.length; i++) {
           var img = new Image()

@@ -1,4 +1,4 @@
-const IMG_VERSION = '3'
+const IMG_VERSION = '4'
 
 function stripQuery(src: string): string {
   const i = src.indexOf('?')

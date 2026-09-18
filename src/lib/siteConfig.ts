@@ -34,46 +34,46 @@ export const SITE_LOGO_FILE = '/shanmuga-priya-logo.png'
 export const SITE_LOGO_PATH = `${SITE_LOGO_FILE}?v=${FAVICON_VERSION}`
 
 /** Small logo for navbar, footer, and auth cards — avoids loading a 1440px PNG. */
-export const SITE_UI_LOGO_PATH = `/images/ui/site-logo-sm.webp?v=3`
+export const SITE_UI_LOGO_PATH = `/images/ui/site-logo-sm.webp?v=4`
 
 /** Products catalogue page hero background */
-export const PRODUCTS_PAGE_BG_PATH = '/images/products-page-bg.png?v=1'
+export const PRODUCTS_PAGE_BG_PATH = '/images/products-page-bg.webp?v=4'
 
 /** FAQ page hero background */
-export const FAQ_PAGE_HERO_BG = '/images/faq/faq-hero-bg.png?v=3'
+export const FAQ_PAGE_HERO_BG = '/images/faq/faq-hero-bg.webp?v=4'
 
 /** FAQ accordion section backgrounds */
-export const FAQ_PAGE_CONTENT_BG = '/images/faq/faq-content-bg.png?v=2'
-export const FAQ_PAGE_CONTENT_MOBILE_BG = '/images/faq/faq-content-mobile-bg.png?v=2'
+export const FAQ_PAGE_CONTENT_BG = '/images/faq/faq-content-bg.webp?v=4'
+export const FAQ_PAGE_CONTENT_MOBILE_BG = '/images/faq/faq-content-mobile-bg.webp?v=4'
 
 /** FAQ accordion item card background */
-export const FAQ_ITEM_BG = '/images/faq/faq-item-bg.png?v=1'
+export const FAQ_ITEM_BG = '/images/faq/faq-item-bg.webp?v=4'
 
 /** Site footer background */
-export const FOOTER_BG = '/images/footer-bg.png?v=3'
+export const FOOTER_BG = '/images/footer-bg.webp?v=4'
 
 /** Cart & liked products page hero background */
-export const CART_LIKES_PAGE_HERO_BG = '/images/cart/cart-likes-hero-bg.png?v=2'
+export const CART_LIKES_PAGE_HERO_BG = '/images/cart/cart-likes-hero-bg.webp?v=4'
 
 /** Privacy policy & terms page hero background */
-export const LEGAL_PAGE_HERO_BG = '/images/legal/legal-hero-bg.png?v=1'
+export const LEGAL_PAGE_HERO_BG = '/images/legal/legal-hero-bg.webp?v=4'
 
 /** Contact page hero background */
-export const CONTACT_PAGE_HERO_BG = '/images/contact/contact-hero-bg.png?v=2'
-export const CONTACT_PAGE_HERO_MOBILE_BG = '/images/contact/contact-hero-mobile-bg.png?v=1'
+export const CONTACT_PAGE_HERO_BG = '/images/contact/contact-hero-bg.webp?v=4'
+export const CONTACT_PAGE_HERO_MOBILE_BG = '/images/contact/contact-hero-mobile-bg.webp?v=4'
 
 /** Contact page — left "Connect With Us" panel */
-export const CONTACT_CONNECT_BG = '/images/contact/contact-connect-bg.png?v=2'
-export const CONTACT_CONNECT_MOBILE_BG = '/images/contact/contact-connect-mobile-bg.png?v=2'
+export const CONTACT_CONNECT_BG = '/images/contact/contact-connect-bg.webp?v=4'
+export const CONTACT_CONNECT_MOBILE_BG = '/images/contact/contact-connect-mobile-bg.webp?v=4'
 
 /** Contact page — area outside the contact card (desktop) */
-export const CONTACT_PAGE_CONTENT_BG = '/images/contact/contact-content-bg.png?v=3'
+export const CONTACT_PAGE_CONTENT_BG = '/images/contact/contact-content-bg.webp?v=4'
 
 /** Contact page — area outside the contact card (mobile) */
-export const CONTACT_PAGE_CONTENT_MOBILE_BG = '/images/contact/contact-content-mobile-bg.png?v=1'
+export const CONTACT_PAGE_CONTENT_MOBILE_BG = '/images/contact/contact-content-mobile-bg.webp?v=4'
 
 /** Contact page — card inner fill (mobile / tablet, inside frame) */
-export const CONTACT_CARD_INNER_BG = '/images/contact/contact-card-inner-bg.png?v=1'
+export const CONTACT_CARD_INNER_BG = '/images/contact/contact-card-inner-bg.webp?v=4'
 
 /** Brand wordmark — same circular logo */
 export const SITE_WORDMARK_FILE = '/shanmuga-priya-logo.png'

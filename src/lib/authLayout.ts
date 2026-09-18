@@ -1,5 +1,5 @@
 /** Mandala pattern used on login / register / admin cards */
-export const AUTH_CARD_BG = '/images/auth/auth-card-bg.png?v=1'
+export const AUTH_CARD_BG = '/images/auth/auth-card-bg.webp?v=4'
 
 /** Standard auth login / admin card width */
 export const AUTH_LOGIN_CARD_WIDTH = '540px'

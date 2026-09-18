@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { AboutMandala } from '@/components/about/AboutMandala'
 import { StoryArchFrame } from '@/components/about/StoryArchFrame'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 
@@ -72,14 +73,7 @@ export function AboutStory() {
       className="about-story relative z-10 overflow-hidden py-10 sm:py-20 lg:py-24"
       aria-labelledby="our-story-heading"
     >
-      <img
-        src={ABOUT_IMAGES.storyBg}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+      <OptimizedBackground src={ABOUT_IMAGES.storyBg} priority={false} />
       <div className="pointer-events-none absolute inset-0 bg-white/90" aria-hidden="true" />
 
       <AboutMandala className="-left-8 top-8 h-32 w-32 opacity-[0.14] sm:h-56 sm:w-56 lg:left-4 lg:h-64 lg:w-64" />

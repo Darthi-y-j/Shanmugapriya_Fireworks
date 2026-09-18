@@ -7,14 +7,10 @@ import { cn } from '@/lib/utils'
 /** Full-page auth background — fixed image under the floating navbar. */
 export function AuthPageBackground() {
   return (
-    <img
+    <OptimizedBackground
       src={SHANMUGA_BRAND.loginBg}
-      alt=""
-      className="pointer-events-none fixed inset-0 z-0 h-screen w-full object-cover object-center"
-      loading="eager"
-      decoding="async"
-      fetchPriority="high"
-      aria-hidden="true"
+      priority
+      className="fixed inset-0 z-0 h-screen"
     />
   )
 }

@@ -1,5 +1,5 @@
 import { AnimateIn } from '@/components/customer/AnimateIn'
-import { OptimizedImage } from '@/components/customer/OptimizedImage'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { HomeNewsletterCard } from '@/components/prime/HomeNewsletter'
 import { ABOUT_IMAGES } from '@/lib/aboutTokens'
 
@@ -24,12 +24,7 @@ const TESTIMONIALS = [
 export function HomeTestimonials() {
   return (
     <section className="relative overflow-hidden py-8 sm:py-16 lg:py-20" aria-labelledby="home-testimonials-heading">
-      <OptimizedImage
-        src={`${ABOUT_IMAGES.rangoliBg}?v=2`}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-      />
+      <OptimizedBackground src={ABOUT_IMAGES.rangoliBg} priority={false} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <AnimateIn animation="fade-up" duration={700}>

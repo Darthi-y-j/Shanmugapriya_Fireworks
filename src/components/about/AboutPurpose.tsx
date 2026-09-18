@@ -1,5 +1,6 @@
 import { Flower2, Target, Users } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 
 const CARDS: Array<{
@@ -63,14 +64,7 @@ export function AboutPurpose() {
                   card.featured ? 'border-[#C9A24A]/30' : 'border-[#062B63]/8'
                 }`}
               >
-                <img
-                  src={ABOUT_IMAGES.purposeCardBg}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                  aria-hidden="true"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <OptimizedBackground src={ABOUT_IMAGES.purposeCardBg} priority={false} />
                 <div
                   className={`absolute inset-0 ${
                     card.featured ? 'bg-[#F7F3EC]/72' : 'bg-white/75'

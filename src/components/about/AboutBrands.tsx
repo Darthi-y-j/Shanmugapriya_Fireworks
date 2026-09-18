@@ -1,6 +1,7 @@
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { CircularBrandLogo } from '@/components/prime/CircularBrandLogo'
 import { BRAND_PARTNERS } from '@/lib/brandPartners'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { SITE_UI_LOGO_PATH } from '@/lib/siteConfig'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
@@ -25,14 +26,7 @@ function BrandCard({
     <article
       className="relative flex h-full flex-col items-center overflow-hidden rounded-xl border border-[#062B63]/10 text-center shadow-[0_6px_20px_rgba(6,43,99,0.08)] sm:rounded-2xl sm:shadow-[0_8px_28px_rgba(6,43,99,0.08)]"
     >
-      <img
-        src={ABOUT_IMAGES.brandCardBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+      <OptimizedBackground src={ABOUT_IMAGES.brandCardBg} priority={false} />
       <div className="absolute inset-0 bg-white/45" aria-hidden="true" />
 
       <div className="relative z-10 flex h-full flex-col items-center px-4 py-5 sm:px-6 sm:py-8">
@@ -55,21 +49,16 @@ export function AboutBrands() {
       className="relative z-10 overflow-hidden px-4 py-10 sm:px-6 sm:py-20"
       aria-labelledby="about-brands-heading"
     >
-      <img
+      <OptimizedBackground
         src={ABOUT_IMAGES.brandsMobileBg}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-fill object-center md:hidden"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
+        fit="fill"
+        priority={false}
+        className="md:hidden"
       />
-      <img
+      <OptimizedBackground
         src={ABOUT_IMAGES.brandsBg}
-        alt=""
-        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center md:block"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
+        priority={false}
+        className="hidden md:block"
       />
 
       <div className="relative z-10 mx-auto max-w-5xl">

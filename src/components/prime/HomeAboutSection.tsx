@@ -9,7 +9,7 @@ import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { useSettings } from '@/contexts/SettingsContext'
 
 const BLUE_DARK = SHANMUGA_BRAND.primary
-const RANGOLI_BG = `${ABOUT_IMAGES.rangoliBg}?v=2`
+const RANGOLI_BG = ABOUT_IMAGES.rangoliBg
 const ABOUT_MOBILE_BG = HOME_IMAGES.aboutMobileBg
 
 const HIGHLIGHTS = [

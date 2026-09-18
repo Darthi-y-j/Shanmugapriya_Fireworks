@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { CART_LIKES_PAGE_HERO_BG } from '@/lib/siteConfig'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
@@ -50,14 +51,10 @@ export function CartLikesHero({ children, className, contentClassName }: CartLik
         className,
       )}
     >
-      <img
+      <OptimizedBackground
         src={CART_LIKES_PAGE_HERO_BG}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_top]"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        aria-hidden="true"
+        priority
+        imgClassName="object-[center_top]"
       />
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0F2847]/50 via-[#0F2847]/25 to-[#0F2847]/55"

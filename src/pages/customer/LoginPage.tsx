@@ -7,7 +7,8 @@ import { COMPANY_EMAIL_SENDER_NAME, getAuthEmailSenderHint } from '@/lib/company
 import { AuthFormCard } from '@/components/customer/AuthFormCard'
 import { LoginSplitLayout } from '@/components/customer/LoginSplitLayout'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
-import { SITE_LOGO_PATH } from '@/lib/siteConfig'
+import { StaticPicture } from '@/components/shared/StaticPicture'
+import { SITE_UI_LOGO_PATH } from '@/lib/siteConfig'
 import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import {
   AUTH_LOGIN_CARD_WIDTH,
@@ -128,10 +129,11 @@ export function LoginPage() {
       <LoginSplitLayout {...loginLayoutProps}>
         <AuthFormCard>
           <div className="text-center">
-            <img
-              src={SITE_LOGO_PATH}
+            <StaticPicture
+              src={SITE_UI_LOGO_PATH}
               alt={SHANMUGA_BRAND.displayName}
-              className="mx-auto h-10 w-10 rounded-full border-2 border-[#C9A24A] object-cover shadow-md"
+              priority
+              imgClassName="mx-auto h-10 w-10 rounded-full border-2 border-[#C9A24A] object-cover shadow-md"
             />
             <p className={cn('mt-2', authCardBrandClass)}>
               {SHANMUGA_BRAND.shortName}

@@ -1,4 +1,5 @@
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { PRODUCTS_PAGE_BG_PATH } from '@/lib/siteConfig'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
@@ -11,13 +12,7 @@ export function PrimeProductsPageHero() {
         underNavPullClass,
       )}
     >
-      <img
-        src={PRODUCTS_PAGE_BG_PATH}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        loading="eager"
-        decoding="async"
-      />
+      <OptimizedBackground src={PRODUCTS_PAGE_BG_PATH} priority />
       <div
         className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"
         aria-hidden="true"

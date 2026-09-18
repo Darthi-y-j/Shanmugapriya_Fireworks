@@ -8,7 +8,7 @@ import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { SkewedParallaxBand } from '@/components/prime/SkewedParallaxBand'
 
 const BLUE_DARK = SHANMUGA_BRAND.primary
-const RANGOLI_BG = `${ABOUT_IMAGES.rangoliBg}?v=2`
+const RANGOLI_BG = ABOUT_IMAGES.rangoliBg
 const ABOUT_MOBILE_BG = HOME_IMAGES.aboutMobileBg
 
 export function HomeAboutParallaxHero() {

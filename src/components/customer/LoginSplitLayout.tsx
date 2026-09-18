@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { AUTH_LOGIN_CARD_WIDTH } from '@/lib/authLayout'
 import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
@@ -31,14 +32,10 @@ export function LoginSplitLayout({
 
   return (
     <div className={cn('relative min-h-screen overflow-x-hidden', underNavPullClass)}>
-      <img
+      <OptimizedBackground
         src={SHANMUGA_BRAND.loginBg}
-        alt=""
-        className="pointer-events-none fixed inset-0 z-0 h-screen w-full object-cover object-center"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        aria-hidden="true"
+        priority
+        className="fixed inset-0 z-0 h-screen"
       />
 
       <div className="relative z-10 flex min-h-screen flex-col lg:flex-row">

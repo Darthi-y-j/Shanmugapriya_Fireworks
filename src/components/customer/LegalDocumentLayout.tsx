@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { useSettings } from '@/contexts/SettingsContext'
 import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { getWhatsAppNumbers } from '@/lib/businessInfo'
@@ -145,14 +146,10 @@ export function LegalDocumentLayout({
 
       <div className={cn('bg-[#F7F3EC]', underNavPullClass)}>
         <header className="relative min-h-[280px] overflow-hidden border-b-2 border-[#0F2847] sm:min-h-[320px]">
-          <img
+          <OptimizedBackground
             src={LEGAL_PAGE_HERO_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_35%]"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            aria-hidden="true"
+            priority
+            imgClassName="object-[center_35%]"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0F2847]/55 via-[#0F2847]/30 to-[#0F2847]/65"

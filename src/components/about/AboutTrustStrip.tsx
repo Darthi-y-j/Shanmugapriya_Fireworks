@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Box, Globe, Smile, Users } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { useCountUp } from '@/hooks/useCountUp'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { getYearsInBusiness } from '@/lib/businessInfo'
 
@@ -48,14 +49,7 @@ function TrustStat({
       ref={ref}
       className="relative flex h-full flex-col items-center justify-center px-2.5 py-4 text-center sm:px-5 sm:py-9"
     >
-      <img
-        src={ABOUT_IMAGES.trustCardBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+      <OptimizedBackground src={ABOUT_IMAGES.trustCardBg} priority={false} />
 
       <div className="relative z-10">
         <div
@@ -78,14 +72,7 @@ function TrustStat({
 export function AboutTrustStrip() {
   return (
     <section className="relative z-10 overflow-hidden py-6 sm:py-12" aria-label="Company statistics">
-      <img
-        src={`${ABOUT_IMAGES.rangoliBg}?v=2`}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+      <OptimizedBackground src={ABOUT_IMAGES.rangoliBg} priority={false} />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6">
         <AnimateIn animation="fade-up" duration={700}>

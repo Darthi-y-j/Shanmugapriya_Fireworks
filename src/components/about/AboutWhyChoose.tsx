@@ -1,5 +1,6 @@
 import { Diamond, Heart, Leaf, Shield } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { HOME_IMAGES } from '@/lib/homeImages'
 
@@ -32,21 +33,16 @@ export function AboutWhyChoose() {
       className="relative z-10 overflow-hidden px-4 py-10 sm:px-6 sm:py-20 lg:py-24"
       aria-labelledby="why-choose-heading"
     >
-      <img
+      <OptimizedBackground
         src={HOME_IMAGES.whyChooseMobileBg}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-fill object-center md:hidden"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
+        fit="fill"
+        priority={false}
+        className="md:hidden"
       />
-      <img
-        src={`${ABOUT_IMAGES.rangoliBg}?v=2`}
-        alt=""
-        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center md:block"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
+      <OptimizedBackground
+        src={ABOUT_IMAGES.rangoliBg}
+        priority={false}
+        className="hidden md:block"
       />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -71,14 +67,7 @@ export function AboutWhyChoose() {
               <article
                 className="about-why-card relative flex h-full flex-col items-center overflow-hidden rounded-xl border border-[#062B63]/8 text-center shadow-[0_4px_18px_rgba(6,43,99,0.06)] transition duration-300 sm:rounded-2xl sm:shadow-[0_6px_28px_rgba(6,43,99,0.06)] sm:hover:-translate-y-1 sm:hover:shadow-[0_14px_40px_rgba(6,43,99,0.1)]"
               >
-                <img
-                  src={ABOUT_IMAGES.whyChooseCardBg}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                  aria-hidden="true"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <OptimizedBackground src={ABOUT_IMAGES.whyChooseCardBg} priority={false} />
                 <div
                   className="absolute inset-0 bg-gradient-to-b from-white/94 via-white/88 to-white/92"
                   aria-hidden="true"

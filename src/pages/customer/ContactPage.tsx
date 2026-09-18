@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin, MessageCircle, Navigation, Send, Sparkles } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { EnquiryForm } from '@/components/customer/EnquiryForm'
 import { ContactConnectPanel } from '@/components/contact/ContactConnectPanel'
 import { useAuth } from '@/contexts/AuthContext'
@@ -59,21 +60,16 @@ export function ContactPage() {
 
       <div className={cn('overflow-x-hidden', underNavPullClass)}>
         <header className="relative overflow-hidden border-b border-[#0F2847]/15">
-          <img
+          <OptimizedBackground
             src={CONTACT_PAGE_HERO_MOBILE_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center md:hidden"
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
+            priority
+            className="md:hidden"
           />
-          <img
+          <OptimizedBackground
             src={CONTACT_PAGE_HERO_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-[right_center] md:block sm:object-[70%_center]"
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
+            priority
+            imgClassName="object-[right_center] sm:object-[70%_center]"
+            className="hidden md:block"
           />
           <div
             className={cn(
@@ -120,21 +116,16 @@ export function ContactPage() {
         </header>
 
         <section className="relative overflow-hidden bg-[#F7F3EC] lg:bg-transparent">
-          <img
+          <OptimizedBackground
             src={CONTACT_PAGE_CONTENT_MOBILE_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-top lg:hidden"
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
+            priority={false}
+            imgClassName="object-top"
+            className="lg:hidden"
           />
-          <img
+          <OptimizedBackground
             src={CONTACT_PAGE_CONTENT_BG}
-            alt=""
-            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center lg:block"
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
+            priority={false}
+            className="hidden lg:block"
           />
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-[#041E47] lg:hidden"
@@ -149,13 +140,11 @@ export function ContactPage() {
             >
               <div className="relative z-10 flex flex-col gap-0 lg:contents">
                 <div className="relative overflow-hidden rounded-t-xl lg:contents">
-                  <img
+                  <OptimizedBackground
                     src={CONTACT_CARD_INNER_BG}
-                    alt=""
-                    className="pointer-events-none absolute inset-0 h-full w-full object-fill object-center lg:hidden"
-                    aria-hidden="true"
-                    loading="lazy"
-                    decoding="async"
+                    fit="fill"
+                    priority={false}
+                    className="lg:hidden"
                   />
 
                   <ContactConnectPanel

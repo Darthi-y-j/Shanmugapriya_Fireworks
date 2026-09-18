@@ -11,9 +11,9 @@ export const ABOUT_COLORS = {
 
 export const ABOUT_IMAGES = {
   /** Full-width About page hero background */
-  heroBg: '/images/about/about-hero-bg.png?v=1',
+  heroBg: '/images/about/about-hero-bg.webp?v=4',
   /** Boy with sparkler — layered inside hero circle */
-  heroBoy: '/images/about/about-hero-boy.png?v=3',
+  heroBoy: '/images/about/about-hero-boy.webp?v=4',
   heroMain: '/images/about/about-hero.webp',
   heroTemple: '/images/about/hero-temple.webp',
   heroSunset: '/images/about/hero-sunset.webp',
@@ -21,26 +21,26 @@ export const ABOUT_IMAGES = {
   craftsmanship: '/images/about/craftsmanship.webp',
   products: '/images/about/products.webp',
   ctaFireworks: '/images/about/cta-fireworks.webp',
-  heritageSkyline: '/images/about/heritage-skyline.jpg',
+  heritageSkyline: '/images/about/heritage-skyline.webp',
   palmSkyline: '/images/about/palm-skyline.webp',
-  heritageTempleParallax: '/images/about/heritage-temple-parallax.png',
-  rangoliBg: '/images/about/about-rangoli-bg.png?v=3',
+  heritageTempleParallax: '/images/about/heritage-temple-parallax.webp?v=4',
+  rangoliBg: '/images/about/about-rangoli-bg.webp?v=4',
   /** Mission / Vision / Values card background */
-  purposeCardBg: '/images/about/about-purpose-card-bg.png?v=1',
+  purposeCardBg: '/images/about/about-purpose-card-bg.webp?v=4',
   /** Why Choose Us feature cards background */
-  whyChooseCardBg: '/images/about/about-why-choose-card-bg.png?v=1',
+  whyChooseCardBg: '/images/about/about-why-choose-card-bg.webp?v=4',
   /** About trust strip stat cards background */
-  trustCardBg: '/images/about/about-trust-card-bg.png?v=1',
+  trustCardBg: '/images/about/about-trust-card-bg.webp?v=4',
   /** Our Story section ambient background */
-  storyBg: '/images/about/about-story-bg.png?v=1',
+  storyBg: '/images/about/about-story-bg.webp?v=4',
   /** Our Story center arch image */
-  storyCenter: '/images/about/about-story-center.png?v=1',
+  storyCenter: '/images/about/about-story-center.webp?v=4',
   /** Bottom CTA full-bleed background */
-  ctaBg: '/images/about/about-cta-bg.png?v=2',
+  ctaBg: '/images/about/about-cta-bg.webp?v=4',
   /** Our Brands section background (desktop) */
-  brandsBg: '/images/about/about-brands-bg.png?v=1',
+  brandsBg: '/images/about/about-brands-bg.webp?v=4',
   /** Our Brands section background (mobile) */
-  brandsMobileBg: '/images/about/about-brands-mobile-bg.png?v=1',
+  brandsMobileBg: '/images/about/about-brands-mobile-bg.webp?v=4',
   /** Our Brands card background */
-  brandCardBg: '/images/about/about-brand-card-bg.png?v=1',
+  brandCardBg: '/images/about/about-brand-card-bg.webp?v=4',
 } as const

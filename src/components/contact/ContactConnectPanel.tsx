@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { CONTACT_CONNECT_BG } from '@/lib/siteConfig'
 import { buildMailtoUrl, buildTelUrl, buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { formatAddressInline, formatDisplayPhone } from '@/lib/businessInfo'
@@ -72,13 +73,10 @@ export function ContactConnectPanel({
 }: ContactConnectPanelProps) {
   return (
     <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-hidden rounded-t-xl bg-transparent p-4 sm:min-h-[320px] sm:p-6 lg:rounded-l-2xl lg:rounded-tr-none lg:p-10">
-      <img
+      <OptimizedBackground
         src={CONTACT_CONNECT_BG}
-        alt=""
-        className="absolute inset-0 hidden h-full w-full object-cover object-center lg:block"
-        loading="eager"
-        decoding="async"
-        aria-hidden="true"
+        priority
+        className="hidden lg:block"
       />
 
       <div className="relative z-10">
