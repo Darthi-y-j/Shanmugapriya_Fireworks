@@ -1,11 +1,16 @@
-import { supabase, getSupabaseErrorMessage } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
 import { cleanPhone } from '@/lib/utils'
 import type { Customer } from '@/types/database'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 export async function updateCustomerProfile(
   authUserId: string,
   data: { fullName: string; phone: string; email: string },
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const normalizedPhone = cleanPhone(data.phone)
   if (!normalizedPhone) {
     return { error: 'A valid phone number is required.' }
@@ -50,6 +55,7 @@ export async function changePassword(
   currentPassword: string,
   newPassword: string,
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error: signInError } = await supabase.auth.signInWithPassword({
     email,
     password: currentPassword,
@@ -64,6 +70,7 @@ export async function changePassword(
 }
 
 export async function syncAuthMetadata(fullName: string, phone: string): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error } = await supabase.auth.updateUser({
     data: { full_name: fullName.trim(), phone: cleanPhone(phone) },
   })

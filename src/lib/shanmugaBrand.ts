@@ -22,7 +22,7 @@ export const SHANMUGA_BRAND = {
   heroSubtext: 'Premium Quality Fireworks from Sivakasi for Your Special Celebrations',
   heroVideo: '/hero-fireworks.mp4',
   heroPoster: '/hero-home.webp',
-  heroImage: '/images/home/home-hero-bg.webp?v=1',
+  heroImage: '/images/home/home-hero-bg.webp?v=3',
   categorySectionBg: '/category-section-bg.png',
   contactCtaBg: '/contact-cta-bg.png',
   aboutHeaderBg: '/about-header-bg.png',

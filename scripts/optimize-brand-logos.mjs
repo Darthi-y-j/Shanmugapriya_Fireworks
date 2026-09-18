@@ -20,5 +20,5 @@ async function writeWebp(inputRel, outputRel, size, quality = 78) {
   console.log(`Wrote ${outputRel} (${kb} KB)`)
 }
 
-await writeWebp('images/brands/sky-fairy-logo.png', 'images/brands/sky-fairy-logo-sm.webp', 128)
-await writeWebp('shanmuga-priya-logo.png', 'images/ui/site-logo-sm.webp', 128)
+await writeWebp('images/brands/sky-fairy-logo.png', 'images/brands/sky-fairy-logo-sm.webp', 80, 68)
+await writeWebp('shanmuga-priya-logo.png', 'images/ui/site-logo-sm.webp', 80, 68)

@@ -24,7 +24,7 @@ export const ABOUT_IMAGES = {
   heritageSkyline: '/images/about/heritage-skyline.jpg',
   palmSkyline: '/images/about/palm-skyline.webp',
   heritageTempleParallax: '/images/about/heritage-temple-parallax.png',
-  rangoliBg: '/images/about/about-rangoli-bg.png',
+  rangoliBg: '/images/about/about-rangoli-bg.png?v=3',
   /** Mission / Vision / Values card background */
   purposeCardBg: '/images/about/about-purpose-card-bg.png?v=1',
   /** Why Choose Us feature cards background */

@@ -1,5 +1,9 @@
-import { supabase, getSupabaseErrorMessage } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
 import { compressImageFile } from '@/lib/compressImage'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 export type StorageBucket = 'product-images' | 'product-videos' | 'category-images'
 export type ImageStorageBucket = Exclude<StorageBucket, 'product-videos'>
@@ -20,6 +24,7 @@ export async function uploadImage(
   path?: string,
 ): Promise<{ url: string | null; error: string | null }> {
   try {
+    const supabase = await db()
     const compressed = await compressImageFile(file, IMAGE_COMPRESS_OPTIONS[bucket])
     const fileExt = compressed.type === 'image/webp' ? 'webp' : compressed.name.split('.').pop() || 'jpg'
     const fileName = path || `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`
@@ -46,6 +51,7 @@ export async function uploadVideo(
   file: File,
   path?: string,
 ): Promise<{ url: string | null; error: string | null }> {
+  const supabase = await db()
   if (!VIDEO_MIME_TYPES.has(file.type)) {
     return { url: null, error: 'Please select an MP4, WebM, or MOV video file' }
   }
@@ -71,6 +77,7 @@ export async function deleteImage(
   bucket: StorageBucket,
   path: string,
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const fileName = path.split('/').pop()
   if (!fileName) return { error: 'Invalid file path' }
 

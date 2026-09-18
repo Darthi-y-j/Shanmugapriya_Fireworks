@@ -1,4 +1,4 @@
-import { isSupabaseConfigured, normalizeSupabaseUrl } from '@/lib/supabase'
+import { isSupabaseConfigured, normalizeSupabaseUrl } from '@/lib/supabaseConfig'
 import {
   isLandingPage,
   logLandingPageApi,

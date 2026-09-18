@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { DEFAULT_SETTINGS, getWebsiteSettings } from '@/services/settings'
+import { DEFAULT_SETTINGS } from '@/services/settings'
 import type { WebsiteSettings } from '@/types/database'
 import { logLandingPageApi, logLandingPageApiError } from '@/lib/landingPageApiLog'
 
@@ -19,6 +19,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     setLoading(true)
     logLandingPageApi('SettingsContext.loadSettings:start')
     try {
+      const { getWebsiteSettings } = await import('@/services/settings')
       const data = await getWebsiteSettings()
       setSettings(data)
       logLandingPageApi('SettingsContext.loadSettings:done', {
@@ -36,7 +37,12 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    void loadSettings()
+    const run = () => void loadSettings()
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(run, { timeout: 2500 })
+    } else {
+      setTimeout(run, 200)
+    }
   }, [])
 
   const value = useMemo(

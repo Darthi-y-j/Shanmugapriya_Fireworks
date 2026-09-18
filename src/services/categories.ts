@@ -1,13 +1,15 @@
-import { supabase, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
 import { supabaseRestGet } from '@/lib/supabaseRest'
 import { logLandingPageApi, logLandingPageApiError } from '@/lib/landingPageApiLog'
-import { CACHE_KEYS, readSessionCache, writeSessionCache } from '@/lib/sessionCache'
+import { CACHE_KEYS, writeSessionCache } from '@/lib/sessionCache'
 import type { Category } from '@/types/database'
+
+export { getCachedCatalogueCategories } from '@/lib/catalogueCache'
 
 export type CategoryArchiveFilter = 'active' | 'archived' | 'all'
 
-export function getCachedCatalogueCategories(): Category[] | null {
-  return readSessionCache<Category[]>(CACHE_KEYS.catalogueCategories)
+async function db() {
+  return getSupabaseClient()
 }
 
 export async function getCategories(
@@ -62,6 +64,7 @@ export async function getCategories(
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+  const supabase = await db()
   const withArchive = async (useArchiveFilter: boolean) => {
     let query = supabase.from('categories').select('*').eq('slug', slug).eq('is_active', true)
     if (useArchiveFilter) query = query.eq('is_archived', false)
@@ -81,6 +84,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
 }
 
 export async function getCategoryById(id: string): Promise<Category | null> {
+  const supabase = await db()
   const { data, error } = await supabase.from('categories').select('*').eq('id', id).single()
 
   if (error) return null
@@ -93,6 +97,7 @@ export async function createCategory(
     archived_at?: string | null
   },
 ): Promise<{ data: Category | null; error: string | null }> {
+  const supabase = await db()
   const { data, error } = await supabase.from('categories').insert(category).select().single()
 
   if (error) return { data: null, error: getSupabaseErrorMessage(error) }
@@ -103,6 +108,7 @@ export async function updateCategory(
   id: string,
   updates: Partial<Omit<Category, 'id' | 'created_at' | 'updated_at'>>,
 ): Promise<{ data: Category | null; error: string | null }> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('categories')
     .update(updates)
@@ -141,6 +147,7 @@ export async function restoreCategory(id: string): Promise<{ error: string | nul
 export async function updateCategoriesSortOrder(
   updates: { id: string; sort_order: number }[],
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const results = await Promise.all(
     updates.map(({ id, sort_order }) =>
       supabase.from('categories').update({ sort_order }).eq('id', id),
@@ -153,6 +160,7 @@ export async function updateCategoriesSortOrder(
 }
 
 export async function deleteCategory(id: string): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error } = await supabase.from('categories').delete().eq('id', id)
   if (error) return { error: getSupabaseErrorMessage(error) }
   return { error: null }

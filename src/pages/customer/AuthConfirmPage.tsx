@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { CheckCircle2, Loader2, XCircle } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 type ConfirmStatus = 'loading' | 'success' | 'error'
 
@@ -13,15 +13,7 @@ export function AuthConfirmPage() {
 
   useEffect(() => {
     let mounted = true
-
-    const finishSuccess = async () => {
-      await supabase.auth.signOut()
-      if (!mounted) return
-      setStatus('success')
-      window.setTimeout(() => {
-        navigate('/login?verified=1', { replace: true })
-      }, 2500)
-    }
+    let unsubscribe: (() => void) | undefined
 
     const finishError = (detail: string) => {
       if (!mounted) return
@@ -36,51 +28,67 @@ export function AuthConfirmPage() {
 
     if (errorDescription) {
       finishError(decodeURIComponent(errorDescription.replace(/\+/g, ' ')))
-      return
+      return () => {
+        mounted = false
+      }
     }
 
-    const tokenHash = params.get('token_hash')
-    const otpType = params.get('type')
+    void (async () => {
+      const supabase = await getSupabaseClient()
 
-    const verifyFromLink = async () => {
-      if (tokenHash && otpType) {
-        const { error } = await supabase.auth.verifyOtp({
-          token_hash: tokenHash,
-          type: otpType as 'signup' | 'email',
-        })
+      const finishSuccess = async () => {
+        await supabase.auth.signOut()
+        if (!mounted) return
+        setStatus('success')
+        window.setTimeout(() => {
+          navigate('/login?verified=1', { replace: true })
+        }, 2500)
+      }
+
+      const tokenHash = params.get('token_hash')
+      const otpType = params.get('type')
+
+      const verifyFromLink = async () => {
+        if (tokenHash && otpType) {
+          const { error } = await supabase.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: otpType as 'signup' | 'email',
+          })
+          if (error) {
+            finishError(error.message)
+            return
+          }
+          await finishSuccess()
+          return
+        }
+
+        const { data, error } = await supabase.auth.getSession()
         if (error) {
           finishError(error.message)
           return
         }
-        await finishSuccess()
-        return
+
+        if (data.session?.user?.email_confirmed_at) {
+          await finishSuccess()
+          return
+        }
+
+        finishError('This confirmation link is invalid or has expired. Request a new email from the login page.')
       }
 
-      const { data, error } = await supabase.auth.getSession()
-      if (error) {
-        finishError(error.message)
-        return
-      }
+      const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
+          void finishSuccess()
+        }
+      })
+      unsubscribe = () => authListener.subscription.unsubscribe()
 
-      if (data.session?.user?.email_confirmed_at) {
-        await finishSuccess()
-        return
-      }
-
-      finishError('This confirmation link is invalid or has expired. Request a new email from the login page.')
-    }
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
-        void finishSuccess()
-      }
-    })
-
-    void verifyFromLink()
+      await verifyFromLink()
+    })()
 
     return () => {
       mounted = false
-      authListener.subscription.unsubscribe()
+      unsubscribe?.()
     }
   }, [navigate])
 

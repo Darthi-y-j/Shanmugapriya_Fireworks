@@ -3,6 +3,7 @@ import { ArrowRight, Diamond, Shield, Star } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { HOME_IMAGES } from '@/lib/homeImages'
+import { heroBackgroundSrcSet } from '@/lib/responsiveImages'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
 
@@ -12,11 +13,15 @@ const TRUST_ITEMS = [
   { icon: Star, label: 'Celebrating Together' },
 ] as const
 
+const HERO_BG = heroBackgroundSrcSet(HOME_IMAGES.heroBg)
+
 export function PrimeHero() {
   return (
     <section className="relative min-h-[92vh] overflow-hidden sm:min-h-[94vh]">
       <OptimizedImage
         src={HOME_IMAGES.heroBg}
+        webpSrcSet={HERO_BG.srcSet}
+        sizes={HERO_BG.sizes}
         alt=""
         priority
         className="absolute inset-0 h-full w-full object-cover object-center"

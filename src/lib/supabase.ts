@@ -1,28 +1,13 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import {
   isLandingPage,
   logLandingPageApi,
   logLandingPageApiError,
   sanitizeApiUrl,
 } from '@/lib/landingPageApiLog'
+import { isSupabaseConfigured, SUPABASE_ANON_KEY, SUPABASE_URL } from '@/lib/supabaseConfig'
 
-/** Project root only — e.g. https://xxx.supabase.co (no /rest/v1 suffix). */
-export function normalizeSupabaseUrl(url: string | undefined): string {
-  if (!url) return ''
-  return url.trim().replace(/\/+$/, '').replace(/\/rest\/v1$/i, '')
-}
-
-const supabaseUrl = normalizeSupabaseUrl(import.meta.env.VITE_SUPABASE_URL)
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim()
-
-export const isSupabaseConfigured = Boolean(
-  supabaseUrl &&
-    supabaseAnonKey &&
-    supabaseUrl !== 'https://your-project.supabase.co' &&
-    !supabaseUrl.includes('your-project') &&
-    supabaseAnonKey !== 'your-anon-key-here' &&
-    !supabaseAnonKey.startsWith('your-')
-)
+export { isSupabaseConfigured, normalizeSupabaseUrl } from '@/lib/supabaseConfig'
 
 const supabaseFetch: typeof fetch = (input, init) => {
   const timeoutMs = 12_000
@@ -78,11 +63,22 @@ const supabaseFetch: typeof fetch = (input, init) => {
     })
 }
 
-export const supabase: SupabaseClient = isSupabaseConfigured
-  ? createClient(supabaseUrl, supabaseAnonKey, {
-      global: { fetch: supabaseFetch },
+let client: SupabaseClient | null = null
+let clientPromise: Promise<SupabaseClient> | null = null
+
+/** Lazy-load Supabase client so the SDK is not on the homepage critical path. */
+export async function getSupabaseClient(): Promise<SupabaseClient> {
+  if (client) return client
+  if (!clientPromise) {
+    clientPromise = import('@supabase/supabase-js').then(({ createClient }) => {
+      client = isSupabaseConfigured
+        ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { global: { fetch: supabaseFetch } })
+        : createClient('https://placeholder.supabase.co', 'placeholder-key')
+      return client
     })
-  : createClient('https://placeholder.supabase.co', 'placeholder-key')
+  }
+  return clientPromise
+}
 
 export function getSupabaseErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message

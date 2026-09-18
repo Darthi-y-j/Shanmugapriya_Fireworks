@@ -1,9 +1,13 @@
-import { supabase, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
 import { supabaseRestGet } from '@/lib/supabaseRest'
 import { logLandingPageApi, logLandingPageApiError } from '@/lib/landingPageApiLog'
 import { CACHE_KEYS, readSessionCache, writeSessionCache } from '@/lib/sessionCache'
 import { isLowStock } from '@/lib/stock'
 import type { Product, ProductFilters } from '@/types/database'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 const PRODUCT_CACHE_MS = 2 * 60 * 1000
 const REQUEST_TIMEOUT_MS = 12_000
@@ -226,6 +230,7 @@ export async function getProducts(filters: ProductFilters = {}): Promise<Product
 }
 
 export async function getAllProducts(filters: ProductFilters = {}): Promise<Product[]> {
+  const supabase = await db()
   const archived = filters.archived ?? 'active'
 
   return queryProductsWithArchiveFallback(archived, (withArchiveFilter) => {
@@ -256,6 +261,7 @@ export async function getAllProducts(filters: ProductFilters = {}): Promise<Prod
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const supabase = await db()
   const withArchive = async (useArchiveFilter: boolean) => {
     let query = supabase.from('products').select('*, category:categories(*)').eq('slug', slug)
     if (useArchiveFilter) query = query.eq('is_archived', false)
@@ -275,6 +281,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('products')
     .select('*, category:categories(*)')
@@ -291,6 +298,7 @@ export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
 }
 
 export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
+  const supabase = await db()
   return queryProductsWithArchiveFallback('active', (withArchiveFilter) => {
     let query = supabase
       .from('products')
@@ -310,6 +318,7 @@ export async function createProduct(
     archived_at?: string | null
   },
 ): Promise<{ data: Product | null; error: string | null }> {
+  const supabase = await db()
   const { data, error } = await supabase.from('products').insert(product).select().single()
 
   if (error) return { data: null, error: getSupabaseErrorMessage(error) }
@@ -320,6 +329,7 @@ export async function updateProduct(
   id: string,
   updates: Partial<Omit<Product, 'id' | 'created_at' | 'updated_at' | 'category'>>,
 ): Promise<{ data: Product | null; error: string | null }> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('products')
     .update(updates)
@@ -360,6 +370,7 @@ export async function restoreProduct(id: string): Promise<{ error: string | null
 export async function updateProductsSortOrder(
   updates: { id: string; sort_order: number }[],
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const results = await Promise.all(
     updates.map(({ id, sort_order }) =>
       supabase.from('products').update({ sort_order }).eq('id', id),
@@ -372,12 +383,14 @@ export async function updateProductsSortOrder(
 }
 
 export async function deleteProduct(id: string): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error } = await supabase.from('products').delete().eq('id', id)
   if (error) return { error: getSupabaseErrorMessage(error) }
   return { error: null }
 }
 
 export async function getProductCount(): Promise<{ total: number; active: number }> {
+  const supabase = await db()
   const countWithArchive = async (useArchiveFilter: boolean, availableOnly = false) => {
     let query = supabase.from('products').select('*', { count: 'exact', head: true })
     if (useArchiveFilter) query = query.eq('is_archived', false)

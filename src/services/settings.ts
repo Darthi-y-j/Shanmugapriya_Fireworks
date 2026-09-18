@@ -1,4 +1,5 @@
-import { supabase, getSupabaseErrorMessage, isSupabaseConfigured } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import {
   BUSINESS_ADDRESS,
   BUSINESS_EMAIL,
@@ -131,6 +132,7 @@ export async function getWebsiteSettings(): Promise<WebsiteSettings> {
     return DEFAULT_SETTINGS
   }
 
+  const supabase = await getSupabaseClient()
   const { data, error } = await supabase
     .from('website_settings')
     .select('*')
@@ -148,6 +150,7 @@ export async function updateWebsiteSettings(
   settings: Partial<Omit<WebsiteSettings, 'id' | 'updated_at'>>
 ): Promise<{ data: WebsiteSettings | null; error: string | null }> {
   const existing = await getWebsiteSettings()
+  const supabase = await getSupabaseClient()
 
   const { data, error } = await supabase
     .from('website_settings')

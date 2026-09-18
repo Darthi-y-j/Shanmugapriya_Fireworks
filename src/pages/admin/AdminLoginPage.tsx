@@ -5,7 +5,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { SEO } from '@/components/shared/SEO'
 import { AuthFormCard } from '@/components/customer/AuthFormCard'
 import { LoginSplitLayout } from '@/components/customer/LoginSplitLayout'
-import { isSupabaseConfigured } from '@/lib/supabase'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import { SITE_LOGO_PATH } from '@/lib/siteConfig'
 import {
   AUTH_LOGIN_CARD_WIDTH,

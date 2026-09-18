@@ -6,6 +6,9 @@ interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 
   src: string
   /** Eager load + preload for LCP images. */
   priority?: boolean
+  /** Optional responsive WebP srcset (sizes attribute recommended). */
+  webpSrcSet?: string
+  sizes?: string
 }
 
 /** Static site image with WebP source and PNG/JPG fallback. */
@@ -17,13 +20,15 @@ export function OptimizedImage({
   loading,
   decoding = 'async',
   fetchPriority,
+  webpSrcSet,
+  sizes,
   ...rest
 }: OptimizedImageProps) {
   const { webp, fallback } = assetWithWebp(src)
 
   return (
     <picture>
-      <source srcSet={webp} type="image/webp" />
+      <source srcSet={webpSrcSet ?? webp} type="image/webp" sizes={webpSrcSet ? sizes : undefined} />
       <img
         src={fallback}
         alt={alt}
@@ -31,6 +36,7 @@ export function OptimizedImage({
         loading={loading ?? (priority ? 'eager' : 'lazy')}
         decoding={priority ? 'sync' : decoding}
         fetchPriority={fetchPriority ?? (priority ? 'high' : 'auto')}
+        sizes={webpSrcSet ? sizes : undefined}
         {...rest}
       />
     </picture>

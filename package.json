@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-favicons.mjs && node scripts/optimize-brand-logos.mjs && node scripts/optimize-page-images.mjs && node scripts/generate-sitemap.mjs && tsc -b && vite build",
+    "build": "node scripts/generate-favicons.mjs && node scripts/optimize-brand-logos.mjs && node scripts/optimize-page-images.mjs && node scripts/recompress-webp.mjs && node scripts/generate-sitemap.mjs && tsc -b && vite build",
     "optimize-images": "node scripts/optimize-page-images.mjs",
     "favicons": "node scripts/generate-favicons.mjs",
     "catalog": "node scripts/generate-aura-catalog-from-xlsx.mjs",

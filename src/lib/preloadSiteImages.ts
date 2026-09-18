@@ -10,7 +10,7 @@ const AUTH_IMAGE_PATHS = [SHANMUGA_BRAND.loginBg, SHANMUGA_BRAND.loginCardBg]
 const HOME_EAGER_PATHS = [
   HOME_IMAGES.heroBg,
   HOME_IMAGES.topBanner,
-  `${ABOUT_IMAGES.rangoliBg}?v=2`,
+  ABOUT_IMAGES.rangoliBg,
   HOME_IMAGES.aboutMobileBg,
   ABOUT_IMAGES.heritageTempleParallax,
 ]

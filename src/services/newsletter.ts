@@ -1,4 +1,5 @@
-import { supabase, getSupabaseErrorMessage, isSupabaseConfigured } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import type { NewsletterSource, NewsletterSubscriber } from '@/types/database'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -29,6 +30,7 @@ export async function subscribeNewsletter(
     return { ok: false, error: 'Subscription is unavailable right now. Please try again later.' }
   }
 
+  const supabase = await getSupabaseClient()
   const { data, error } = await supabase.rpc('subscribe_newsletter', {
     p_email: normalized,
     p_source: source,
@@ -57,6 +59,7 @@ export async function subscribeNewsletter(
 }
 
 export async function getNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
+  const supabase = await getSupabaseClient()
   const { data, error } = await supabase
     .from('newsletter_subscribers')
     .select('id, email, source, subscribed_at')
@@ -67,6 +70,7 @@ export async function getNewsletterSubscribers(): Promise<NewsletterSubscriber[]
 }
 
 export async function deleteNewsletterSubscriber(id: string): Promise<void> {
+  const supabase = await getSupabaseClient()
   const { error } = await supabase.from('newsletter_subscribers').delete().eq('id', id)
   if (error) throw new Error(getSupabaseErrorMessage(error))
 }

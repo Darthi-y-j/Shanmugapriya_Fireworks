@@ -34,7 +34,7 @@ export const SITE_LOGO_FILE = '/shanmuga-priya-logo.png'
 export const SITE_LOGO_PATH = `${SITE_LOGO_FILE}?v=${FAVICON_VERSION}`
 
 /** Small logo for navbar, footer, and auth cards — avoids loading a 1440px PNG. */
-export const SITE_UI_LOGO_PATH = `/images/ui/site-logo-sm.webp?v=${FAVICON_VERSION}`
+export const SITE_UI_LOGO_PATH = `/images/ui/site-logo-sm.webp?v=3`
 
 /** Products catalogue page hero background */
 export const PRODUCTS_PAGE_BG_PATH = '/images/products-page-bg.png?v=1'
@@ -50,7 +50,7 @@ export const FAQ_PAGE_CONTENT_MOBILE_BG = '/images/faq/faq-content-mobile-bg.png
 export const FAQ_ITEM_BG = '/images/faq/faq-item-bg.png?v=1'
 
 /** Site footer background */
-export const FOOTER_BG = '/images/footer-bg.png?v=1'
+export const FOOTER_BG = '/images/footer-bg.png?v=3'
 
 /** Cart & liked products page hero background */
 export const CART_LIKES_PAGE_HERO_BG = '/images/cart/cart-likes-hero-bg.png?v=2'

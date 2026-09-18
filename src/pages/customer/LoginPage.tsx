@@ -8,7 +8,7 @@ import { AuthFormCard } from '@/components/customer/AuthFormCard'
 import { LoginSplitLayout } from '@/components/customer/LoginSplitLayout'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { SITE_LOGO_PATH } from '@/lib/siteConfig'
-import { isSupabaseConfigured } from '@/lib/supabase'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import {
   AUTH_LOGIN_CARD_WIDTH,
   authCardBrandClass,

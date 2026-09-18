@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback, useRef, type ReactNode } from 'react'
-import { supabase, getSupabaseErrorMessage, isSupabaseConfigured } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import { logLandingPageApi, logLandingPageApiError } from '@/lib/landingPageApiLog'
 import { getAuthConfirmRedirectUrl, getPasswordResetRedirectUrl } from '@/lib/authRedirects'
 import {
@@ -34,6 +35,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 async function verifyAdminAccess(): Promise<boolean> {
+  const supabase = await getSupabaseClient()
   logLandingPageApi('AuthContext.is_admin:start', { rpc: 'is_admin' })
   const startedAt = performance.now()
   const { data, error } = await supabase.rpc('is_admin')
@@ -60,6 +62,7 @@ async function upsertCustomerProfile(
   phone: string,
   email: string,
 ): Promise<{ error: string | null }> {
+  const supabase = await getSupabaseClient()
   const normalizedPhone = cleanPhone(phone)
   if (!normalizedPhone) {
     return { error: 'A valid phone number is required.' }
@@ -181,6 +184,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let mounted = true
+    let subscription: { unsubscribe: () => void } | undefined
 
     if (!isSupabaseConfigured) {
       logLandingPageApi('AuthContext.getSession:skipped', { reason: 'supabase_not_configured' })
@@ -190,12 +194,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    logLandingPageApi('AuthContext.getSession:start')
-    const sessionStartedAt = performance.now()
+    const initAuth = async () => {
+      const supabase = await getSupabaseClient()
+      if (!mounted) return
 
-    supabase.auth
-      .getSession()
-      .then(({ data: { session: s } }) => {
+      logLandingPageApi('AuthContext.getSession:start')
+      const sessionStartedAt = performance.now()
+
+      try {
+        const { data: { session: s } } = await supabase.auth.getSession()
         if (!mounted) return
         logLandingPageApi('AuthContext.getSession:done', {
           ms: Math.round(performance.now() - sessionStartedAt),
@@ -211,44 +218,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } else {
           setLoading(false)
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         logLandingPageApiError('AuthContext.getSession:failed', {
           ms: Math.round(performance.now() - sessionStartedAt),
           error: error instanceof Error ? error.message : String(error),
         })
         if (mounted) setLoading(false)
+      }
+
+      const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange((event, s) => {
+        if (!mounted) return
+
+        setSession(s)
+        setUser(s?.user ?? null)
+
+        if (!s) {
+          lastCheckedTokenRef.current = null
+          isAdminRef.current = false
+          setIsAdmin(false)
+          return
+        }
+
+        if (event === 'TOKEN_REFRESHED') return
+
+        if (ADMIN_CHECK_EVENTS.includes(event)) {
+          void checkAdminStatus(s, event === 'SIGNED_IN').then((admin) => {
+            if (!admin && event === 'SIGNED_IN' && s.user) {
+              void syncCustomerProfileFromUser(s.user)
+            }
+          })
+        }
       })
+      subscription = authSubscription
+    }
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, s) => {
-      if (!mounted) return
-
-      setSession(s)
-      setUser(s?.user ?? null)
-
-      if (!s) {
-        lastCheckedTokenRef.current = null
-        isAdminRef.current = false
-        setIsAdmin(false)
-        return
-      }
-
-      if (event === 'TOKEN_REFRESHED') return
-
-      if (ADMIN_CHECK_EVENTS.includes(event)) {
-        void checkAdminStatus(s, event === 'SIGNED_IN').then((admin) => {
-          if (!admin && event === 'SIGNED_IN' && s.user) {
-            void syncCustomerProfileFromUser(s.user)
-          }
-        })
-      }
-    })
+    const schedule = () => void initAuth()
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(schedule, { timeout: 2500 })
+    } else {
+      setTimeout(schedule, 150)
+    }
 
     return () => {
       mounted = false
-      subscription.unsubscribe()
+      subscription?.unsubscribe()
     }
   }, [checkAdminStatus])
 
@@ -257,6 +270,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
@@ -293,6 +307,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) return { error: formatAuthError(error) }
@@ -328,6 +343,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const normalizedPhone = cleanPhone(phone)
 
     const { data, error } = await supabase.auth.signUp({
@@ -375,6 +391,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const { error } = await supabase.auth.resend({
       type: 'signup',
       email,
@@ -392,6 +409,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
       redirectTo: getPasswordResetRedirectUrl(),
     })
@@ -405,6 +423,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { error: formatAuthConfigError() }
     }
 
+    const supabase = await getSupabaseClient()
     const { error } = await supabase.auth.updateUser({ password })
 
     if (error) return { error: formatAuthError(error) }
@@ -420,6 +439,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signOut = async () => {
+    const supabase = await getSupabaseClient()
     await supabase.auth.signOut()
     lastCheckedTokenRef.current = null
     isAdminRef.current = false

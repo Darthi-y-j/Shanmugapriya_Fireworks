@@ -1,4 +1,4 @@
-import { supabase, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
 import { normalizeReferralCode } from '@/lib/referralCode'
 import { generateEnquiryNumber, cleanPhone, sanitizeEnquiryProductId } from '@/lib/utils'
 import { expandCartItemsForEnquiry, enquiryHeaderProductId } from '@/lib/giftBox'
@@ -12,6 +12,10 @@ import type {
   DashboardStats,
   Customer,
 } from '@/types/database'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 const ENQUIRY_CATEGORY_LABELS: Record<string, string> = {
   bulk: 'Bulk / Wholesale Order',
@@ -89,6 +93,7 @@ function isEnquiryTypeConstraint(error: unknown): boolean {
 }
 
 async function insertEnquiry(payload: EnquiryInsertExtended) {
+  const supabase = await db()
   const { enquiry_type, customer_email, enquiry_category, auth_user_id, referral_code, ...base } =
     payload
   const normalizedReferral = referral_code ? normalizeReferralCode(referral_code) || null : null
@@ -188,6 +193,7 @@ async function insertEnquiry(payload: EnquiryInsertExtended) {
 }
 
 async function upsertCustomer(name: string, phone: string, email?: string | null) {
+  const supabase = await db()
   const { error } = await supabase.rpc('upsert_customer_lead', {
     p_name: name,
     p_phone: phone,
@@ -356,6 +362,7 @@ export async function createContactEnquiry(
 }
 
 export async function getMyEnquiries(authUserId: string): Promise<Enquiry[]> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('enquiries')
     .select('*')
@@ -370,6 +377,7 @@ export async function getMyEnquiries(authUserId: string): Promise<Enquiry[]> {
 }
 
 export async function getCustomerProfile(authUserId: string): Promise<Customer | null> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('customers')
     .select('*')
@@ -384,6 +392,7 @@ export async function getCustomerProfile(authUserId: string): Promise<Customer |
 }
 
 export async function getEnquiries(status?: EnquiryStatus): Promise<Enquiry[]> {
+  const supabase = await db()
   let query = supabase.from('enquiries').select('*').order('created_at', { ascending: false })
 
   if (status) {
@@ -397,6 +406,7 @@ export async function getEnquiries(status?: EnquiryStatus): Promise<Enquiry[]> {
 }
 
 export async function getRecentEnquiries(limit = 10): Promise<Enquiry[]> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('enquiries')
     .select('*')
@@ -411,6 +421,7 @@ export async function updateEnquiryStatus(
   id: string,
   status: EnquiryStatus,
 ): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error } = await supabase.from('enquiries').update({ status }).eq('id', id)
 
   if (error) return { error: getSupabaseErrorMessage(error) }
@@ -428,6 +439,7 @@ export async function updateEnquiryReplied(
   replied: boolean,
   currentStatus?: EnquiryStatus,
 ): Promise<{ error: string | null; status?: EnquiryStatus; admin_replied?: boolean; replied_at?: string | null }> {
+  const supabase = await db()
   const updatePayload: Record<string, unknown> = {
     admin_replied: replied,
     replied_at: replied ? new Date().toISOString() : null,
@@ -481,12 +493,14 @@ export async function updateEnquiryReplied(
 }
 
 export async function deleteEnquiry(id: string): Promise<{ error: string | null }> {
+  const supabase = await db()
   const { error } = await supabase.from('enquiries').delete().eq('id', id)
   if (error) return { error: getSupabaseErrorMessage(error) }
   return { error: null }
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
+  const supabase = await db()
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 

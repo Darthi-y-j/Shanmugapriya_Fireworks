@@ -4,7 +4,7 @@ import { KeyRound, Loader2 } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
 import { AuthCard, AuthPageShell, authInputClass } from '@/components/customer/AuthShell'
 import { useAuth } from '@/contexts/AuthContext'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 export function ResetPasswordPage() {
   const navigate = useNavigate()
@@ -18,41 +18,47 @@ export function ResetPasswordPage() {
 
   useEffect(() => {
     let mounted = true
+    let unsubscribe: (() => void) | undefined
 
-    const checkRecoverySession = async () => {
-      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''))
-      const type = hashParams.get('type')
+    void (async () => {
+      const supabase = await getSupabaseClient()
 
-      if (type === 'recovery') {
-        if (mounted) setReady(true)
-        return
-      }
+      const checkRecoverySession = async () => {
+        const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''))
+        const type = hashParams.get('type')
 
-      const { data, error: sessionError } = await supabase.auth.getSession()
-      if (!mounted) return
+        if (type === 'recovery') {
+          if (mounted) setReady(true)
+          return
+        }
 
-      if (sessionError || !data.session) {
-        setInvalidLink(true)
-        return
-      }
+        const { data, error: sessionError } = await supabase.auth.getSession()
+        if (!mounted) return
 
-      setReady(true)
-    }
+        if (sessionError || !data.session) {
+          setInvalidLink(true)
+          return
+        }
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY' && mounted) {
         setReady(true)
-        setInvalidLink(false)
       }
-    })
 
-    void checkRecoverySession()
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange((event) => {
+        if (event === 'PASSWORD_RECOVERY' && mounted) {
+          setReady(true)
+          setInvalidLink(false)
+        }
+      })
+      unsubscribe = () => subscription.unsubscribe()
+
+      await checkRecoverySession()
+    })()
 
     return () => {
       mounted = false
-      subscription.unsubscribe()
+      unsubscribe?.()
     }
   }, [])
 

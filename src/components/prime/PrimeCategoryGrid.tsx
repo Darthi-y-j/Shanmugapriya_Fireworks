@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
-import { getCategories, getCachedCatalogueCategories } from '@/services/categories'
-import { isSupabaseConfigured } from '@/lib/supabase'
+import { getCachedCatalogueCategories } from '@/lib/catalogueCache'
+import { isSupabaseConfigured } from '@/lib/supabaseConfig'
 import { getImageUrl, IMAGE_WIDTH } from '@/lib/utils'
 import { MOCKUP_CATEGORIES } from '@/lib/mockupCategories'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
@@ -100,9 +100,17 @@ export function PrimeCategoryGrid() {
   const [categories, setCategories] = useState<Category[]>(() => getCachedCatalogueCategories() ?? [])
 
   useEffect(() => {
-    void getCategories()
-      .then((cats) => setCategories(cats))
-      .catch(() => undefined)
+    const load = async () => {
+      const { getCategories } = await import('@/services/categories')
+      const cats = await getCategories()
+      setCategories(cats)
+    }
+    const run = () => void load().catch(() => undefined)
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(run, { timeout: 3000 })
+    } else {
+      setTimeout(run, 400)
+    }
   }, [])
 
   const displayCategories = useMemo((): DisplayCategory[] => {

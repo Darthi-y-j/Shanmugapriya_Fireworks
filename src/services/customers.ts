@@ -1,5 +1,9 @@
-import { supabase, getSupabaseErrorMessage } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage } from '@/lib/supabase'
 import type { Customer } from '@/types/database'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 export interface CustomerWithStats extends Omit<Customer, 'last_enquiry_at'> {
   enquiry_count: number
@@ -8,6 +12,7 @@ export interface CustomerWithStats extends Omit<Customer, 'last_enquiry_at'> {
 }
 
 export async function getCustomers(): Promise<CustomerWithStats[]> {
+  const supabase = await db()
   const { data: customers, error } = await supabase
     .from('customers')
     .select('*')
@@ -40,6 +45,7 @@ export async function getCustomers(): Promise<CustomerWithStats[]> {
 }
 
 export async function getCustomerByPhone(phone: string): Promise<Customer | null> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('customers')
     .select('*')

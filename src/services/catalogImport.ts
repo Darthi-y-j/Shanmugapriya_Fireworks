@@ -1,7 +1,11 @@
-import { supabase, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
+import { getSupabaseClient, getSupabaseErrorMessage, isMissingColumnError } from '@/lib/supabase'
 import { CATALOG_CATEGORIES, CATALOG_PRODUCTS } from '@/data/catalog'
 import { createCategory, deleteCategory, getCategories, updateCategory } from '@/services/categories'
 import { deleteProduct, getAllProducts } from '@/services/products'
+
+async function db() {
+  return getSupabaseClient()
+}
 
 const CATALOG_MARKER_SLUG = '2-3-4-kuruvai'
 const PRODUCT_CHUNK = 40
@@ -16,6 +20,7 @@ export interface CatalogImportResult {
 }
 
 async function catalogAlreadyImported(): Promise<boolean> {
+  const supabase = await db()
   const { data, error } = await supabase
     .from('products')
     .select('id')
@@ -72,6 +77,7 @@ async function ensureCategories(): Promise<Map<string, string>> {
 }
 
 async function upsertProducts(categoryIds: Map<string, string>) {
+  const supabase = await db()
   const rows = CATALOG_PRODUCTS.map((product) => {
     const category_id = categoryIds.get(product.category_slug)
     if (!category_id) {
