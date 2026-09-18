@@ -43,7 +43,7 @@ function PrimeCompactProductCardInner({
       <div className="relative w-[5.75rem] shrink-0 overflow-hidden bg-slate-50 sm:w-32 lg:w-[38%] lg:min-h-[7.5rem]">
         <ProductLink product={product} className="block h-full">
           <img
-            src={getImageUrl(product.image_url, '/placeholder-product.svg', IMAGE_WIDTH.card)}
+            src={getImageUrl(product.image_url, '/placeholder-product.svg', IMAGE_WIDTH.thumb)}
             alt=""
             className="h-full min-h-[5.75rem] w-full object-cover transition duration-300 group-hover:scale-[1.03] sm:min-h-[8rem] lg:aspect-auto lg:min-h-[7.5rem]"
             loading={priority ? 'eager' : 'lazy'}

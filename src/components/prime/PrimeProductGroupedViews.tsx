@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import type { Product } from '@/types/database'
 import { EmptyState } from '@/components/customer/EmptyState'
 import type { PrimeProductViewMode } from '@/hooks/usePrimeProductViewMode'
@@ -50,12 +49,8 @@ export function PrimeProductGroupedViews({
               {showCategoryHeaders && <PrimeCategoryHeader name={group.name} />}
               <div className="grid grid-cols-2 gap-2 p-2 sm:grid-cols-2 sm:gap-5 sm:p-5 lg:grid-cols-3 xl:grid-cols-4">
                 {group.products.map((product, i) => (
-                  <div
-                    key={product.id}
-                    data-reveal="scale-in"
-                    style={{ '--reveal-delay': `${(i % 6) * 50}ms` } as CSSProperties}
-                  >
-                    <PrimeProductCard product={product} priority={groupIndex === 0 && i < 12} />
+                  <div key={product.id}>
+                    <PrimeProductCard product={product} priority={groupIndex === 0 && i < 8} />
                   </div>
                 ))}
               </div>
@@ -74,12 +69,8 @@ export function PrimeProductGroupedViews({
               {showCategoryHeaders && <PrimeCategoryHeader name={group.name} />}
             <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:gap-4 sm:p-4 lg:grid-cols-3 lg:gap-5 lg:p-5">
               {group.products.map((product, i) => (
-                <div
-                  key={product.id}
-                  data-reveal="scale-in"
-                  style={{ '--reveal-delay': `${(i % 6) * 50}ms` } as CSSProperties}
-                >
-                  <PrimeProductCompactCard product={product} priority={groupIndex === 0 && i < 8} />
+                <div key={product.id}>
+                  <PrimeProductCompactCard product={product} priority={groupIndex === 0 && i < 6} />
                 </div>
               ))}
             </div>

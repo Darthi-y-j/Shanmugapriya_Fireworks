@@ -2,6 +2,11 @@ import sharp from 'sharp'
 import path from 'node:path'
 import fs from 'node:fs'
 
+if (process.env.VERCEL === '1' || process.env.SKIP_IMAGE_OPTIMIZE === '1') {
+  console.log('Skipping image optimization (pre-optimized assets in repo).')
+  process.exit(0)
+}
+
 const publicDir = path.resolve('public')
 
 const SKIP_DIRS = new Set(['brands'])

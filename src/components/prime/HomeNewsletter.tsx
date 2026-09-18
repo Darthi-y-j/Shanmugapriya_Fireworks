@@ -1,5 +1,6 @@
 import { ArrowRight, Flower2 } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { NewsletterSubscribeForm } from '@/components/customer/NewsletterSubscribeForm'
 import { HOME_IMAGES } from '@/lib/homeImages'
 
@@ -10,12 +11,10 @@ export function HomeNewsletterCard() {
         className="relative mt-6 overflow-hidden rounded-xl shadow-[0_12px_40px_rgba(6,43,99,0.22)] sm:mt-14 sm:rounded-[2rem] sm:shadow-[0_20px_60px_rgba(6,43,99,0.28)]"
         aria-labelledby="home-newsletter-heading"
       >
-        <img
+        <OptimizedImage
           src={HOME_IMAGES.serviceBarBg}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
-          loading="lazy"
-          decoding="async"
         />
         <div className="pointer-events-none absolute inset-0 bg-[#041E47]/25" aria-hidden="true" />
         <div

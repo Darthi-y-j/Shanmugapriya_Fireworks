@@ -10,8 +10,6 @@ import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
 import { usePrimeShop } from '@/contexts/PrimeShopContext'
 import type { Category } from '@/types/database'
 
-const AUTO_SCROLL_SPEED = 0.55
-
 type DisplayCategory = {
   id: string
   name: string
@@ -26,8 +24,8 @@ function toDisplayCategory(cat: Category): DisplayCategory {
       ? getImageUrl(
           cat.image_url,
           '/placeholder-category.svg',
-          IMAGE_WIDTH.card,
-          IMAGE_WIDTH.card,
+          IMAGE_WIDTH.thumb,
+          IMAGE_WIDTH.thumb,
           'cover',
         )
       : '/placeholder-category.svg',
@@ -98,13 +96,7 @@ function CategoryShowcaseCard({
 
 export function PrimeCategoryGrid() {
   const { scrollToCategory } = usePrimeShop()
-  const sectionRef = useRef<HTMLElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
-  const pausedRef = useRef(false)
-  const visibleRef = useRef(true)
-  const userScrollingRef = useRef(false)
-  const autoScrollingRef = useRef(false)
-  const userScrollTimeoutRef = useRef<number | undefined>(undefined)
   const [categories, setCategories] = useState<Category[]>(() => getCachedCatalogueCategories() ?? [])
 
   useEffect(() => {
@@ -135,104 +127,8 @@ export function PrimeCategoryGrid() {
     el.scrollBy({ left: amount, behavior: 'smooth' })
   }, [])
 
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        visibleRef.current = entry.isIntersecting
-      },
-      { threshold: 0.05, rootMargin: '80px 0px' },
-    )
-    visibilityObserver.observe(section)
-
-    return () => visibilityObserver.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const el = scrollerRef.current
-    if (!el || displayCategories.length < 2) return
-
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches
-    if (mq.matches || isTouchDevice) return
-
-    let raf = 0
-    let wheelTimeout = 0
-
-    const normalizeLoop = () => {
-      const loopPoint = el.scrollWidth / 2
-      if (loopPoint > 0 && el.scrollLeft >= loopPoint) {
-        el.scrollLeft -= loopPoint
-      }
-    }
-
-    const tick = () => {
-      if (visibleRef.current && !pausedRef.current && !userScrollingRef.current) {
-        autoScrollingRef.current = true
-        el.scrollLeft += AUTO_SCROLL_SPEED
-        normalizeLoop()
-        requestAnimationFrame(() => {
-          autoScrollingRef.current = false
-        })
-      }
-      raf = requestAnimationFrame(tick)
-    }
-
-    raf = requestAnimationFrame(tick)
-
-    const pause = () => {
-      pausedRef.current = true
-    }
-    const resume = () => {
-      pausedRef.current = false
-    }
-
-    const onUserScroll = () => {
-      if (autoScrollingRef.current) return
-
-      userScrollingRef.current = true
-      window.clearTimeout(userScrollTimeoutRef.current)
-      userScrollTimeoutRef.current = window.setTimeout(() => {
-        userScrollingRef.current = false
-        normalizeLoop()
-      }, 1200)
-    }
-
-    el.addEventListener('mouseenter', pause)
-    el.addEventListener('mouseleave', resume)
-    el.addEventListener('focusin', pause)
-    el.addEventListener('focusout', resume)
-    el.addEventListener('touchstart', pause, { passive: true })
-    el.addEventListener('touchend', resume, { passive: true })
-    const onWheel = () => {
-      pause()
-      window.clearTimeout(wheelTimeout)
-      wheelTimeout = window.setTimeout(resume, 900)
-    }
-
-    el.addEventListener('wheel', onWheel, { passive: true })
-    el.addEventListener('scroll', onUserScroll, { passive: true })
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.clearTimeout(userScrollTimeoutRef.current)
-      window.clearTimeout(wheelTimeout)
-      el.removeEventListener('mouseenter', pause)
-      el.removeEventListener('mouseleave', resume)
-      el.removeEventListener('focusin', pause)
-      el.removeEventListener('focusout', resume)
-      el.removeEventListener('touchstart', pause)
-      el.removeEventListener('touchend', resume)
-      el.removeEventListener('wheel', onWheel)
-      el.removeEventListener('scroll', onUserScroll)
-    }
-  }, [displayCategories.length])
-
   return (
     <section
-      ref={sectionRef}
       className="relative bg-[#F7F3EC] py-6 sm:py-12 lg:py-14"
       aria-labelledby="categories-heading"
     >

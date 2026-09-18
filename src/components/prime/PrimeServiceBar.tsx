@@ -1,5 +1,6 @@
 import { Diamond, Heart, Sparkles, Truck } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { HOME_IMAGES } from '@/lib/homeImages'
 
 const ITEMS = [
@@ -12,12 +13,10 @@ const ITEMS = [
 export function PrimeServiceBar() {
   return (
     <section className="relative overflow-hidden" aria-labelledby="trust-bar-heading">
-      <img
+      <OptimizedImage
         src={HOME_IMAGES.serviceBarBg}
         alt=""
         className="absolute inset-0 h-full w-full object-cover object-center"
-        loading="lazy"
-        decoding="async"
       />
 
       <h2 id="trust-bar-heading" className="sr-only">Why customers trust us</h2>

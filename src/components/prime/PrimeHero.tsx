@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Diamond, Shield, Star } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { HOME_IMAGES } from '@/lib/homeImages'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
@@ -14,21 +15,18 @@ const TRUST_ITEMS = [
 export function PrimeHero() {
   return (
     <section className="relative min-h-[92vh] overflow-hidden sm:min-h-[94vh]">
-      <img
+      <OptimizedImage
         src={HOME_IMAGES.heroBg}
         alt=""
+        priority
         className="absolute inset-0 h-full w-full object-cover object-center"
-        fetchPriority="high"
-        decoding="async"
         aria-hidden="true"
       />
-      <img
+      <OptimizedImage
         src={HOME_IMAGES.topBanner}
         alt=""
+        priority
         className="pointer-events-none absolute inset-x-0 top-0 z-[1] block w-full"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
         aria-hidden="true"
       />
       <div

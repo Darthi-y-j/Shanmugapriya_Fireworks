@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { HOME_IMAGES } from '@/lib/homeImages'
 
 export function HomePromoBanner() {
   return (
     <section className="relative overflow-hidden" aria-labelledby="home-promo-heading">
       <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]">
-        <img
+        <OptimizedImage
           src={HOME_IMAGES.promoBanner}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
-          loading="lazy"
-          decoding="async"
         />
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#041E47]/82 via-[#062B63]/50 to-[#041E47]/35"
