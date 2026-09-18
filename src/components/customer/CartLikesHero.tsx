@@ -5,8 +5,18 @@ import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
 import { cn } from '@/lib/utils'
 
 /** Pull page content under the floating Prime header (matches About page). */
-export function CartLikesPageShell({ children }: { children: ReactNode }) {
-  return <div className={cn('relative overflow-x-hidden bg-white', underNavPullClass)}>{children}</div>
+export function CartLikesPageShell({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <div className={cn('relative overflow-x-hidden bg-white', underNavPullClass, className)}>
+      {children}
+    </div>
+  )
 }
 
 const heroContentPadding = cn('pb-8 sm:pb-10', underNavTopPadClass)
