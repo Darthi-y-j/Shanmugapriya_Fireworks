@@ -69,8 +69,11 @@ export function PrimeLayout() {
         </main>
         {!isAuthPage && <PrimeFooter />}
         {showCartBar && <PrimeCartBar />}
-        {!isHome && !isContactPage && !isAuthPage && (
-          <FloatingActionButtons className={showCartBar ? 'bottom-24 sm:bottom-28' : undefined} />
+        {!isContactPage && !isAuthPage && (
+          <FloatingActionButtons
+            showYouTube={isHome}
+            className={showCartBar ? 'bottom-24 sm:bottom-28' : undefined}
+          />
         )}
         <ToastContainer />
       </div>

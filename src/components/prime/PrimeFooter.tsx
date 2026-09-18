@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowUp, MapPin, Phone, Send, MessageCircle } from 'lucide-react'
 import { useSettings } from '@/contexts/SettingsContext'
 import { NewsletterSubscribeForm } from '@/components/customer/NewsletterSubscribeForm'
@@ -124,6 +124,8 @@ function SocialIcon({
 }
 
 export function PrimeFooter() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/' || pathname === '/home'
   const { settings } = useSettings()
   const year = new Date().getFullYear()
   const businessName = SHANMUGA_BRAND.displayName
@@ -252,15 +254,17 @@ export function PrimeFooter() {
                     <path d="M13 10h3l-.5 3H13v9h-3v-9H7v-3h3V7.5C10 5 11.5 3 14.5 3H17v3h-2c-1 0-2 .5-2 2V10z" />
                   </svg>
                 </SocialIcon>
-                <SocialIcon
-                  href={youtube}
-                  label="YouTube"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FF0000] text-white shadow-md shadow-red-900/40 transition hover:brightness-110"
-                >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M10 15.5v-7l6 3.5-6 3.5z" />
-                  </svg>
-                </SocialIcon>
+                {isHome && (
+                  <SocialIcon
+                    href={youtube}
+                    label="YouTube"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FF0000] text-white shadow-md shadow-red-900/40 transition hover:brightness-110"
+                  >
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M10 15.5v-7l6 3.5-6 3.5z" />
+                    </svg>
+                  </SocialIcon>
+                )}
             </div>
           </div>
 

@@ -4,15 +4,18 @@ import { cn } from '@/lib/utils'
 export function FloatingActionButtons({
   embedded = false,
   className,
+  showYouTube = false,
 }: {
   embedded?: boolean
   className?: string
+  /** YouTube floater — homepage only. */
+  showYouTube?: boolean
 }) {
   const { settings } = useSettings()
 
   const instagramUrl = settings.social_links.instagram
   const facebookUrl = settings.social_links.facebook
-  const youtubeUrl = settings.social_links.youtube
+  const youtubeUrl = showYouTube ? settings.social_links.youtube : undefined
 
   if (!instagramUrl && !facebookUrl && !youtubeUrl) return null
 
