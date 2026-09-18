@@ -8,6 +8,8 @@ interface AnimateInProps {
   delay?: number
   duration?: number
   once?: boolean
+  /** Skip IntersectionObserver — for above-the-fold content (avoids layout reads). */
+  eager?: boolean
 }
 
 export function AnimateIn({
@@ -17,27 +19,19 @@ export function AnimateIn({
   delay = 0,
   duration = 450,
   once = true,
+  eager = false,
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(eager)
 
   useEffect(() => {
+    if (eager) return
+
     const el = ref.current
     if (!el) return
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) {
-      setVisible(true)
-      return
-    }
-
-    const isInViewport = () => {
-      const rect = el.getBoundingClientRect()
-      const viewHeight = window.innerHeight || document.documentElement.clientHeight
-      return rect.top < viewHeight * 0.98 && rect.bottom > 0
-    }
-
-    if (isInViewport()) {
       setVisible(true)
       return
     }
@@ -51,12 +45,12 @@ export function AnimateIn({
           setVisible(false)
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px 12% 0px' },
+      { threshold: 0, rootMargin: '0px 0px 8% 0px' },
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [once])
+  }, [once, eager])
 
   return (
     <div

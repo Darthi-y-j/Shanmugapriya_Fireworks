@@ -1,4 +1,4 @@
-import { defineConfig, type ProxyOptions } from 'vite'
+import { defineConfig, type Plugin, type ProxyOptions } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import type { ServerResponse } from 'node:http'
@@ -6,6 +6,20 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+/** Load built CSS without blocking first paint (critical shell is inlined in index.html). */
+function nonBlockingCssPlugin(): Plugin {
+  return {
+    name: 'non-blocking-css',
+    enforce: 'post',
+    transformIndexHtml(html) {
+      return html.replace(
+        /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
+        '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'" />\n    <noscript><link rel="stylesheet" href="$1" /></noscript>',
+      )
+    },
+  }
+}
 
 function chatbotProxy(): ProxyOptions {
   return {
@@ -25,7 +39,7 @@ function chatbotProxy(): ProxyOptions {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), nonBlockingCssPlugin()],
   resolve: {
     dedupe: ['react', 'react-dom'],
     alias: {

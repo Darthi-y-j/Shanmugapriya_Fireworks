@@ -11,18 +11,8 @@ function revealElement(el: Element) {
   el.classList.add('scroll-revealed')
 }
 
-function isInViewport(el: Element): boolean {
-  const rect = el.getBoundingClientRect()
-  const viewHeight = window.innerHeight || document.documentElement.clientHeight
-  return rect.top < viewHeight * 0.95 && rect.bottom > 0
-}
-
 function observeElement(el: Element, observer: IntersectionObserver) {
   if (el.classList.contains('scroll-revealed')) return
-  if (isInViewport(el)) {
-    revealElement(el)
-    return
-  }
   observer.observe(el)
 }
 
@@ -50,7 +40,7 @@ export function ScrollRevealInit() {
           observer.unobserve(entry.target)
         })
       },
-      { threshold: 0.05, rootMargin: '0px 0px 5% 0px' },
+      { threshold: 0, rootMargin: '0px 0px 8% 0px' },
     )
 
     const scan = () => {
@@ -60,12 +50,10 @@ export function ScrollRevealInit() {
     }
 
     scan()
-    const t1 = window.setTimeout(scan, 150)
-    const t2 = window.setTimeout(scan, 600)
+    const t1 = window.setTimeout(scan, 200)
 
     return () => {
       window.clearTimeout(t1)
-      window.clearTimeout(t2)
       observer.disconnect()
     }
   }, [location.pathname, location.hash])

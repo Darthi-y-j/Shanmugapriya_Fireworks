@@ -41,14 +41,14 @@ export function PrimeHero() {
       <div
         className="relative z-10 mx-auto flex min-h-[92vh] max-w-4xl flex-col items-center justify-center px-5 pb-14 pt-[7rem] text-center sm:min-h-[94vh] sm:px-8 sm:pb-16 sm:pt-[7.5rem] lg:pt-[7.75rem]"
       >
-        <AnimateIn animation="fade-down" delay={60}>
+        <AnimateIn animation="fade-down" delay={60} eager>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#7A6348] sm:text-sm">
             {SHANMUGA_BRAND.displayName}
           </p>
           <div className="mx-auto mt-2 h-px w-16 bg-[#A8862E]" aria-hidden="true" />
         </AnimateIn>
 
-        <AnimateIn animation="fade-up" delay={100}>
+        <AnimateIn animation="fade-up" delay={100} eager>
           <h1 className="mt-6 font-display text-[2.35rem] font-bold leading-[1.08] text-[#062B63] [text-shadow:0_1px_14px_rgba(255,255,255,0.65)] sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
             <span className="block">Brighter</span>
             <span className="mt-1 block text-[#8B6914]">Moments Happier</span>
@@ -56,13 +56,13 @@ export function PrimeHero() {
           </h1>
         </AnimateIn>
 
-        <AnimateIn animation="fade-up" delay={160}>
+        <AnimateIn animation="fade-up" delay={160} eager>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#062B63]/80 sm:text-base">
             {SHANMUGA_BRAND.heroSubtext}
           </p>
         </AnimateIn>
 
-        <AnimateIn animation="fade-up" delay={220}>
+        <AnimateIn animation="fade-up" delay={220} eager>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               to="/products"
@@ -81,7 +81,7 @@ export function PrimeHero() {
           </div>
         </AnimateIn>
 
-        <AnimateIn animation="fade-up" delay={280}>
+        <AnimateIn animation="fade-up" delay={280} eager>
           <ul
             className="mt-10 flex max-w-3xl flex-col gap-2 sm:flex-row sm:justify-center sm:gap-0 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-[#062B63]/15 sm:bg-white/55 sm:shadow-[0_12px_40px_rgba(6,43,99,0.12)] sm:backdrop-blur-md"
             aria-label="Why customers choose us"
