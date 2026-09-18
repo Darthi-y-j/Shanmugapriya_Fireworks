@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
-import { PageHeader } from '@/components/customer/PageHeader'
-import { FestivePageBackground } from '@/components/customer/FestivePageBackground'
+import {
+  CartLikesHero,
+  CartLikesPageShell,
+  cartLikesHeroBadgeClass,
+  cartLikesHeroMutedClass,
+  cartLikesHeroTitleClass,
+} from '@/components/customer/CartLikesHero'
 import { useSettings } from '@/contexts/SettingsContext'
 import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { getWhatsAppNumbers } from '@/lib/businessInfo'
+import { cn } from '@/lib/utils'
 import {
   paymentPolicyHowItWorks,
   paymentPolicyIntroParagraphs,
@@ -24,17 +30,15 @@ export function PaymentPolicyPage() {
         url="/why-no-online-payment"
       />
 
-      <FestivePageBackground>
-        <PageHeader as="section" contentClassName="px-4 py-10 text-center sm:px-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0077B6]">Payment</p>
-          <h1 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-wide text-white sm:text-4xl">
-            Why No Online Payment?
-          </h1>
-          <p className="mx-auto mt-3 max-w-lg text-sm text-white/80">
+      <CartLikesPageShell>
+        <CartLikesHero contentClassName="px-4 py-10 text-center sm:px-6">
+          <p className={cartLikesHeroBadgeClass}>Payment</p>
+          <h1 className={cn('mt-3', cartLikesHeroTitleClass)}>Why No Online Payment?</h1>
+          <p className={cn('mx-auto mt-3 max-w-lg', cartLikesHeroMutedClass)}>
             We use WhatsApp enquiry and pre-payment so every order is confirmed for your location
             before you pay.
           </p>
-        </PageHeader>
+        </CartLikesHero>
 
         <div className="mx-auto max-w-3xl space-y-6 px-4 py-10 sm:px-6">
           <div className="rounded-2xl border border-[#0F2847]/10 bg-white p-6 shadow-sm">
@@ -113,7 +117,7 @@ export function PaymentPolicyPage() {
             </Link>
           </div>
         </div>
-      </FestivePageBackground>
+      </CartLikesPageShell>
     </>
   )
 }

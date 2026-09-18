@@ -7,8 +7,15 @@ import { useSettings } from '@/contexts/SettingsContext'
 import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { getWhatsAppNumbers } from '@/lib/businessInfo'
 
-import { PageHeader } from '@/components/customer/PageHeader'
-import { FestivePageBackground } from '@/components/customer/FestivePageBackground'
+import {
+  CartLikesHero,
+  CartLikesPageShell,
+  cartLikesHeroBadgeClass,
+  cartLikesHeroChipClass,
+  cartLikesHeroMutedClass,
+  cartLikesHeroTitleClass,
+} from '@/components/customer/CartLikesHero'
+import { cn } from '@/lib/utils'
 
 const safetyChips = ['Outdoor Only', 'Adult Supervision', 'Licensed Products', 'Emergency Ready']
 
@@ -24,42 +31,39 @@ export function SafetyPage() {
         url="/safety"
       />
 
-      <FestivePageBackground>
-        <PageHeader contentClassName="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
-            <nav className="flex items-center gap-2 text-xs text-white/70">
-              <Link to="/" className="transition hover:text-[#0077B6]">Home</Link>
+      <CartLikesPageShell>
+        <CartLikesHero contentClassName="px-4 text-left sm:px-6 lg:px-8">
+            <nav className="flex items-center gap-2 text-xs text-white/80">
+              <Link to="/" className="transition hover:text-white">Home</Link>
               <span aria-hidden="true">/</span>
               <span className="font-semibold text-white">Safety</span>
             </nav>
 
             <AnimateIn animation="fade-up">
-              <div className="mt-6 max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#0077B6]/35 bg-[#0077B6]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0077B6]">
+              <div className="mx-auto mt-6 max-w-2xl text-left">
+                <div className={cn(cartLikesHeroBadgeClass, 'inline-flex items-center gap-2')}>
                   <ShieldAlert className="h-3.5 w-3.5" />
                   Safety Guide
                 </div>
 
-                <h1 className="mt-4 font-display text-3xl font-extrabold uppercase tracking-wide text-white sm:text-4xl lg:text-5xl">
-                  Fireworks <span className="text-[#0077B6]">Dos & Don'ts</span>
+                <h1 className={cn('mt-4', cartLikesHeroTitleClass)}>
+                  Fireworks Dos & Don&apos;ts
                 </h1>
 
-                <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
+                <p className={cn('mt-4', cartLikesHeroMutedClass)}>
                   Celebrate responsibly with these essential guidelines for a safe and joyful experience with Shanmuga Priya Crackers.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {safetyChips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white"
-                    >
+                    <span key={chip} className={cartLikesHeroChipClass}>
                       {chip}
                     </span>
                   ))}
                 </div>
               </div>
             </AnimateIn>
-        </PageHeader>
+        </CartLikesHero>
 
         <section className="py-10 sm:py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -102,7 +106,7 @@ export function SafetyPage() {
             </AnimateIn>
           </div>
         </section>
-      </FestivePageBackground>
+      </CartLikesPageShell>
     </>
   )
 }

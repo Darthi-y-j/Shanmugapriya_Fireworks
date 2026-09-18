@@ -31,7 +31,7 @@ import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { formatDisplayPhone } from '@/lib/businessInfo'
 import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
-import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { CART_LIKES_PAGE_HERO_BG } from '@/lib/siteConfig'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 
@@ -114,7 +114,7 @@ export function AccountDashboard() {
       <div className={cn(accountContentClass, 'space-y-6')}>
         {itemCount > 0 && (
           <div className="relative overflow-hidden rounded-2xl border border-[#0077B6]/35 p-5 shadow-lg sm:p-6 lg:flex lg:items-center lg:justify-between lg:gap-6">
-            <OptimizedBackground src={SHANMUGA_BRAND.aboutHeaderBg} />
+            <OptimizedBackground src={CART_LIKES_PAGE_HERO_BG} />
             <div
               className="absolute inset-0 bg-gradient-to-r from-[#0F2847]/92 via-[#0A1F38]/88 to-[#0F2847]/85"
               aria-hidden="true"

@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin, MessageCircle, Truck } from 'lucide-react'
 import { SEO } from '@/components/shared/SEO'
-import { PageHeader } from '@/components/customer/PageHeader'
-import { FestivePageBackground } from '@/components/customer/FestivePageBackground'
+import {
+  CartLikesHero,
+  CartLikesPageShell,
+  cartLikesHeroBadgeClass,
+  cartLikesHeroMutedClass,
+  cartLikesHeroTitleClass,
+} from '@/components/customer/CartLikesHero'
+import { cn } from '@/lib/utils'
 import { useSettings } from '@/contexts/SettingsContext'
 import { getBusinessPolicies, getWhatsAppNumbers } from '@/lib/businessInfo'
 import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
@@ -27,17 +33,15 @@ export function DeliveryPage() {
         url="/delivery"
       />
 
-      <FestivePageBackground>
-        <PageHeader as="section" contentClassName="px-4 py-10 text-center sm:px-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0077B6]">Delivery</p>
-          <h1 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-wide text-white sm:text-4xl">
-            All-India Delivery
-          </h1>
-          <p className="mx-auto mt-3 max-w-lg text-sm text-white/80">
+      <CartLikesPageShell>
+        <CartLikesHero contentClassName="px-4 py-10 text-center sm:px-6">
+          <p className={cartLikesHeroBadgeClass}>Delivery</p>
+          <h1 className={cn('mt-3', cartLikesHeroTitleClass)}>All-India Delivery</h1>
+          <p className={cn('mx-auto mt-3 max-w-lg', cartLikesHeroMutedClass)}>
             We deliver crackers across India. Share your location on WhatsApp and we&apos;ll confirm
             availability and charges.
           </p>
-        </PageHeader>
+        </CartLikesHero>
 
         <div className="mx-auto max-w-3xl space-y-6 px-4 py-10 sm:px-6">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -94,7 +98,7 @@ export function DeliveryPage() {
             </Link>
           </p>
         </div>
-      </FestivePageBackground>
+      </CartLikesPageShell>
     </>
   )
 }
