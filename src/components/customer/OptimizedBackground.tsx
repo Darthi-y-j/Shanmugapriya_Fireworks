@@ -1,20 +1,22 @@
-import { useLayoutEffect, type CSSProperties } from 'react'
-import { assetWithWebp, preloadImage } from '@/lib/optimizedAssets'
+import type { CSSProperties } from 'react'
+import { assetWithWebp } from '@/lib/optimizedAssets'
 import { cn } from '@/lib/utils'
 
 interface OptimizedBackgroundProps {
   src: string
   alt?: string
-  /** Eager load + preload (default true — backgrounds should appear without pop-in). */
+  /** Eager load with high fetch priority — use for above-the-fold backgrounds. */
   priority?: boolean
   className?: string
   imgClassName?: string
   style?: CSSProperties
+  /** cover = object-cover (default), fill = object-fill for stretched frames */
+  fit?: 'cover' | 'fill' | 'contain'
 }
 
 /**
- * Decorative full-bleed background using WebP with PNG/JPG fallback.
- * CSS background paints as soon as the image is cached (no img decode wait).
+ * Full-bleed decorative background as a real <img> (not CSS background-image)
+ * so the browser can discover, preload, and paint it immediately.
  */
 export function OptimizedBackground({
   src,
@@ -23,38 +25,27 @@ export function OptimizedBackground({
   className,
   imgClassName,
   style,
+  fit = 'cover',
 }: OptimizedBackgroundProps) {
   const { webp, fallback } = assetWithWebp(src)
-
-  useLayoutEffect(() => {
-    if (priority) preloadImage(webp)
-  }, [priority, webp])
-
-  const backgroundStyle: CSSProperties = {
-    ...style,
-    backgroundImage: `image-set(url("${webp}") type("image/webp"), url("${fallback}") type("image/png"))`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }
+  const objectClass =
+    fit === 'fill' ? 'object-fill' : fit === 'contain' ? 'object-contain' : 'object-cover'
 
   return (
-    <div
+    <picture
       className={cn('pointer-events-none absolute inset-0 overflow-hidden bg-[#f6f3ef]', className)}
+      style={style}
       aria-hidden={!alt}
-      style={backgroundStyle}
-      role={alt ? 'img' : undefined}
-      aria-label={alt || undefined}
     >
-      {/* Hidden img helps Safari cache WebP and improves accessibility when alt is set */}
+      <source srcSet={webp} type="image/webp" />
       <img
-        src={webp}
+        src={fallback}
         alt={alt}
-        decoding="async"
+        decoding={priority ? 'sync' : 'async'}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
-        className={cn('absolute h-px w-px overflow-hidden opacity-0', imgClassName)}
+        className={cn('h-full w-full', objectClass, imgClassName)}
       />
-    </div>
+    </picture>
   )
 }

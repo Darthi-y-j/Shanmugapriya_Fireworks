@@ -20,7 +20,7 @@ export function SkewedParallaxBand({ title, subtitle }: SkewedParallaxBandProps)
         <OptimizedBackground
           src={ABOUT_IMAGES.heritageTempleParallax}
           className="skewed-parallax-bg scale-[1.08]"
-          priority={false}
+          priority
         />
 
         <div className="skewed-parallax-overlay absolute inset-0" aria-hidden="true" />

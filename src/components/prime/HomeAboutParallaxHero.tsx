@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { HOME_IMAGES } from '@/lib/homeImages'
-import { optimizedBackgroundStyle } from '@/lib/optimizedAssets'
+import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { SkewedParallaxBand } from '@/components/prime/SkewedParallaxBand'
 
@@ -16,21 +16,17 @@ export function HomeAboutParallaxHero() {
     <section className="relative overflow-visible bg-transparent" aria-labelledby="home-about-parallax-heading">
       {/* Rangoli frame + copy — sits under slanted parallax overlap */}
       <div className="relative z-0 px-5 pb-28 pt-10 sm:px-6 sm:pb-40 sm:pt-10 lg:pb-44 lg:pt-12">
-        <div
-          className="pointer-events-none absolute inset-0 bg-white md:hidden"
-          style={optimizedBackgroundStyle(ABOUT_MOBILE_BG, {
-            size: '100% 100%',
-            position: 'center',
-          })}
-          aria-hidden="true"
+        <OptimizedBackground
+          src={ABOUT_MOBILE_BG}
+          fit="fill"
+          priority
+          className="bg-white md:hidden"
         />
-        <div
-          className="pointer-events-none absolute inset-0 hidden md:block"
-          style={optimizedBackgroundStyle(RANGOLI_BG, {
-            size: '100% 100%',
-            position: 'center',
-          })}
-          aria-hidden="true"
+        <OptimizedBackground
+          src={RANGOLI_BG}
+          fit="fill"
+          priority
+          className="hidden md:block"
         />
 
         <div className="relative z-10 mx-auto max-w-3xl px-2 text-center sm:px-0">

@@ -1,5 +1,5 @@
-import { useLayoutEffect, type ImgHTMLAttributes } from 'react'
-import { assetWithWebp, preloadImage } from '@/lib/optimizedAssets'
+import type { ImgHTMLAttributes } from 'react'
+import { assetWithWebp } from '@/lib/optimizedAssets'
 import { cn } from '@/lib/utils'
 
 interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> {
@@ -21,10 +21,6 @@ export function OptimizedImage({
 }: OptimizedImageProps) {
   const { webp, fallback } = assetWithWebp(src)
 
-  useLayoutEffect(() => {
-    if (priority) preloadImage(webp)
-  }, [priority, webp])
-
   return (
     <picture>
       <source srcSet={webp} type="image/webp" />
@@ -33,7 +29,7 @@ export function OptimizedImage({
         alt={alt}
         className={cn(className)}
         loading={loading ?? (priority ? 'eager' : 'lazy')}
-        decoding={decoding}
+        decoding={priority ? 'sync' : decoding}
         fetchPriority={fetchPriority ?? (priority ? 'high' : 'auto')}
         {...rest}
       />
