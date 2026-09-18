@@ -1,16 +1,11 @@
+import { HOME_IMAGES } from '@/lib/homeImages'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { assetWithWebp, preloadImage } from '@/lib/optimizedAssets'
 
 const AUTH_PATH_PREFIXES = ['/login', '/register', '/forgot-password', '/reset-password', '/account']
-const AUTH_IMAGE_PATHS = [SHANMUGA_BRAND.loginBg, SHANMUGA_BRAND.loginCardBg, SHANMUGA_BRAND.accountBg]
+const AUTH_IMAGE_PATHS = [SHANMUGA_BRAND.loginBg, SHANMUGA_BRAND.loginCardBg]
 
-const HOME_PRIORITY_PATHS = [SHANMUGA_BRAND.heroImage, SHANMUGA_BRAND.festiveHeaderBg]
-
-const DEFERRED_SITE_PATHS = [
-  SHANMUGA_BRAND.contactCtaBg,
-  SHANMUGA_BRAND.safetyDosDontsBg,
-  '/why-choose-bg.png',
-]
+const HOME_PRIORITY_PATHS = [HOME_IMAGES.heroBg, HOME_IMAGES.topBanner]
 
 let bootPreloadStarted = false
 
@@ -37,27 +32,8 @@ export function preloadRouteImages(pathname: string): void {
   }
 }
 
-/** Warm cache after first paint — avoids competing with the current page's hero. */
-export function preloadSiteImagesDeferred(pathname: string): void {
+/** Reserved for future idle preloads — keep homepage network quiet after LCP. */
+export function preloadSiteImagesDeferred(_pathname: string): void {
   if (bootPreloadStarted || typeof document === 'undefined') return
   bootPreloadStarted = true
-
-  const isAuthRoute = AUTH_PATH_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-  )
-
-  const runDeferred = () => {
-    if (isAuthRoute) {
-      preloadPaths(DEFERRED_SITE_PATHS)
-      return
-    }
-
-    preloadPaths(DEFERRED_SITE_PATHS)
-  }
-
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(runDeferred, { timeout: 4000 })
-  } else {
-    setTimeout(runDeferred, 1500)
-  }
 }

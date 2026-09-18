@@ -1,3 +1,4 @@
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { cn } from '@/lib/utils'
 
 type CircularBrandLogoProps = {
@@ -22,12 +23,12 @@ export function CircularBrandLogo({
         className,
       )}
     >
-      <img
+      <OptimizedImage
         src={src}
         alt={alt}
         className={cn('h-full w-full object-contain', imgClassName)}
         loading={loading}
-        decoding="async"
+        priority={loading === 'eager'}
       />
     </div>
   )

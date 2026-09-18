@@ -2,7 +2,7 @@ import { AnimateIn } from '@/components/customer/AnimateIn'
 import { CircularBrandLogo } from '@/components/prime/CircularBrandLogo'
 import { BRAND_PARTNERS } from '@/lib/brandPartners'
 import { ABOUT_COLORS, ABOUT_IMAGES } from '@/lib/aboutTokens'
-import { SITE_LOGO_PATH } from '@/lib/siteConfig'
+import { SITE_UI_LOGO_PATH } from '@/lib/siteConfig'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { ESTABLISHED_YEAR } from '@/lib/businessInfo'
 
@@ -95,7 +95,7 @@ export function AboutBrands() {
         <div className="mt-6 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-6">
           <AnimateIn animation="fade-up" delay={60} duration={700}>
             <BrandCard
-              logoSrc={SITE_LOGO_PATH}
+              logoSrc={SITE_UI_LOGO_PATH}
               logoAlt={SHANMUGA_BRAND.displayName}
               logoClassName="h-16 w-16 border-2 border-[#062B63]/15 p-2 sm:h-24 sm:w-24 sm:p-3"
               title={SHANMUGA_BRAND.displayName}

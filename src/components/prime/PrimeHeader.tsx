@@ -5,7 +5,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { usePrimeShop } from '@/contexts/PrimeShopContext'
-import { SITE_LOGO_PATH } from '@/lib/siteConfig'
+import { SITE_UI_LOGO_PATH } from '@/lib/siteConfig'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { cn } from '@/lib/utils'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
@@ -84,7 +84,9 @@ export function PrimeHeader() {
                   aria-hidden="true"
                 />
                 <img
-                  src={SITE_LOGO_PATH}
+                  src={SITE_UI_LOGO_PATH}
+                  width={48}
+                  height={48}
                   alt={SHANMUGA_BRAND.displayName}
                   className="relative h-10 w-10 rounded-full object-cover ring-2 ring-white sm:h-12 sm:w-12"
                 />

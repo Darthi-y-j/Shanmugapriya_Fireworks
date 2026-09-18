@@ -29,9 +29,12 @@ export const HOME_PAGE_DESCRIPTION =
 /** Bump when favicon assets change — busts aggressive browser favicon cache. */
 export const FAVICON_VERSION = '2'
 
-/** Brand logo for navbar (circular PNG in /public). */
+/** Brand logo for schema / PDF / admin (full resolution). */
 export const SITE_LOGO_FILE = '/shanmuga-priya-logo.png'
 export const SITE_LOGO_PATH = `${SITE_LOGO_FILE}?v=${FAVICON_VERSION}`
+
+/** Small logo for navbar, footer, and auth cards — avoids loading a 1440px PNG. */
+export const SITE_UI_LOGO_PATH = `/images/ui/site-logo-sm.webp?v=${FAVICON_VERSION}`
 
 /** Products catalogue page hero background */
 export const PRODUCTS_PAGE_BG_PATH = '/images/products-page-bg.png?v=1'

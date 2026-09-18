@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react'
+
 /** Split asset path into WebP + original fallback (query string preserved on both). */
 export function assetWithWebp(src: string): { webp: string; fallback: string } {
   const queryIndex = src.indexOf('?')
@@ -27,4 +29,23 @@ export function preloadImage(src: string | null | undefined): void {
   link.as = 'image'
   link.href = src
   document.head.appendChild(link)
+}
+
+/** CSS background using WebP with PNG/JPG fallback — avoids multi-MB PNG downloads. */
+export function optimizedBackgroundStyle(
+  src: string,
+  options?: {
+    size?: string
+    position?: string
+    repeat?: string
+  },
+): CSSProperties {
+  const { webp, fallback } = assetWithWebp(src)
+  const mime = fallback.endsWith('.jpg') || fallback.includes('.jpg?') ? 'image/jpeg' : 'image/png'
+  return {
+    backgroundImage: `image-set(url("${webp}") type("image/webp"), url("${fallback}") type("${mime}"))`,
+    backgroundSize: options?.size ?? 'cover',
+    backgroundPosition: options?.position ?? 'center',
+    backgroundRepeat: options?.repeat ?? 'no-repeat',
+  }
 }

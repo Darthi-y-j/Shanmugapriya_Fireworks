@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { ArrowUp, MapPin, Phone, Send, MessageCircle } from 'lucide-react'
 import { useSettings } from '@/contexts/SettingsContext'
 import { NewsletterSubscribeForm } from '@/components/customer/NewsletterSubscribeForm'
+import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { CircularBrandLogo } from '@/components/prime/CircularBrandLogo'
-import { DEVELOPER_CREDIT, FOOTER_BG, SITE_LOGO_PATH } from '@/lib/siteConfig'
+import { DEVELOPER_CREDIT, FOOTER_BG, SITE_UI_LOGO_PATH } from '@/lib/siteConfig'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
 import { BRAND_PARTNERS } from '@/lib/brandPartners'
 import {
@@ -139,13 +140,11 @@ export function PrimeFooter() {
 
   return (
     <footer className="relative overflow-hidden bg-[#041E47]">
-      <img
+      <OptimizedImage
         src={FOOTER_BG}
         alt=""
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         aria-hidden="true"
-        loading="lazy"
-        decoding="async"
       />
       <div
         className="pointer-events-none absolute inset-0 bg-[#041E47]/15"
@@ -158,9 +157,13 @@ export function PrimeFooter() {
           <div className="min-w-0">
             <Link to="/" className="inline-flex items-center gap-2.5 sm:gap-3">
               <img
-                src={SITE_LOGO_PATH}
+                src={SITE_UI_LOGO_PATH}
                 alt={SHANMUGA_BRAND.displayName}
+                width={48}
+                height={48}
                 className="h-11 w-11 rounded-full border-2 border-[#C9A24A]/90 object-cover shadow-[0_4px_14px_rgba(0,0,0,0.35)] sm:h-12 sm:w-12"
+                loading="lazy"
+                decoding="async"
               />
               <div>
                 <p className="font-display text-sm font-extrabold uppercase tracking-[0.14em] text-white sm:text-base">
