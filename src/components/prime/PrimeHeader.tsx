@@ -76,7 +76,7 @@ export function PrimeHeader() {
         )}
       >
         <div className="px-2.5 sm:px-5">
-          <div className="flex h-[56px] items-center justify-between gap-2 sm:h-[60px] lg:h-[68px] lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-3">
+          <div className="flex h-[58px] items-center justify-between gap-2 sm:h-[60px] lg:h-[68px] lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-3">
             <Link to="/" className="group flex min-w-0 items-center gap-2.5 justify-self-start sm:gap-3">
               <div className="relative shrink-0">
                 <div
@@ -144,25 +144,25 @@ export function PrimeHeader() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
 
-              <div className="flex items-center rounded-full border border-white/15 bg-white/10 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm sm:p-1">
+              <div className="flex items-center rounded-full border border-white/15 bg-white/10 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm sm:p-1 lg:p-0.5">
                 <Link
                   to="/wishlist"
-                  className="relative rounded-full p-1.5 text-white transition hover:bg-white/15 sm:p-2"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15 sm:h-10 sm:w-10 lg:h-auto lg:w-auto lg:p-2"
                   aria-label={`Wishlist${likedCount > 0 ? `, ${likedCount} items` : ''}`}
                 >
                   <Heart
-                    className={cn('h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]', likedCount > 0 && 'fill-[#C9A24A] text-[#C9A24A]')}
+                    className={cn('h-5 w-5 lg:h-[18px] lg:w-[18px]', likedCount > 0 && 'fill-[#C9A24A] text-[#C9A24A]')}
                   />
                 </Link>
 
-                <span className="h-5 w-px bg-white/20" aria-hidden="true" />
+                <span className="h-6 w-px bg-white/20 lg:h-5" aria-hidden="true" />
 
                 <Link
                   to="/cart"
-                  className="relative rounded-full p-1.5 text-white transition hover:bg-white/15 sm:p-2"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15 sm:h-10 sm:w-10 lg:h-auto lg:w-auto lg:p-2"
                   aria-label={`Cart${itemCount > 0 ? `, ${itemCount} items` : ''}`}
                 >
-                  <ShoppingCart className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" />
+                  <ShoppingCart className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
                   {itemCount > 0 && (
                     <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#C9A24A] px-0.5 text-[9px] font-bold text-[#0F2847] ring-2 ring-[#0F2847]/40">
                       {itemCount > 99 ? '99+' : itemCount}
@@ -170,26 +170,30 @@ export function PrimeHeader() {
                   )}
                 </Link>
 
-                <span className="h-5 w-px bg-white/20" aria-hidden="true" />
+                <span className="h-6 w-px bg-white/20 lg:h-5" aria-hidden="true" />
 
                 <Link
                   to={accountPath}
-                  className="rounded-full p-1.5 text-white transition hover:bg-white/15 sm:p-2"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15 sm:h-10 sm:w-10 lg:h-auto lg:w-auto lg:p-2"
                   aria-label={accountLabel}
                 >
-                  <User className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" />
+                  <User className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
                 </Link>
 
-                <span className="h-5 w-px bg-white/20 lg:hidden" aria-hidden="true" />
+                <span className="h-6 w-px bg-white/20 lg:hidden" aria-hidden="true" />
 
                 <button
                   type="button"
-                  className="rounded-full p-1.5 text-white transition hover:bg-white/15 sm:p-2 lg:hidden"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15 sm:h-10 sm:w-10 lg:hidden lg:h-auto lg:w-auto lg:p-2"
                   onClick={() => setMobileMenuOpen((o) => !o)}
                   aria-label="Toggle menu"
                   aria-expanded={mobileMenuOpen}
                 >
-                  {mobileMenuOpen ? <X className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" /> : <Menu className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" />}
+                  {mobileMenuOpen ? (
+                    <X className="h-5 w-5" />
+                  ) : (
+                    <Menu className="h-5 w-5" />
+                  )}
                 </button>
               </div>
             </div>
