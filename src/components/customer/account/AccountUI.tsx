@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Pencil } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { PageHeaderBackground, HERO_HEADER_BG } from '@/components/customer/PageHeader'
-import { underNavPullClass, underNavTopPadClass } from '@/lib/underNavLayout'
+import { CartLikesHero } from '@/components/customer/CartLikesHero'
 
 function getInitials(name: string): string {
   return name
@@ -34,43 +33,39 @@ export function AccountPageHeader({
   children,
 }: AccountPageHeaderProps) {
   return (
-    <section className={cn('relative overflow-hidden border-b-2 border-[#0F2847]', underNavPullClass)}>
-      <PageHeaderBackground imageSrc={HERO_HEADER_BG} />
-
-      <div className={cn('relative w-full pb-8 sm:pb-10', underNavTopPadClass, accountPagePadding)}>
-        <div className="flex items-center justify-between gap-4">
-          {backTo ? (
-            <Link
-              to={backTo}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 transition hover:text-[#0077B6]"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              My Profile
-            </Link>
-          ) : (
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0077B6]">{title}</p>
-          )}
-
-          {showEdit && (
-            <Link
-              to={editTo}
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#0077B6]/40 bg-[#0077B6]/10 px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#0077B6] transition hover:bg-[#0077B6]/20"
-            >
-              <Pencil className="h-3.5 w-3.5" />
-              Edit Profile
-            </Link>
-          )}
-        </div>
-
-        {subtitle && (
-          <h1 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
-            {subtitle}
-          </h1>
+    <CartLikesHero contentClassName={cn('text-left', accountPagePadding, 'max-w-none')}>
+      <div className="flex items-center justify-between gap-4">
+        {backTo ? (
+          <Link
+            to={backTo}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition hover:text-white"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            My Profile
+          </Link>
+        ) : (
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">{title}</p>
         )}
 
-        {children}
+        {showEdit && (
+          <Link
+            to={editTo}
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm transition hover:bg-white/20"
+          >
+            <Pencil className="h-3.5 w-3.5" />
+            Edit Profile
+          </Link>
+        )}
       </div>
-    </section>
+
+      {subtitle && (
+        <h1 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-wide text-white [text-shadow:0_2px_14px_rgba(15,40,71,0.65)] sm:text-3xl">
+          {subtitle}
+        </h1>
+      )}
+
+      {children}
+    </CartLikesHero>
   )
 }
 

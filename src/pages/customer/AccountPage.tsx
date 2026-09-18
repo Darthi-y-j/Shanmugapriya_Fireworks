@@ -8,11 +8,11 @@ import { EnquiriesPage } from '@/pages/customer/account/EnquiriesPage'
 import { AccountWishlistPage } from '@/pages/customer/account/AccountWishlistPage'
 import { SecurityPage } from '@/pages/customer/account/SecurityPage'
 import { HelpSupportPage } from '@/pages/customer/account/HelpSupportPage'
-import { FestivePageBackground } from '@/components/customer/FestivePageBackground'
+import { CartLikesPageShell } from '@/components/customer/CartLikesHero'
 
 function AccountRoutes() {
   return (
-    <FestivePageBackground className="pb-28 sm:pb-10">
+    <CartLikesPageShell className="pb-28 sm:pb-10">
       <Routes>
           <Route index element={<AccountDashboard />} />
           <Route path="personal" element={<PersonalInfoPage />} />
@@ -26,7 +26,7 @@ function AccountRoutes() {
           <Route path="security" element={<SecurityPage />} />
           <Route path="help" element={<HelpSupportPage />} />
         </Routes>
-    </FestivePageBackground>
+    </CartLikesPageShell>
   )
 }
 
