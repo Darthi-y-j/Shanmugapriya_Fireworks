@@ -21,7 +21,7 @@ export function PrimeCartBar() {
   }
 
   return (
-    <div className="prime-cart-bar fixed bottom-0 left-0 right-0 z-40 border-t-4 border-[#0077B6] bg-[#0F2847] shadow-[0_-4px_24px_rgba(0,0,0,0.2)]">
+    <div className="prime-cart-bar fixed bottom-0 left-0 right-0 z-40 border-t-2 border-[#C9A24A]/70 bg-[#0F2847] shadow-[0_-4px_24px_rgba(0,0,0,0.25)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-6">
         {showClearConfirm ? (
           <>
@@ -58,10 +58,10 @@ export function PrimeCartBar() {
                 <X className="h-4 w-4" />
               </button>
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-[#0077B6]">
+                <p className="text-xs font-semibold text-[#E8C56A]/90">
                   {itemCount} item{itemCount !== 1 ? 's' : ''} selected
                 </p>
-                <p className="font-display text-lg font-bold text-white">
+                <p className="font-sans text-lg font-bold text-white">
                   {total > 0 ? formatPrice(total) : 'Enquiry cart'}
                 </p>
               </div>
@@ -69,14 +69,14 @@ export function PrimeCartBar() {
             <div className="flex shrink-0 items-center gap-2">
               <Link
                 to="/cart"
-                className="inline-flex items-center gap-1.5 rounded-full border-2 border-[#0077B6] bg-transparent px-3 py-2.5 text-sm font-bold text-[#0077B6] hover:bg-[#0077B6]/10 sm:px-4"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-2.5 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20 sm:px-4"
               >
                 <ShoppingCart className="h-4 w-4" />
                 <span className="hidden sm:inline">View Cart</span>
               </Link>
               <Link
                 to="/cart#send-enquiry"
-                className="inline-flex items-center gap-1.5 rounded-full bg-[#0077B6] px-3 py-2.5 text-sm font-bold text-[#0F2847] hover:bg-[#0096D6] sm:px-4"
+                className="inline-flex items-center gap-1.5 rounded-full bg-[#25D366] px-3 py-2.5 text-sm font-bold text-white shadow-sm transition hover:brightness-105 sm:px-4"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
