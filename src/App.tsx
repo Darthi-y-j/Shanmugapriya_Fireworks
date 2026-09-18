@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { AuthProvider } from '@/contexts/AuthContext'
@@ -158,6 +159,7 @@ function App() {
                   </Routes>
                 </Suspense>
               </BrowserRouter>
+              <SpeedInsights />
             </ToastProvider>
             </WishlistProvider>
           </CartProvider>

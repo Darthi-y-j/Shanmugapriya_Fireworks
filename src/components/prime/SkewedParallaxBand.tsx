@@ -1,4 +1,6 @@
-import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
+import { useRef } from 'react'
+import { StaticPicture } from '@/components/shared/StaticPicture'
+import { useSkewedParallax } from '@/hooks/useSkewedParallax'
 import { ABOUT_IMAGES } from '@/lib/aboutTokens'
 
 type SkewedParallaxBandProps = {
@@ -11,17 +13,25 @@ const SKEWED_CLIP =
   'polygon(0 7%, 100% 0%, 100% 93%, 0 100%)' as const
 
 export function SkewedParallaxBand({ title, subtitle }: SkewedParallaxBandProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const bgRef = useRef<HTMLDivElement>(null)
+  useSkewedParallax({ wrapperRef, bgRef })
+
   return (
     <div className="relative z-20 -mt-28 -mb-14 w-full sm:-mt-36 sm:-mb-16 md:-mt-44 md:-mb-20">
       <div
+        ref={wrapperRef}
         className="skewed-parallax-container relative h-[400px] w-full overflow-hidden shadow-2xl sm:h-[460px] md:h-[520px]"
         style={{ clipPath: SKEWED_CLIP }}
       >
-        <OptimizedBackground
-          src={ABOUT_IMAGES.heritageTempleParallax}
-          className="skewed-parallax-bg scale-[1.08]"
-          priority
-        />
+        <div ref={bgRef} className="skewed-parallax-bg" aria-hidden="true">
+          <StaticPicture
+            src={ABOUT_IMAGES.heritageTempleParallax}
+            priority
+            className="block h-full w-full"
+            imgClassName="h-full w-full object-cover object-center"
+          />
+        </div>
 
         <div className="skewed-parallax-overlay absolute inset-0" aria-hidden="true" />
 
