@@ -26,6 +26,6 @@ export function writeSessionCache<T>(key: string, data: T): void {
 }
 
 export const CACHE_KEYS = {
-  catalogueProducts: 'shanmuga-catalogue-products-v5',
+  catalogueProducts: 'shanmuga-catalogue-products-v6',
   catalogueCategories: 'shanmuga-catalogue-categories-v2',
 } as const

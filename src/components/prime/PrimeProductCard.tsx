@@ -6,7 +6,6 @@ import { getDisplayBrand } from '@/lib/brand'
 import { useProductCartState } from '@/hooks/useProductCartState'
 import { WishlistButton } from '@/components/customer/WishlistButton'
 import { ProductHighlightBadges } from '@/components/customer/ProductHighlightBadges'
-import { ProductPackagingBadge } from '@/components/customer/ProductPackagingBadge'
 import { ProductLink } from '@/components/customer/ProductLink'
 import { ProductCodeBadge } from '@/components/customer/ProductCodeBadge'
 
@@ -86,18 +85,11 @@ function PrimeProductCardInner({ product, priority = false }: { product: Product
           </h3>
         </ProductLink>
 
-        {(brand || product.pieces != null || product.specifications?.sell_unit) && (
-          <div className="mt-2 flex min-w-0 items-center gap-1.5 sm:mt-2.5 sm:flex-wrap sm:gap-2">
-            {brand && (
-              <span className="min-w-0 truncate rounded-full border border-[#0077B6]/60 bg-[#FFF8E1] px-2 py-0.5 text-[10px] font-bold text-[#0F2847] sm:text-[11px]">
-                {brand}
-              </span>
-            )}
-            <ProductPackagingBadge
-              product={product}
-              compact
-              className="rounded-full bg-[#0F2847] text-[#E8C56A] ring-[#C9A24A]/40 sm:text-[10px]"
-            />
+        {brand && (
+          <div className="mt-2 flex min-w-0 items-center gap-1.5 sm:mt-2.5">
+            <span className="min-w-0 truncate rounded-full border border-[#0077B6]/60 bg-[#FFF8E1] px-2 py-0.5 text-[10px] font-bold text-[#0F2847] sm:text-[11px]">
+              {brand}
+            </span>
           </div>
         )}
 

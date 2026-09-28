@@ -29,10 +29,12 @@ function sellUnitFromPer(per) {
   return 'pack'
 }
 
-function discountPercent(before, after) {
+/** Flat shop discount — sale price is half of the price-list “before” column. */
+const SHOP_DISCOUNT_PERCENT = 50
+
+function salePriceFromBefore(before) {
   if (!before || before <= 0) return null
-  const pct = (1 - after / before) * 100
-  return Math.round(pct * 10) / 10
+  return Math.round(before * (1 - SHOP_DISCOUNT_PERCENT / 100))
 }
 
 const slugByCategory = new Map()
@@ -74,9 +76,9 @@ for (const section of PRICE_LIST_SECTIONS) {
         per: item.per,
         ...copySpecs,
       },
-      price: item.after,
+      price: salePriceFromBefore(item.before),
       original_price: item.before,
-      discount_percentage: discountPercent(item.before, item.after),
+      discount_percentage: SHOP_DISCOUNT_PERCENT,
       pieces: null,
       stock_quantity: 100,
       stock_alert_limit: 5,

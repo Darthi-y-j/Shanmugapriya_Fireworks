@@ -7,7 +7,6 @@ import { resolveProductPrice } from '@/lib/pricing'
 import { useProductCartState } from '@/hooks/useProductCartState'
 import { WishlistButton } from '@/components/customer/WishlistButton'
 import { ProductHighlightBadges } from '@/components/customer/ProductHighlightBadges'
-import { ProductPackagingBadge } from '@/components/customer/ProductPackagingBadge'
 import { ProductLink } from '@/components/customer/ProductLink'
 import { ProductCodeBadge } from '@/components/customer/ProductCodeBadge'
 
@@ -96,14 +95,13 @@ function PrimeCompactProductCardInner({
             />
           </div>
 
-          {(brand || product.pieces != null || product.specifications?.sell_unit || product.is_recommended || product.is_best_seller) && (
+          {(brand || product.is_recommended || product.is_best_seller) && (
             <div className="mt-1 flex min-w-0 flex-wrap items-center gap-1 sm:gap-1.5">
               {brand && (
                 <span className="min-w-0 truncate border-y border-[#0077B6]/80 px-0.5 text-[9px] font-bold text-[#0F2847] sm:border-none sm:px-0 sm:text-[10px] sm:font-semibold sm:text-[#0F2847]/70">
                   {brand}
                 </span>
               )}
-              <ProductPackagingBadge product={product} compact />
               <ProductHighlightBadges product={product} compact className="hidden lg:flex" />
             </div>
           )}

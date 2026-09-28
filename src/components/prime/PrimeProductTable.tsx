@@ -4,11 +4,11 @@ import type { Product } from '@/types/database'
 import { getImageUrl, IMAGE_WIDTH, cn } from '@/lib/utils'
 import { getDisplayBrand } from '@/lib/brand'
 import { getProductCode } from '@/lib/productCode'
+import { getPriceListPerLabel } from '@/lib/packaging'
 import { useProductCartState } from '@/hooks/useProductCartState'
 import { EmptyState } from '@/components/customer/EmptyState'
 import { WishlistButton } from '@/components/customer/WishlistButton'
 import { ProductHighlightBadges } from '@/components/customer/ProductHighlightBadges'
-import { formatProductPackagingLabel } from '@/lib/packaging'
 import { ProductLink } from '@/components/customer/ProductLink'
 import { PrimeCategoryHeader } from './PrimeCategoryHeader'
 
@@ -87,8 +87,8 @@ function MobilePriceCell({
 
 function MobileProductMeta({ product }: { product: Product }) {
   const brand = getDisplayBrand(product.brand)
-  const pack = formatProductPackagingLabel(product)
-  const meta = [brand, pack].filter(Boolean).join(' • ')
+  const per = getPriceListPerLabel(product.specifications)
+  const meta = [brand, per].filter(Boolean).join(' · ')
   if (!meta) return null
   return <p className="mt-px truncate text-[9px] font-medium leading-tight text-slate-500">{meta}</p>
 }
@@ -168,7 +168,7 @@ function PrimeProductRow({ product, index }: { product: Product; index: number }
   const stripe = index % 2 === 0 ? 'bg-white' : 'bg-[#FFF8E1]/40'
 
   const brand = getDisplayBrand(product.brand)
-  const packagingLabel = formatProductPackagingLabel(product)
+  const perLabel = getPriceListPerLabel(product.specifications)
 
   return (
     <>
@@ -249,10 +249,8 @@ function PrimeProductRow({ product, index }: { product: Product; index: number }
             <p className="truncate text-sm font-semibold leading-snug text-slate-900 lg:text-[15px]">
               {product.name}
             </p>
-            {packagingLabel ? (
-              <p className="mt-0.5 text-[11px] font-bold uppercase tracking-wide text-[#0077B6] lg:text-xs">
-                {packagingLabel}
-              </p>
+            {perLabel ? (
+              <p className="mt-0.5 text-[11px] font-medium text-slate-500 lg:text-xs">{perLabel}</p>
             ) : null}
             <div className="mt-0.5 flex flex-wrap items-center gap-1">
               <ProductHighlightBadges product={product} compact />
