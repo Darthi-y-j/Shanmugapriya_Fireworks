@@ -96,6 +96,10 @@ export const IMAGE_WIDTH = {
   /** Small list/table thumbnails (~36–48px CSS) */
   table: 96,
   thumb: 160,
+  /** Round category chips in filter strip (~56px CSS, 2× retina) */
+  categoryStrip: 192,
+  /** Home category cards (~150–240px CSS, 2× retina) */
+  category: 560,
   card: 480,
   detail: 960,
 } as const
@@ -121,11 +125,30 @@ export function getImageUrl(
 
   const h = height ?? Math.round((width * 3) / 4)
   const quality =
-    width <= IMAGE_WIDTH.table ? 65 : width <= IMAGE_WIDTH.thumb ? 70 : width <= IMAGE_WIDTH.card ? 75 : 80
+    width <= IMAGE_WIDTH.table
+      ? 65
+      : width <= IMAGE_WIDTH.thumb
+        ? 72
+        : width <= IMAGE_WIDTH.categoryStrip
+          ? 76
+          : width <= IMAGE_WIDTH.category
+            ? 82
+            : width <= IMAGE_WIDTH.card
+              ? 78
+              : 85
   return `${base}?width=${width}&height=${h}&quality=${quality}&resize=${resize}&format=webp`
 }
 
-/** 4:4 (1:1) category artwork from Supabase — never crop to 4:3 */
+/** Square category art for shop UI (cover — fills the tile). */
+export function getCategoryImageUrl(
+  url: string | null | undefined,
+  fallback = '/placeholder-category.svg',
+  size: number = IMAGE_WIDTH.category,
+): string {
+  return getImageUrl(url, fallback, size, size, 'cover')
+}
+
+/** 4:4 (1:1) category artwork from Supabase — contain (logos with padding) */
 export function getSquareImageUrl(
   url: string | null | undefined,
   fallback = '/placeholder-category.svg',

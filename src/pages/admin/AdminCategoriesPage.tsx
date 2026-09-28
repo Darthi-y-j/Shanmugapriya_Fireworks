@@ -11,7 +11,7 @@ import {
   updateCategoriesSortOrder,
   type CategoryArchiveFilter,
 } from '@/services/categories'
-import { getImageUrl, cn } from '@/lib/utils'
+import { getCategoryImageUrl, IMAGE_WIDTH, cn } from '@/lib/utils'
 import { reorderItems, withSequentialSortOrder } from '@/lib/sortOrder'
 import { getSupabaseErrorMessage } from '@/lib/supabase'
 import { useToast } from '@/contexts/ToastContext'
@@ -225,7 +225,11 @@ export function AdminCategoriesPage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <img
-                            src={getImageUrl(category.image_url, '/placeholder-category.svg')}
+                            src={getCategoryImageUrl(
+                              category.image_url,
+                              '/placeholder-category.svg',
+                              IMAGE_WIDTH.categoryStrip,
+                            )}
                             alt={category.name}
                             className="h-10 w-10 rounded-lg object-cover ring-1 ring-navy-900/8"
                           />

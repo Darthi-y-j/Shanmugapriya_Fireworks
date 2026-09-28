@@ -15,7 +15,7 @@ const IMAGE_COMPRESS_OPTIONS: Record<
   { maxWidth: number; maxHeight: number; quality: number; format: 'image/webp' }
 > = {
   'product-images': { maxWidth: 1600, maxHeight: 1600, quality: 0.82, format: 'image/webp' },
-  'category-images': { maxWidth: 1200, maxHeight: 1200, quality: 0.82, format: 'image/webp' },
+  'category-images': { maxWidth: 1600, maxHeight: 1600, quality: 0.9, format: 'image/webp' },
 }
 
 export async function uploadImage(

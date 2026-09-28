@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Upload, X, Loader2 } from 'lucide-react'
 import { uploadImage, type ImageStorageBucket } from '@/services/storage'
-import { cn } from '@/lib/utils'
+import { cn, getCategoryImageUrl } from '@/lib/utils'
 
 interface ImageUploaderProps {
   bucket: ImageStorageBucket
@@ -55,7 +55,15 @@ export function ImageUploader({
 
       {currentUrl ? (
         <div className="relative inline-block">
-          <img src={currentUrl} alt="Preview" className="h-32 w-32 rounded-lg border object-cover" />
+          <img
+            src={
+              bucket === 'category-images'
+                ? getCategoryImageUrl(currentUrl, '/placeholder-category.svg')
+                : currentUrl
+            }
+            alt="Preview"
+            className="h-40 w-40 rounded-lg border object-cover"
+          />
           {onRemove && (
             <button
               type="button"

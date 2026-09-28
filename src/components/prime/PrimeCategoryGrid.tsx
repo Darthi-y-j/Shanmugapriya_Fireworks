@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { getCachedCatalogueCategories } from '@/lib/catalogueCache'
 import { isSupabaseConfigured } from '@/lib/supabaseConfig'
-import { getImageUrl, IMAGE_WIDTH } from '@/lib/utils'
+import { getCategoryImageUrl } from '@/lib/utils'
 import { MOCKUP_CATEGORIES } from '@/lib/mockupCategories'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
 import { usePrimeShop } from '@/contexts/PrimeShopContext'
@@ -21,15 +21,21 @@ function toDisplayCategory(cat: Category): DisplayCategory {
     id: cat.id,
     name: cat.name,
     image: cat.image_url
-      ? getImageUrl(
-          cat.image_url,
-          '/placeholder-category.svg',
-          IMAGE_WIDTH.thumb,
-          IMAGE_WIDTH.thumb,
-          'cover',
-        )
+      ? getCategoryImageUrl(cat.image_url, '/placeholder-category.svg')
       : '/placeholder-category.svg',
   }
+}
+
+/** Shrink title on narrow cards so long names stay on one line. */
+function categoryTitleClass(name: string): string {
+  const base =
+    'font-display font-bold leading-tight text-white whitespace-nowrap transition duration-300 group-hover:text-[#F5D78E]'
+  const len = name.length
+  if (len > 24) return `${base} text-[7px] sm:text-[10px] lg:text-[11px]`
+  if (len > 18) return `${base} text-[8px] sm:text-[11px] lg:text-[12px]`
+  if (len > 14) return `${base} text-[9px] sm:text-[12px] lg:text-[13px]`
+  if (len > 10) return `${base} text-[10px] sm:text-[13px] lg:text-[14px]`
+  return `${base} text-[11px] sm:text-[15px]`
 }
 
 function CategoryShowcaseCard({
@@ -48,10 +54,10 @@ function CategoryShowcaseCard({
           warmupProductsPage()
           onCategory(cat.id)
         }}
-        className="group flex flex-col overflow-hidden rounded-2xl border border-[#E8DFD0] bg-[#FFFCF7] shadow-[0_4px_24px_rgba(15,40,71,0.06)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(15,40,71,0.1)]"
+        className="group flex flex-col overflow-hidden rounded-2xl border border-[#C9A24A]/35 bg-[#0F2847] shadow-[0_4px_24px_rgba(15,40,71,0.25)] transition duration-300 hover:-translate-y-0.5 hover:border-[#C9A24A]/55 hover:shadow-[0_8px_32px_rgba(15,40,71,0.35)]"
         aria-label={`Browse ${cat.name}`}
       >
-        <div className="relative aspect-square overflow-hidden bg-[#F3EDE3]">
+        <div className="relative aspect-square overflow-hidden bg-[#1A3D66] ring-1 ring-inset ring-white/10">
           <img
             src={cat.image}
             alt=""
@@ -61,29 +67,29 @@ function CategoryShowcaseCard({
           />
         </div>
 
-        <div className="relative flex items-center justify-between gap-1.5 overflow-hidden border-t border-[#C9A24A]/20 bg-gradient-to-br from-[#FFFCF7] via-[#FAF4EA] to-[#F3EDE3] px-2.5 py-2 transition duration-300 group-hover:border-[#0077B6]/25 group-hover:from-[#FFF8E8]/50 group-hover:to-[#FFFCF7] sm:gap-2 sm:px-4 sm:py-3.5">
+        <div className="relative flex items-center justify-between gap-1.5 overflow-hidden border-t border-[#C9A24A]/30 bg-gradient-to-br from-[#0F2847] via-[#132f52] to-[#0a1f38] px-2.5 py-2 transition duration-300 sm:gap-2 sm:px-4 sm:py-3.5">
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A24A]/50 to-transparent"
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A24A]/60 to-transparent"
             aria-hidden="true"
           />
-          <div className="relative min-w-0 flex-1 pl-3">
+          <div className="relative min-w-0 flex-1 overflow-hidden pl-3 pr-0.5">
             <span
-              className="absolute left-0 top-0.5 bottom-0.5 w-0.5 rounded-full bg-gradient-to-b from-[#C9A24A] via-[#0077B6] to-[#C9A24A]/50"
+              className="absolute left-0 top-0.5 bottom-0.5 w-0.5 rounded-full bg-gradient-to-b from-[#F5D78E] via-[#C9A24A] to-[#0077B6]/80"
               aria-hidden="true"
             />
-            <p className="font-display text-[11px] font-bold leading-snug text-[#0F2847] transition duration-300 group-hover:text-[#0077B6] sm:text-[15px]">
+            <p className={categoryTitleClass(cat.name)} title={cat.name}>
               {cat.name}
             </p>
             <span
-              className="mt-1 block h-0.5 w-5 rounded-full bg-gradient-to-r from-[#C9A24A] to-[#0077B6]/30 transition-all duration-300 group-hover:w-11 sm:mt-1.5 sm:w-7"
+              className="mt-1 block h-0.5 w-5 rounded-full bg-gradient-to-r from-[#C9A24A] to-[#0077B6]/50 transition-all duration-300 group-hover:w-11 sm:mt-1.5 sm:w-7"
               aria-hidden="true"
             />
-            <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#0F2847]/45 sm:mt-1 sm:text-[9px] sm:tracking-[0.16em]">
+            <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#F5D78E]/75 sm:mt-1 sm:text-[9px] sm:tracking-[0.16em]">
               Explore range
             </p>
           </div>
           <span
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-[#0077B6]/35 bg-white text-[#0077B6] shadow-sm transition duration-300 group-hover:scale-105 group-hover:border-[#0077B6] group-hover:bg-[#0077B6] group-hover:text-white sm:h-9 sm:w-9"
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-[#C9A24A]/50 bg-[#0F2847] text-[#F5D78E] shadow-sm transition duration-300 group-hover:scale-105 group-hover:border-[#F5D78E] group-hover:bg-[#C9A24A] group-hover:text-[#0F2847] sm:h-9 sm:w-9"
             aria-hidden="true"
           >
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -94,10 +100,15 @@ function CategoryShowcaseCard({
   )
 }
 
+const CATEGORY_MARQUEE_PX_PER_FRAME = 0.55
+
 export function PrimeCategoryGrid() {
   const { scrollToCategory } = usePrimeShop()
-  const scrollerRef = useRef<HTMLDivElement>(null)
   const [categories, setCategories] = useState<Category[]>(() => getCachedCatalogueCategories() ?? [])
+  const [marqueePaused, setMarqueePaused] = useState(false)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const offsetRef = useRef(0)
+  const pausedRef = useRef(false)
 
   useEffect(() => {
     const load = async () => {
@@ -128,11 +139,72 @@ export function PrimeCategoryGrid() {
     [displayCategories],
   )
 
-  const scrollBy = useCallback((direction: 'left' | 'right') => {
-    const el = scrollerRef.current
-    if (!el) return
-    const amount = direction === 'left' ? -el.clientWidth * 0.7 : el.clientWidth * 0.7
-    el.scrollBy({ left: amount, behavior: 'smooth' })
+  useEffect(() => {
+    pausedRef.current = marqueePaused
+  }, [marqueePaused])
+
+  useEffect(() => {
+    const track = trackRef.current
+    const viewport = track?.parentElement
+    if (!track || displayCategories.length === 0) return
+
+    offsetRef.current = 0
+    track.style.transform = 'translate3d(0,0,0)'
+
+    let loopHalfWidth = 0
+    let hovered = false
+    let raf = 0
+
+    const measure = () => {
+      loopHalfWidth = track.scrollWidth / 2
+      while (loopHalfWidth > 0 && -offsetRef.current >= loopHalfWidth) {
+        offsetRef.current += loopHalfWidth
+      }
+    }
+
+    measure()
+    const resizeObserver =
+      typeof ResizeObserver === 'function' ? new ResizeObserver(measure) : null
+    resizeObserver?.observe(track)
+
+    const onEnter = () => {
+      hovered = true
+    }
+    const onLeave = () => {
+      hovered = false
+    }
+    viewport?.addEventListener('mouseenter', onEnter)
+    viewport?.addEventListener('mouseleave', onLeave)
+
+    const tick = () => {
+      const paused = pausedRef.current || hovered
+      if (!paused && loopHalfWidth > 0) {
+        offsetRef.current -= CATEGORY_MARQUEE_PX_PER_FRAME
+        if (-offsetRef.current >= loopHalfWidth) {
+          offsetRef.current += loopHalfWidth
+        }
+        track.style.transform = `translate3d(${offsetRef.current}px,0,0)`
+      }
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      resizeObserver?.disconnect()
+      viewport?.removeEventListener('mouseenter', onEnter)
+      viewport?.removeEventListener('mouseleave', onLeave)
+    }
+  }, [displayCategories.length])
+
+  const pauseMarquee = useCallback(() => {
+    setMarqueePaused(true)
+    window.setTimeout(() => setMarqueePaused(false), 4000)
+  }, [])
+
+  const resumeMarquee = useCallback(() => {
+    setMarqueePaused(false)
   }, [])
 
   return (
@@ -165,17 +237,17 @@ export function PrimeCategoryGrid() {
             <div className="flex shrink-0 items-center gap-1.5 self-end sm:gap-2">
               <button
                 type="button"
-                onClick={() => scrollBy('left')}
+                onClick={pauseMarquee}
                 className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E8DFD0] bg-[#FFFCF7] text-slate-500 shadow-sm transition hover:border-[#0077B6]/40 hover:text-[#0077B6] sm:h-10 sm:w-10"
-                aria-label="Scroll categories left"
+                aria-label="Pause category carousel"
               >
                 <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </button>
               <button
                 type="button"
-                onClick={() => scrollBy('right')}
+                onClick={resumeMarquee}
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0077B6] text-white shadow-sm transition hover:bg-[#0096D6] sm:h-10 sm:w-10"
-                aria-label="Scroll categories right"
+                aria-label="Play category carousel"
               >
                 <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </button>
@@ -184,19 +256,27 @@ export function PrimeCategoryGrid() {
         </div>
 
         <div className="relative mt-5 sm:mt-8 lg:mt-10">
-          <div
-            ref={scrollerRef}
-            className="flex gap-2.5 overflow-x-auto pb-2 sm:gap-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            aria-label="Product categories carousel"
-          >
-            {loopCategories.map((cat, index) => (
-              <CategoryShowcaseCard
-                key={`${cat.id}-${index}`}
-                cat={cat}
-                onCategory={scrollToCategory}
-              />
-            ))}
-          </div>
+          {displayCategories.length === 0 ? (
+            <p className="text-center text-sm text-slate-500">Loading categories…</p>
+          ) : (
+            <div
+              className={`category-marquee featured-marquee pb-2 ${marqueePaused ? 'marquee-paused' : ''}`}
+              aria-label="Product categories carousel"
+            >
+              <div
+                ref={trackRef}
+                className="featured-marquee-track flex gap-2.5 sm:gap-4"
+              >
+                {loopCategories.map((cat, index) => (
+                  <CategoryShowcaseCard
+                    key={`${cat.id}-${index}`}
+                    cat={cat}
+                    onCategory={scrollToCategory}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import type { Category } from '@/types/database'
-import { getImageUrl } from '@/lib/utils'
+import { getCategoryImageUrl } from '@/lib/utils'
 
 interface CategoryCardProps {
   category: Category
@@ -18,7 +18,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       {/* Image */}
       <div className="relative h-28 w-full shrink-0 overflow-hidden sm:h-36 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[46%]">
         <img
-          src={getImageUrl(category.image_url, '/placeholder-category.svg')}
+          src={getCategoryImageUrl(category.image_url, '/placeholder-category.svg')}
           alt={category.name}
           loading="lazy"
           decoding="async"

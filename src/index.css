@@ -509,6 +509,25 @@
     mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
   }
 
+  /* Home category strip — always auto-scroll (including mobile) */
+  .category-marquee.featured-marquee {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  }
+
+  /* Category strip uses JS transform loop (see PrimeCategoryGrid) */
+  .category-marquee .featured-marquee-track {
+    animation: none !important;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (max-width: 639px) {
+    .category-marquee.featured-marquee {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
   .featured-marquee-track {
     display: flex;
     width: max-content;
@@ -568,6 +587,13 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .category-marquee.featured-marquee .featured-marquee-track {
+      animation: featured-marquee var(--marquee-duration, 60s) linear infinite;
+      flex-wrap: nowrap;
+      width: max-content;
+      justify-content: flex-start;
+    }
+
     .featured-marquee-track {
       animation: none;
       flex-wrap: wrap;
@@ -1001,5 +1027,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Home category carousel should still drift slowly */
+  .category-marquee.featured-marquee .featured-marquee-track {
+    animation-duration: unset !important;
+    animation-iteration-count: unset !important;
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { ChevronLeft, ChevronRight, LayoutGrid, X } from 'lucide-react'
 import type { Category } from '@/types/database'
-import { getSquareImageUrl, IMAGE_WIDTH, cn } from '@/lib/utils'
+import { getCategoryImageUrl, IMAGE_WIDTH, cn } from '@/lib/utils'
 
 interface PrimeFilterDrawerProps {
   open: boolean
@@ -109,7 +109,11 @@ export function PrimeFilterDrawer({
                 <button type="button" onClick={() => handleSelect(cat.id)} className={itemClass(active)}>
                   <span className={thumbShellClass(active)}>
                     <img
-                      src={getSquareImageUrl(cat.image_url, '/placeholder-category.svg', IMAGE_WIDTH.thumb)}
+                      src={getCategoryImageUrl(
+                        cat.image_url,
+                        '/placeholder-category.svg',
+                        IMAGE_WIDTH.categoryStrip,
+                      )}
                       alt=""
                       className="h-full w-full object-cover"
                       loading="lazy"
