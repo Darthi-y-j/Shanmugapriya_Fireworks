@@ -1,5 +1,5 @@
 import { LayoutGrid } from 'lucide-react'
-import { getImageUrl, cn } from '@/lib/utils'
+import { getSquareImageUrl, IMAGE_WIDTH, cn } from '@/lib/utils'
 import { getCategoryIcon } from '@/lib/categoryIcons'
 import type { Category } from '@/types/database'
 
@@ -77,7 +77,13 @@ export function CategoryIconStrip({
               )}
             >
               {cat.image_url ? (
-                <img src={getImageUrl(cat.image_url)} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={getSquareImageUrl(cat.image_url, '/placeholder-category.svg', IMAGE_WIDTH.thumb)}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
                 <Icon className="h-5 w-5 text-gold-400/80 sm:h-6 sm:w-6" />
               )}

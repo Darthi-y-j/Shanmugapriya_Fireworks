@@ -7,7 +7,7 @@ async function db() {
   return getSupabaseClient()
 }
 
-const CATALOG_MARKER_SLUG = '2-3-4-kuruvai'
+const CATALOG_MARKER_SLUG = 's1-4-lakshmi-crackers'
 const PRODUCT_CHUNK = 40
 
 export interface CatalogImportResult {

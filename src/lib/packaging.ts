@@ -10,6 +10,9 @@ const PACKAGING_SPEC_KEYS = [
   INNER_UNIT_NAME_SPEC_KEY,
 ] as const
 
+/** Hidden on customer product pages — used for catalogue import & packaging logic. */
+export const CATALOG_INTERNAL_SPEC_KEYS = ['code', 'sell_unit', 'per'] as const
+
 export const SELL_UNITS = [
   { value: 'pack', label: 'Pack' },
   { value: 'box', label: 'Box' },

@@ -30,7 +30,7 @@ function num(value) {
 function cleanBrand(value) {
   const brand = String(value || '').trim()
   if (!brand || brand.toLowerCase() === 'aura' || brand.toLowerCase() === 'aura crackers') {
-    return 'Shanmuga Priya Crackers'
+    return "Shanmuga's"
   }
   return brand
 }

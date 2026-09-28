@@ -2,11 +2,13 @@ import * as XLSX from 'xlsx'
 import type { Category, Product } from '@/types/database'
 import { resolveProductPrice } from '@/lib/pricing'
 import { getProductTagLabel } from '@/lib/productTags'
+import { getProductCode } from '@/lib/productCode'
 
 export function downloadProductsExcel(products: Product[], categories: Category[]): void {
   const categoryMap = new Map(categories.map((category) => [category.id, category.name]))
 
   const rows = products.map((product) => ({
+    Code: getProductCode(product),
     Category: product.category_id ? categoryMap.get(product.category_id) || '—' : '—',
     'Product Name': product.name,
     Slug: product.slug,
@@ -28,6 +30,7 @@ export function downloadProductsExcel(products: Product[], categories: Category[
 
   const worksheet = XLSX.utils.json_to_sheet(rows)
   worksheet['!cols'] = [
+    { wch: 8 },
     { wch: 18 },
     { wch: 32 },
     { wch: 24 },

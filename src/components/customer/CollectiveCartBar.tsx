@@ -4,7 +4,7 @@ import { ShoppingCart, MessageCircle, X, ChevronUp, Trash2, Gift } from 'lucide-
 import { useCart } from '@/contexts/CartContext'
 import { useSettings } from '@/contexts/SettingsContext'
 import { QuantitySelector } from './QuantitySelector'
-import { getImageUrl, formatPrice, cn } from '@/lib/utils'
+import { getImageUrl, formatPrice, IMAGE_WIDTH, cn } from '@/lib/utils'
 
 export function CollectiveCartBar() {
   const { items, itemCount, removeItem, updateQuantity, clearCart } = useCart()
@@ -85,7 +85,7 @@ export function CollectiveCartBar() {
                 className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 p-2"
               >
                 <img
-                  src={getImageUrl(item.imageUrl)}
+                  src={getImageUrl(item.imageUrl, '/placeholder-product.svg', IMAGE_WIDTH.table)}
                   alt={item.productName}
                   className="h-8 w-8 shrink-0 rounded object-cover"
                 />

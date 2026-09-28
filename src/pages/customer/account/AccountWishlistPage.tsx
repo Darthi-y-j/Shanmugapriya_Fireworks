@@ -5,7 +5,7 @@ import { AccountPageHeader, accountContentClass } from '@/components/customer/ac
 import { useWishlist } from '@/contexts/WishlistContext'
 import { useCart } from '@/contexts/CartContext'
 import { useToast } from '@/contexts/ToastContext'
-import { formatPrice, getImageUrl } from '@/lib/utils'
+import { formatPrice, getImageUrl, IMAGE_WIDTH } from '@/lib/utils'
 
 export function AccountWishlistPage() {
   const { items, removeItem, clearWishlist } = useWishlist()
@@ -63,7 +63,7 @@ export function AccountWishlistPage() {
                 >
                   <Link to={`/products/${item.slug}`} className="shrink-0">
                     <img
-                      src={getImageUrl(item.imageUrl)}
+                      src={getImageUrl(item.imageUrl, '/placeholder-product.svg', IMAGE_WIDTH.thumb)}
                       alt={item.productName}
                       className="h-16 w-16 rounded-xl object-cover"
                     />

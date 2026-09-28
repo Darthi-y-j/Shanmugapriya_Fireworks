@@ -9,6 +9,7 @@ import { WishlistButton } from '@/components/customer/WishlistButton'
 import { ProductHighlightBadges } from '@/components/customer/ProductHighlightBadges'
 import { ProductPackagingBadge } from '@/components/customer/ProductPackagingBadge'
 import { ProductLink } from '@/components/customer/ProductLink'
+import { ProductCodeBadge } from '@/components/customer/ProductCodeBadge'
 
 function formatRsAmount(value: string | null): string {
   if (!value) return '—'
@@ -52,11 +53,14 @@ function PrimeCompactProductCardInner({
           />
         </ProductLink>
 
-        {hasDiscount && (
-          <span className="absolute left-1 top-1 z-10 rounded-md bg-[#0077B6] px-1 py-0.5 text-[8px] font-extrabold text-white shadow-sm sm:left-2 sm:top-2 sm:px-1.5 sm:text-[9px] lg:hidden">
-            {product.discount_percentage}% OFF
-          </span>
-        )}
+        <div className="absolute left-1 top-1 z-10 flex flex-col gap-0.5 sm:left-2 sm:top-2 lg:hidden">
+          <ProductCodeBadge product={product} size="xs" className="px-1" />
+          {hasDiscount && (
+            <span className="rounded-md bg-[#0077B6] px-1 py-0.5 text-[8px] font-extrabold text-white shadow-sm sm:px-1.5 sm:text-[9px]">
+              {product.discount_percentage}% OFF
+            </span>
+          )}
+        </div>
 
         <div className="absolute bottom-2 left-2 z-10 max-w-[calc(100%-3rem)] lg:hidden">
           <ProductHighlightBadges product={product} compact />

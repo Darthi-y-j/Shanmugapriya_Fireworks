@@ -8,6 +8,7 @@ import { WishlistButton } from '@/components/customer/WishlistButton'
 import { ProductHighlightBadges } from '@/components/customer/ProductHighlightBadges'
 import { ProductPackagingBadge } from '@/components/customer/ProductPackagingBadge'
 import { ProductLink } from '@/components/customer/ProductLink'
+import { ProductCodeBadge } from '@/components/customer/ProductCodeBadge'
 
 function PrimeProductCardInner({ product, priority = false }: { product: Product; priority?: boolean }) {
   const { inCart, quantity, price, originalPrice, handleQuantityChange, handleAddToCart } =
@@ -37,11 +38,14 @@ function PrimeProductCardInner({ product, priority = false }: { product: Product
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0F2847]/60 via-[#0F2847]/10 to-transparent" />
 
-        {hasDiscount && (
-          <span className="absolute left-2 top-2 z-10 rounded-full bg-[#0077B6] px-1.5 py-0.5 text-[9px] font-extrabold tracking-wide text-white shadow-md sm:left-3 sm:top-3 sm:px-2.5 sm:py-1 sm:text-[10px]">
-            {product.discount_percentage}% OFF
-          </span>
-        )}
+        <div className="absolute left-2 top-2 z-10 flex flex-col gap-1 sm:left-3 sm:top-3">
+          <ProductCodeBadge product={product} size="xs" />
+          {hasDiscount && (
+            <span className="rounded-full bg-[#0077B6] px-1.5 py-0.5 text-[9px] font-extrabold tracking-wide text-white shadow-md sm:px-2.5 sm:py-1 sm:text-[10px]">
+              {product.discount_percentage}% OFF
+            </span>
+          )}
+        </div>
 
         <div className="absolute left-2 top-9 z-10 max-w-[calc(100%-3.5rem)] sm:left-3 sm:top-11">
           <ProductHighlightBadges product={product} compact />

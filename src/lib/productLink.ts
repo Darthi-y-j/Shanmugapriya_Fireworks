@@ -1,5 +1,5 @@
 import type { Product } from '@/types/database'
-import { getImageUrl } from '@/lib/utils'
+import { getImageUrl, IMAGE_WIDTH } from '@/lib/utils'
 
 export type ProductLinkState = {
   product: Product
@@ -7,11 +7,15 @@ export type ProductLinkState = {
 
 const preloadedImages = new Set<string>()
 
-export function preloadProductImage(url: string | null | undefined) {
-  const src = getImageUrl(url)
+export function preloadProductImage(
+  url: string | null | undefined,
+  width: number = IMAGE_WIDTH.detail,
+) {
+  const src = getImageUrl(url, '/placeholder-product.svg', width)
   if (!src || preloadedImages.has(src)) return
   preloadedImages.add(src)
   const img = new Image()
+  img.decoding = 'async'
   img.src = src
 }
 
@@ -23,8 +27,8 @@ export function productLinkProps(product: Product) {
   return {
     to: productDetailPath(product.slug),
     state: { product } satisfies ProductLinkState,
-    onTouchStart: () => preloadProductImage(product.image_url),
-    onMouseEnter: () => preloadProductImage(product.image_url),
+    onTouchStart: () => preloadProductImage(product.image_url, IMAGE_WIDTH.thumb),
+    onMouseEnter: () => preloadProductImage(product.image_url, IMAGE_WIDTH.thumb),
   }
 }
 

@@ -3,7 +3,7 @@ import { cleanPhone } from './utils'
 
 export const ESTABLISHED_YEAR = 1999
 
-export const BUSINESS_ADDRESS = `Shanmugapriya Pyrotech
+export const BUSINESS_ADDRESS = `Shanmuga's Fireworks
 Ettunanayankanpatti, Pattamputhur (PO)
 Virudhunagar District, Tamil Nadu, India`
 
@@ -41,6 +41,7 @@ const LEGACY_EMAILS = new Set([
 
 const LEGACY_ADDRESS_MARKERS = [
   'prime crackers',
+  'shanmugapriya pyrotech',
   'chillayanayakanpatti',
   'alamarathupatti',
   'pallapatti',

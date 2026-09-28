@@ -91,12 +91,18 @@ export function shuffleArray<T>(items: T[]): T[] {
 const SUPABASE_OBJECT_PATH = '/storage/v1/object/public/'
 const SUPABASE_RENDER_PATH = '/storage/v1/render/image/public/'
 
-/** Display widths — request 2x for retina where noted in usage */
+/** Display widths — request ~2× CSS size for retina */
 export const IMAGE_WIDTH = {
+  /** Small list/table thumbnails (~36–48px CSS) */
+  table: 96,
   thumb: 160,
   card: 480,
   detail: 960,
 } as const
+
+function isSupabaseStorageUrl(url: string): boolean {
+  return url.includes(SUPABASE_OBJECT_PATH) || url.includes(SUPABASE_RENDER_PATH)
+}
 
 export function getImageUrl(
   url: string | null | undefined,
@@ -106,12 +112,17 @@ export function getImageUrl(
   resize: 'cover' | 'contain' = 'cover',
 ): string {
   if (!url) return fallback
-  if (!width || !url.includes(SUPABASE_OBJECT_PATH)) return url
+  if (!isSupabaseStorageUrl(url)) return url
+  if (!width) return url
 
-  const renderUrl = url.replace(SUPABASE_OBJECT_PATH, SUPABASE_RENDER_PATH)
+  const base = url.includes(SUPABASE_RENDER_PATH)
+    ? url.split('?')[0]
+    : url.replace(SUPABASE_OBJECT_PATH, SUPABASE_RENDER_PATH).split('?')[0]
+
   const h = height ?? Math.round((width * 3) / 4)
-  const quality = width <= IMAGE_WIDTH.thumb ? 70 : width <= IMAGE_WIDTH.card ? 75 : 80
-  return `${renderUrl}?width=${width}&height=${h}&quality=${quality}&resize=${resize}`
+  const quality =
+    width <= IMAGE_WIDTH.table ? 65 : width <= IMAGE_WIDTH.thumb ? 70 : width <= IMAGE_WIDTH.card ? 75 : 80
+  return `${base}?width=${width}&height=${h}&quality=${quality}&resize=${resize}&format=webp`
 }
 
 /** 4:4 (1:1) category artwork from Supabase — never crop to 4:3 */

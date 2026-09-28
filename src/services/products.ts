@@ -312,6 +312,61 @@ export async function getProductsByCategory(categoryId: string): Promise<Product
   })
 }
 
+/** Same-category siblings for product detail (falls back to cached catalogue). */
+export async function getRelatedProducts(
+  product: Pick<Product, 'id' | 'category_id' | 'sort_order'>,
+  limit = 6,
+): Promise<Product[]> {
+  const pickSiblings = (list: Product[]) => {
+    const siblings = list.filter((p) => p.id !== product.id && p.is_available !== false)
+    if (siblings.length === 0) return []
+
+    const order = product.sort_order ?? 0
+    return [...siblings]
+      .sort((a, b) => {
+        const da = Math.abs((a.sort_order ?? 0) - order)
+        const db = Math.abs((b.sort_order ?? 0) - order)
+        if (da !== db) return da - db
+        return (a.sort_order ?? 0) - (b.sort_order ?? 0)
+      })
+      .slice(0, limit)
+  }
+
+  const categoryId = product.category_id
+  if (categoryId) {
+    try {
+      const fromRest = await getProducts({
+        categoryId,
+        lite: true,
+        sortBy: 'sort_order',
+        availability: 'available',
+      })
+      const picked = pickSiblings(fromRest)
+      if (picked.length > 0) return picked
+    } catch {
+      /* try supabase client */
+    }
+
+    try {
+      const fromDb = await getProductsByCategory(categoryId)
+      const picked = pickSiblings(fromDb)
+      if (picked.length > 0) return picked
+    } catch {
+      /* fall through */
+    }
+  }
+
+  const cached = getCachedCatalogueProducts()
+  if (cached?.length) {
+    const pool = categoryId
+      ? cached.filter((p) => p.category_id === categoryId)
+      : cached
+    return pickSiblings(pool)
+  }
+
+  return []
+}
+
 export async function createProduct(
   product: Omit<Product, 'id' | 'created_at' | 'updated_at' | 'category' | 'is_archived' | 'archived_at'> & {
     is_archived?: boolean

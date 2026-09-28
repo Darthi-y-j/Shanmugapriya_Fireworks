@@ -38,6 +38,10 @@ const COLUMN_TITLE = 'font-display text-xs font-bold text-white sm:text-sm lg:te
 
 const FOOTER_LINK = 'text-xs text-white/85 transition hover:text-[#E8C56A] sm:text-sm'
 
+/** Keeps phone digits readable over gold bokeh in the footer artwork (thin "1" strokes pick up background). */
+const FOOTER_PHONE_TEXT =
+  'font-sans tabular-nums antialiased [text-shadow:0_0_12px_rgba(4,30,71,0.95),0_1px_2px_rgba(4,30,71,0.9)]'
+
 function FooterUpdatesColumn({
   phoneNumbers,
   whatsappNumber,
@@ -59,13 +63,15 @@ function FooterUpdatesColumn({
         buttonContent={<Send className="h-4 w-4" />}
       />
 
-      <div className="mt-3 space-y-2 border-t border-white/10 pt-3 sm:mt-4 sm:pt-4">
+      <div
+        className="mt-3 space-y-2 rounded-lg border border-white/10 bg-[#041E47]/80 px-2.5 py-2.5 backdrop-blur-sm sm:mt-4"
+      >
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-1.5">
           {phoneNumbers.map((number) => (
             <a
               key={number}
               href={buildTelUrl(number)}
-              className="inline-flex items-center gap-2 text-xs font-medium text-white/85 transition hover:text-white"
+              className={`inline-flex items-center gap-2 text-xs font-medium text-white/90 transition hover:text-white ${FOOTER_PHONE_TEXT}`}
             >
               <Phone className="h-3.5 w-3.5 shrink-0 text-[#7ECEF3]" aria-hidden="true" />
               {formatDisplayPhone(number)}
@@ -80,7 +86,7 @@ function FooterUpdatesColumn({
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-medium text-[#4ADE80] transition hover:text-[#86EFAC]"
+            className={`inline-flex items-center gap-2 text-xs font-medium text-[#4ADE80] transition hover:text-[#86EFAC] ${FOOTER_PHONE_TEXT}`}
           >
             <MessageCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             WhatsApp {formatDisplayPhone(whatsappNumber)}
@@ -149,7 +155,7 @@ export function PrimeFooter() {
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-[#041E47]/15"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#041E47]/45 via-[#041E47]/35 to-[#041E47]/55"
         aria-hidden="true"
       />
 

@@ -7,7 +7,7 @@ export interface CatalogCleanupResult {
   errors: string[]
 }
 
-/** Deletes all existing products/categories, then imports the Excel master catalogue. */
+/** Deletes all existing products/categories, then imports data/catalog.json (price list). */
 export async function applyCatalogCleanup(): Promise<CatalogCleanupResult> {
   const result = await importCatalog({ force: true, replace: true })
 
