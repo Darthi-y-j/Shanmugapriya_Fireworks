@@ -2,51 +2,51 @@
   "1": {
     "description": "4\" Lakshmi Crackers are the entry-level favourite for a sharp, single-shot Diwali burst.\nFrom our Single Sound Crackers line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "4 inch"
     }
   },
   "2": {
     "description": "Deluxe Lakshmi steps up the powder load for a fuller report than standard 4\" packs.\nFrom our Single Sound Crackers line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "4 inch"
     }
   },
   "3": {
     "description": "Super Deluxe Lakshmi / Tiger branding marks one of the strongest singles in this size.\nFrom our Single Sound Crackers line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "4 inch"
     }
   },
   "4": {
     "description": "3½\" Lakshmi suits buyers who want traditional sound in a slightly smaller roll.\nFrom our Single Sound Crackers line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "3 ½ inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "3 ½ inch"
     }
   },
   "5": {
     "description": "2¾\" Kuruv is a budget-friendly kuruvai cracker with a quick, bright crack.\nFrom our Single Sound Crackers line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "2 ¾ inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "2 ¾ inch"
     }
   },
   "6": {
@@ -56,1267 +56,1258 @@
       "Type": "Crackers",
       "Effect": "Loud Sound",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt"
     }
   },
   "7": {
     "description": "5\" Spiderman / Lakshmi pairs kids' branding with a noticeably heavier single shot.\nFrom our Single Sound Crackers line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "5 inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "5 inch"
     }
   },
   "8": {
     "description": "6\" Fighter is chosen when you want maximum single-cracker impact in the Lakshmi family.\nFrom our Single Sound Crackers line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "6 inch",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "6 inch"
     }
   },
   "9": {
     "description": "Lakshmi 20 Ply strings many small reports for a longer roll of sound.\nFrom our Single Sound Crackers line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "20 ply roll",
       "Type": "Crackers",
       "Effect": "Loud single burst",
       "Duration": "3–5 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "20 ply roll"
     }
   },
   "10": {
     "description": "2¾\" 24 Deluxe electric strings twenty-four linked shots for continuous festivity.\nFrom our Electric Crackers line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "2 ¾ inch",
       "Type": "Electric crackers (garland)",
       "Effect": "Rapid electric cracker sequence",
       "Duration": "10–30 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "2 ¾ inch"
     }
   },
   "11": {
     "description": "2¾\" 50 Deluxe stretches the electric sequence for a full-minute street show.\nFrom our Electric Crackers line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "2 ¾ inch",
       "Type": "Electric crackers (garland)",
       "Effect": "Rapid electric cracker sequence",
       "Duration": "10–30 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "2 ¾ inch"
     }
   },
   "12": {
     "description": "4\" 50 Mega Deluxe combines larger bore with a fifty-shot electric garland.\nFrom our Electric Crackers line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Electric crackers (garland)",
       "Effect": "Rapid electric cracker sequence",
       "Duration": "10–30 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "4 inch"
     }
   },
   "13": {
     "description": "4\" 100 Mega Deluxe is the long electric garland for buyers who want endurance and volume.\nFrom our Electric Crackers line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Electric crackers (garland)",
       "Effect": "Rapid electric cracker sequence",
       "Duration": "10–30 seconds",
-      "Pack": "1 Pkt"
+      "Per": "1 Pkt",
+      "Size": "4 inch"
     }
   },
   "14": {
     "description": "Red Bijili delivers the classic sharp bijili crackle in a handy bag.\nFrom our Bijilli Crackers line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "Standard bijili size",
       "Type": "Bijili crackers",
       "Effect": "Sharp bijili crackle",
       "Duration": "10–30 seconds",
-      "Pack": "1 Bag"
+      "Per": "1 Bag",
+      "Size": "Standard bijili size"
     }
   },
   "15": {
     "description": "Striped Bijili offers the same bijili performance with striped styling.\nFrom our Bijilli Crackers line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "Standard bijili size",
       "Type": "Bijili crackers",
       "Effect": "Sharp bijili crackle",
       "Duration": "10–30 seconds",
-      "Pack": "1 Bag"
+      "Per": "1 Bag",
+      "Size": "Standard bijili size"
     }
   },
   "16": {
     "description": "Flower Pots Big open with a tall golden fountain before the main sparkle.\nFrom our Flowerpots line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "Standard flower pot",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard flower pot"
     }
   },
   "17": {
     "description": "Flower Pots Special add extra height and colour to the standard pot line.\nFrom our Flowerpots line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "Standard flower pot",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard flower pot"
     }
   },
   "18": {
     "description": "Flower Pots Ashoka are named for their wide, tree-like shower of sparks.\nFrom our Flowerpots line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "Standard flower pot",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard flower pot"
     }
   },
   "19": {
     "description": "Flower Pots Deluxe (5 Pcs) bundle five deluxe pots for terrace parties.\nFrom our Flowerpots line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "20": {
     "description": "Flower Pot Colour Koti mixes koti-style colour breaks in a fountain pot.\nFrom our Flowerpots line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "Standard flower pot",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard flower pot"
     }
   },
   "21": {
     "description": "Colour Koti Deluxe (10 Pcs) packs ten colour-koti pots for bigger gatherings.\nFrom our Flowerpots line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "10 pieces per box",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "22": {
     "description": "Tri Colour Fountain layers three colour stages in one ground fountain.\nFrom our Flowerpots line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Flower pots",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "23": {
     "description": "Ground Chakkar Big spins a wide circle of sparks on flat ground.\nFrom our Ground Chakkar line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "24": {
     "description": "Ground Chakkar Special spins faster with a denser ring of light.\nFrom our Ground Chakkar line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "25": {
     "description": "Ground Chakkar Deluxe is the premium chakkar for longer spin time.\nFrom our Ground Chakkar line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "26": {
     "description": "Chakkar Special Spinner adds whistle and spin for street-corner fun.\nFrom our Ground Chakkar line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "27": {
     "description": "Chakkar Deluxe Spinner is the heavier spinner wheel in this range.\nFrom our Ground Chakkar line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "28": {
     "description": "Whistling Dixie (5 Pcs) combines five whistling ground pieces in one box.\nFrom our Ground Chakkar line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Ground chakkar / spinner",
       "Effect": "Spin with whistle",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "29": {
     "description": "4 x 4 Wheel (5 Pcs) packs five four-way driving wheels for kids and teens.\nFrom our Ground Chakkar line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Ground chakkar / spinner",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "30": {
     "description": "1½\" Twinkling Star shoots low aerial stars safe for children's packs.\nFrom our Children's Special line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "1 ½ inch",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1 ½ inch"
     }
   },
   "31": {
     "description": "4\" Twinkling Star lifts higher with brighter twinkling breaks.\nFrom our Children's Special line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "4 inch",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "4 inch"
     }
   },
   "32": {
     "description": "12\" Pencil fires slim roman-style shots from a pencil tube.\nFrom our Children's Special line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "12 inch",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "12 inch"
     }
   },
   "33": {
     "description": "Coronation Colour Candle streams colour candles for a regal mini-show.\nFrom our Children's Special line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "34": {
     "description": "Roman Candle Red & Green alternates red and green stars up the line.\nFrom our Children's Special line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "35": {
     "description": "Raya Pencil Mix bundles mixed pencil effects in one family box.\nFrom our Children's Special line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "36": {
     "description": "Jai Ho / Bingo Crackling Candle ends with a crackling candle finish.\nFrom our Children's Special line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Children’s novelty",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "37": {
     "description": "Super Bullet is a compact atom bomb with a punchy single report.\nFrom our Atom Bombs line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "38": {
     "description": "Hydro Bomb Green adds a green-flash accent to a heavy sound cake.\nFrom our Atom Bombs line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "39": {
     "description": "Classic Bomb is the mid-size atom bomb trusted for village displays.\nFrom our Atom Bombs line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "40": {
     "description": "Agni Bomb steps up to a deep, rolling thunder report.\nFrom our Atom Bombs line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "41": {
     "description": "Digital Bomb is among the loudest boxes in the atom bomb shelf.\nFrom our Atom Bombs line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "42": {
     "description": "Adiyaal 1/4 kg is a quarter-kilo sound cake for open plots.\nFrom our Atom Bombs line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "1/4 kg cake",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1/4 kg cake"
     }
   },
   "43": {
     "description": "Adiyaal 1/2 kg doubles the powder for a longer thunder roll.\nFrom our Atom Bombs line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "1/2 kg cake",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1/2 kg cake"
     }
   },
   "44": {
     "description": "Adiyaal 1 kg is the full-kilo cake for the finale of the night.\nFrom our Atom Bombs line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "1 kg cake",
       "Type": "Atom bomb / sound cake",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1 kg cake"
     }
   },
   "45": {
     "description": "Jaguar 1 K is the entry display cake in the Jaguar series.\nFrom our Jaguar Varieties line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "1K display cake",
       "Type": "Display cake (Jaguar series)",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1K display cake"
     }
   },
   "46": {
     "description": "Jaguar 2 K doubles shots and duration for medium finales.\nFrom our Jaguar Varieties line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "2K display cake",
       "Type": "Display cake (Jaguar series)",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "2K display cake"
     }
   },
   "47": {
     "description": "Jaguar 5 K is built for society grounds and wide-open fields.\nFrom our Jaguar Varieties line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "5K display cake",
       "Type": "Display cake (Jaguar series)",
       "Effect": "Heavy sound report",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "5K display cake"
     }
   },
   "48": {
     "description": "Jaguar 10 K is the show-stopper cake for the biggest celebrations.\nFrom our Jaguar Varieties line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "10K display cake",
       "Type": "Display cake (Jaguar series)",
       "Effect": "Heavy sound report",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10K display cake"
     }
   },
   "49": {
     "description": "Rocket Bomb lifts a bursting head with a rocket-style whoosh.\nFrom our Rockets line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "Sky rocket size",
       "Type": "Rockets",
       "Effect": "Aerial lift & burst",
       "Duration": "5–15 seconds report",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Sky rocket size"
     }
   },
   "50": {
     "description": "Lunik Rocket climbs high with a classic rocket trail.\nFrom our Rockets line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "Sky rocket size",
       "Type": "Rockets",
       "Effect": "Aerial lift & burst",
       "Duration": "8–20 seconds aerial",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Sky rocket size"
     }
   },
   "51": {
     "description": "2 Sound Rocket cracks twice in the sky for double applause.\nFrom our Rockets line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "Sky rocket size",
       "Type": "Rockets",
       "Effect": "Aerial lift & burst",
       "Duration": "8–20 seconds aerial",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Sky rocket size"
     }
   },
   "52": {
     "description": "Music Rocket adds whistling music notes to the climb and burst.\nFrom our Rockets line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "Sky rocket size",
       "Type": "Rockets",
       "Effect": "Aerial lift & burst",
       "Duration": "8–20 seconds aerial",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Sky rocket size"
     }
   },
   "53": {
     "description": "Peacock Feather fountain opens like a peacock tail of colour.\nFrom our Colour Fountains line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "54": {
     "description": "WiFi (5 Pcs) packs five modern fountain cakes with network-themed fun.\nFrom our Colour Fountains line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "55": {
     "description": "Nano (5 Pcs) are compact nano fountains for table-top displays.\nFrom our Colour Fountains line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "56": {
     "description": "Jazz (5 Pcs) rhythm-themed fountains with jazz-burst colour.\nFrom our Colour Fountains line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "57": {
     "description": "Music Siren (3 Pcs) wails musically before the colour fountain.\nFrom our Colour Fountains line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "58": {
     "description": "Sunfeast / Bourbon Red (5 Pcs) biscuit-tin styled fountains kids recognise.\nFrom our Colour Fountains line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "59": {
     "description": "Nano Pots (Ayyan) (5 Pcs) mini pots with Ayyan-series sparkle.\nFrom our Colour Fountains line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Fountain of golden & colour sparks",
       "Duration": "40–90 seconds fountain",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "60": {
     "description": "Party Mix (5 Pcs) mixes five different fountain personalities in one box.\nFrom our Colour Fountains line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "61": {
     "description": "Shin Chan (5 Pcs) cartoon-themed fountains for young families.\nFrom our Colour Fountains line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "62": {
     "description": "Jiggles (4 Varieties) (3 Pcs) jiggling multi-effect fountain set.\nFrom our Colour Fountains line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "63": {
     "description": "Doraemon (5 Pcs) character fountains with gentle colour showers.\nFrom our Colour Fountains line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Colour fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "64": {
     "description": "Silver / Golden Drops rain metallic droplets from a slim fountain.\nFrom our New Special Fountains line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Special fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "65": {
     "description": "Crackling Salsa (1 Pcs) is a single large crackling fountain cake.\nFrom our New Special Fountains line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "1 pieces per box",
       "Type": "Special fountain",
       "Effect": "Crackling light display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "66": {
     "description": "Fire Tiger roars with tiger-themed colour and crackle.\nFrom our New Special Fountains line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Special fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "67": {
     "description": "Peacock 3 in 1 cycles three peacock colour stages.\nFrom our New Special Fountains line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Special fountain",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "68": {
     "description": "Magic Show Currency fountain plays a magic-money themed shower.\nFrom our New Special Fountains line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Special fountain",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "69": {
     "description": "Colour Smoke (3 Pcs) Multi releases multi-colour smoke columns.\nFrom our New Special Fountains line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Special fountain",
       "Effect": "Coloured smoke plume",
       "Duration": "30–60 seconds smoke",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "70": {
     "description": "Helicopter blades spin up and lift like a toy copter.\nFrom our New Wonders line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Aerial novelty",
       "Effect": "Aerial lift & burst",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "71": {
     "description": "Rampa Dance / Pambaraa jumps and dances on the ground.\nFrom our New Wonders line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Aerial novelty",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "72": {
     "description": "Butterfly (3 Colour Changing) flutters through three colour changes.\nFrom our New Wonders line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Aerial novelty",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "73": {
     "description": "Bada Peacock is an oversized peacock aerial for premium finales.\nFrom our New Wonders line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Aerial novelty",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "74": {
     "description": "Kids Bat & Ball is a sports-themed novelty kids love to light.\nFrom our New Wonders line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Aerial novelty",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "75": {
     "description": "1\" Chotta Fancy is the small-bore fancy for quick sky colour.\nFrom our Chotta Fancy line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "1 inch",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "1 inch"
     }
   },
   "76": {
     "description": "Sky Crack / Sky Dance (5 Pcs) crack and dance across five pieces.\nFrom our Chotta Fancy line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "77": {
     "description": "Penta Shot (5 Pcs) fires five coordinated fancy bursts.\nFrom our Chotta Fancy line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Chotta fancy shots",
       "Effect": "Sequential aerial shots",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "78": {
     "description": "White House (5 Pcs) monument-themed fancy shots.\nFrom our Chotta Fancy line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "79": {
     "description": "2UP (5 Pcs) arcade-themed doubles for teen groups.\nFrom our Chotta Fancy line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "5 pieces per box",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box"
     }
   },
   "80": {
     "description": "Focus fountain narrows sparks into a bright column.\nFrom our Chotta Fancy line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "81": {
     "description": "Magic Money shower looks like raining currency sparks.\nFrom our Chotta Fancy line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "82": {
     "description": "Singing Doll plays a singing novelty before the colour break.\nFrom our Chotta Fancy line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Chotta fancy shots",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "83": {
     "description": "3½\" Fancy (6 Varieties) rotates six fancy effects in one box.\nFrom our Night Attraction Fancy line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "3 ½ inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "3 ½ inch"
     }
   },
   "84": {
     "description": "2\" Single is one large night fancy for a solo sky painting.\nFrom our Night Attraction Fancy line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "2 inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "2 inch"
     }
   },
   "85": {
     "description": "2\" 3 Pcs triples the same fancy effect for a short sequence.\nFrom our Night Attraction Fancy line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "2 inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "2 inch"
     }
   },
   "86": {
     "description": "BS Chotta 5 in 1 bundles five chotta effects from the BS line.\nFrom our Night Attraction Fancy line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "87": {
     "description": "BS 3½\" Fancy is the BS-series mid fancy for height and colour.\nFrom our Night Attraction Fancy line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "3 ½ inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "3 ½ inch"
     }
   },
   "88": {
     "description": "BS 7 Step climbs seven colour steps into the sky.\nFrom our Night Attraction Fancy line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "89": {
     "description": "BS 3½\" Fancy 2 Pcs pairs two heavy BS fancys.\nFrom our Night Attraction Fancy line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "3 ½ inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "3 ½ inch"
     }
   },
   "90": {
     "description": "Lovely 3½\" Fancy 2 Pcs 2 Ball adds double-ball breaks to Lovely fancys.\nFrom our Night Attraction Fancy line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "3 ½ inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "3 ½ inch"
     }
   },
   "91": {
     "description": "Lovely 6\" Orange (2 Pcs) is a large-bore orange fancy pair.\nFrom our Night Attraction Fancy line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "6 inch",
       "Type": "Night fancy aerial",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "6 inch"
     }
   },
   "92": {
     "description": "12 Shots opens a compact multi-shot cake for small budgets.\nFrom our Multishots line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "12 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "25–40 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "12 shots per box"
     }
   },
   "93": {
     "description": "30 Shots Multi Colour paints the sky with thirty colour breaks.\nFrom our Multishots line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "30 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "25–40 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 shots per box"
     }
   },
   "94": {
     "description": "60 Shots Multi Colour doubles the shot count for longer shows.\nFrom our Multishots line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "60 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "40–90 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "60 shots per box"
     }
   },
   "95": {
     "description": "120 Shots Multi Colour is a full-minute aerial for housing societies.\nFrom our Multishots line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "120 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "40–90 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "120 shots per box"
     }
   },
   "96": {
     "description": "240 Shots Multi Colour keeps the sky busy for big plot celebrations.\nFrom our Multishots line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "240 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "90–180 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "240 shots per box"
     }
   },
   "97": {
     "description": "520 Shots Multi Colour is the ultimate multi-shot for grand finales.\nFrom our Multishots line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "520 shots per box",
       "Type": "Multi-shot cake",
       "Effect": "Sequential aerial shots",
       "Duration": "90–180 seconds show",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "520 shots per box"
     }
   },
   "98": {
     "description": "Chit Put pops with the classic chit-put novelty sound.\nFrom our Novelties line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Novelty item",
       "Effect": "Fun novelty effect",
       "Duration": "Instant to 10 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "99": {
     "description": "Kani Wheel drives sparks in a tight kani wheel pattern.\nFrom our Novelties line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "Ground spinner size",
       "Type": "Novelty item",
       "Effect": "Ground spin & sparks",
       "Duration": "30–60 seconds spin",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Ground spinner size"
     }
   },
   "100": {
     "description": "Photo Flash gives a camera-flash burst for photo moments.\nFrom our Novelties line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Novelty item",
       "Effect": "Bright photo flash",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "101": {
     "description": "Money in the Bank is a novelty bank-themed fountain sparkler.\nFrom our Novelties line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Novelty item",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "102": {
     "description": "Serpent Egg grows a serpent ash trail kids watch closely.\nFrom our Roll Caps & Serpent Eggs line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Toy / novelty",
       "Effect": "Fun novelty effect",
       "Duration": "Instant to 10 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "103": {
     "description": "Electric Stone snaps with the electric stone novelty effect.\nFrom our Roll Caps & Serpent Eggs line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Toy / novelty",
       "Effect": "Fun novelty effect",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "104": {
     "description": "Roll Cap supplies caps for toy guns in festival games.\nFrom our Roll Caps & Serpent Eggs line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Toy / novelty",
       "Effect": "Fun novelty effect",
       "Duration": "Instant to 10 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "105": {
     "description": "A.K 47 Ring Gun (5 Ring Cap) toy gun bundle with ring caps.\nFrom our Roll Caps & Serpent Eggs line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "Toy / novelty",
       "Effect": "Fun novelty effect",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "106": {
     "description": "Smoke Stick pours a thick smoke stick column for daytime fun.\nFrom our 2026 New Varieties line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "New season special",
       "Effect": "Coloured smoke plume",
       "Duration": "30–60 seconds smoke",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "107": {
     "description": "Purple Dove / Little Dove releases dove-style aerial smoke or light.\nFrom our 2026 New Varieties line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "New season special",
       "Effect": "Aerial lift & burst",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "108": {
     "description": "Gulfi is a new-season gulfi novelty from the 2026 list.\nFrom our 2026 New Varieties line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "New season special",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "109": {
     "description": "Bad Boys Tin (3 Pcs) packs three tin-style fountain cakes.\nFrom our 2026 New Varieties line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "New season special",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "110": {
     "description": "Fire Egg hatches a crackling egg novelty on the ground.\nFrom our 2026 New Varieties line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "As per manufacturer pack",
       "Type": "New season special",
       "Effect": "Festive light & sound",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "As per manufacturer pack"
     }
   },
   "111": {
     "description": "10 cm Electric Sparklers are short electric gold wire sparklers.\nFrom our Sparklers line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "10 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "35–50 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10 cm length"
     }
   },
   "112": {
     "description": "10 cm Colour Sparklers add colour sparks in a child-friendly length.\nFrom our Sparklers line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "10 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "35–50 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10 cm length"
     }
   },
   "113": {
     "description": "10 cm Green Sparklers burn with a green-tinted spark trail.\nFrom our Sparklers line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "10 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "35–50 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10 cm length"
     }
   },
   "114": {
     "description": "10 cm Red Sparklers glow red for traditional photo moments.\nFrom our Sparklers line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "10 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "35–50 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10 cm length"
     }
   },
   "115": {
     "description": "10 cm Nanotech (Smoke Free) sparklers reduce smoke for indoor porches.\nFrom our Sparklers line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "10 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "30–60 seconds smoke",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "10 cm length"
     }
   },
   "116": {
     "description": "15 cm Electric Sparklers give a longer electric burn for adults.\nFrom our Sparklers line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "15 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "50–70 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "15 cm length"
     }
   },
   "117": {
     "description": "15 cm Colour Sparklers extend colour sparkle time.\nFrom our Sparklers line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "15 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "50–70 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "15 cm length"
     }
   },
   "118": {
     "description": "15 cm Green Sparklers are the green 15 cm line for mix trays.\nFrom our Sparklers line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "15 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "50–70 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "15 cm length"
     }
   },
   "119": {
     "description": "15 cm Red Sparklers are classic red 15 cm sparklers.\nFrom our Sparklers line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "15 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "50–70 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "15 cm length"
     }
   },
   "120": {
     "description": "15 cm Nanotech (Smoke Free) offers low-smoke 15 cm burns.\nFrom our Sparklers line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "15 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "30–60 seconds smoke",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "15 cm length"
     }
   },
   "121": {
     "description": "30 cm Electric Sparklers are hand-held showpieces for the main puja.\nFrom our Sparklers line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "30 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "70–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 cm length"
     }
   },
   "122": {
     "description": "30 cm Colour Sparklers mix colour in a 30 cm length.\nFrom our Sparklers line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "30 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "70–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 cm length"
     }
   },
   "123": {
     "description": "30 cm Green Sparklers trail green sparks for thirty centimetres.\nFrom our Sparklers line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "30 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "70–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 cm length"
     }
   },
   "124": {
     "description": "30 cm Red Sparklers are long red sparklers for group photos.\nFrom our Sparklers line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "30 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "70–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 cm length"
     }
   },
   "125": {
     "description": "30 cm Nanotech (Smoke Free) keeps longer burns cleaner.\nFrom our Sparklers line—premium feel in a standard pack. Stock up early—this line moves fast during peak festival weeks.",
     "specifications": {
-      "Size": "30 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "30–60 seconds smoke",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "30 cm length"
     }
   },
   "126": {
     "description": "Lovely Sparklers are the premium Lovely-branded sparkler bundle.\nFrom our Sparklers line—colour-changing stars. Ideal for the main burst sequence after sparklers and flower pots.",
     "specifications": {
-      "Size": "Standard sparkler length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "45–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard sparkler length"
     }
   },
   "127": {
     "description": "50 cm Electric Sparklers are extra-long electric wires for leaders.\nFrom our Sparklers line—street-favourite loudness. A popular add-on for mixed cracker trays and gift hampers.",
     "specifications": {
-      "Size": "50 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "90–120 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "50 cm length"
     }
   },
   "128": {
     "description": "50 cm Colour Sparklers give the longest colour sparkle in the list.\nFrom our Sparklers line—crisp report. Light on a flat, clear surface and keep children at a safe distance.",
     "specifications": {
-      "Size": "50 cm length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "90–120 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "50 cm length"
     }
   },
   "129": {
     "description": "Colour Matches Gold VIP (Laptop) matchbox-style colour sparklers.\nFrom our Sparklers line—steady burn. Traditional favourite that suits both first-time buyers and regulars.",
     "specifications": {
-      "Size": "Standard sparkler length",
       "Type": "Sparklers",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard sparkler length"
     }
   },
   "130": {
     "description": "Colour Matches 5 Star matchbox five-star colour sparks.\nFrom our Sparklers line—neighbourhood-safe when used outdoors. Combine with fountains or ground spinners for a fuller show.",
     "specifications": {
-      "Size": "Standard sparkler length",
       "Type": "Sparklers",
       "Effect": "Colour stars & light effects",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard sparkler length"
     }
   },
   "131": {
     "description": "Colour Matches 10 in 1 (Mini Laptop) ten match trays in one laptop box.\nFrom our Sparklers line—rich golden shower. Best enjoyed in open areas away from roofs and vehicles.",
     "specifications": {
-      "Size": "Standard sparkler length",
       "Type": "Sparklers",
       "Effect": "Multi-colour aerial display",
       "Duration": "10–30 seconds",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard sparkler length"
     }
   },
   "132": {
     "description": "Rotating Sparklers spin at the tip while they burn.\nFrom our Sparklers line—theatrical aerial height. Follow local safety rules and always keep water or sand nearby.",
     "specifications": {
-      "Size": "Standard sparkler length",
       "Type": "Sparklers",
       "Effect": "Bright sparks (low smoke on nanotech)",
       "Duration": "45–90 seconds burn",
-      "Pack": "1 Box"
+      "Per": "1 Box",
+      "Size": "Standard sparkler length"
     }
   }
 }

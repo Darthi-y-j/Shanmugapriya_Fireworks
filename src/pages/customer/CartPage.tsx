@@ -170,11 +170,15 @@ function CartItemCard({
               <div className="min-w-0 flex-1 space-y-1.5">
                 {title}
                 <div className="flex flex-wrap items-center gap-1.5">
-                  {item.pieces != null && item.pieces > 0 && (
+                  {item.per?.trim() ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-[#0F2847]/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#0F2847] sm:text-[10px]">
-                      {item.pieces} pcs / unit
+                      {item.per.trim()}
                     </span>
-                  )}
+                  ) : item.pieces != null && item.pieces > 0 ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#0F2847]/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#0F2847] sm:text-[10px]">
+                      {item.pieces} pcs
+                    </span>
+                  ) : null}
                   {isGiftBox && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-[#0077B6]/25 px-2 py-0.5 text-[9px] font-bold uppercase text-[#0F2847]">
                       Gift box

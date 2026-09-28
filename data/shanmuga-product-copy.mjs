@@ -28,12 +28,13 @@ export function buildProductCopy(item, categoryName) {
         Type: categoryName,
         Effect: 'Festive display',
         Duration: '10–30 seconds',
-        Pack: item.per,
+        Per: item.per,
       },
     }
   }
+  const { Pack: _pack, Per: _per, ...restSpecs } = entry.specifications ?? {}
   return {
     description: entry.description,
-    specifications: { ...entry.specifications, Pack: item.per },
+    specifications: { ...restSpecs, Per: item.per },
   }
 }

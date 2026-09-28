@@ -11,7 +11,7 @@ import { readProductLinkState, preloadProductImage } from '@/lib/productLink'
 import { formatPrice, getImageUrl, IMAGE_WIDTH } from '@/lib/utils'
 import { resolveProductPrice } from '@/lib/pricing'
 import { getDisplayBrand } from '@/lib/brand'
-import { CATALOG_INTERNAL_SPEC_KEYS } from '@/lib/packaging'
+import { CATALOG_INTERNAL_SPEC_KEYS, getPriceListPerLabel } from '@/lib/packaging'
 import { ProductCodeBadge } from '@/components/customer/ProductCodeBadge'
 import { getProductCode } from '@/lib/productCode'
 import { SITE_NAME } from '@/lib/siteConfig'
@@ -197,8 +197,10 @@ function PrimeProductView({ product }: { product: Product }) {
   const { inCart, quantity, price, originalPrice, handleQuantityChange, handleAddToCart } =
     useProductCartState(product)
   const brand = getDisplayBrand(product.brand)
+  const perLabel = getPriceListPerLabel(product.specifications)
   const hasDiscount = product.discount_percentage != null && product.discount_percentage > 0
-  const hiddenSpecKeys = new Set<string>(CATALOG_INTERNAL_SPEC_KEYS)
+  const hiddenSpecKeys = new Set<string>([...CATALOG_INTERNAL_SPEC_KEYS, 'Pack'])
+  if (perLabel) hiddenSpecKeys.add('Per')
   const specs = product.specifications
     ? Object.entries(product.specifications).filter(
         ([key, value]) => value?.trim() && !hiddenSpecKeys.has(key),
@@ -352,7 +354,7 @@ function PrimeProductView({ product }: { product: Product }) {
           )}
         </div>
 
-        {(brand || product.pieces != null || getProductCode(product) !== '—') && (
+        {(brand || perLabel || getProductCode(product) !== '—') && (
           <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 sm:mt-4">
             <div>
               <dt className="text-[10px] font-bold uppercase tracking-wide text-slate-400 sm:text-[11px]">
@@ -372,12 +374,12 @@ function PrimeProductView({ product }: { product: Product }) {
                 </dd>
               </div>
             )}
-            {product.pieces != null && (
+            {perLabel && (
               <div>
                 <dt className="text-[10px] font-bold uppercase tracking-wide text-slate-400 sm:text-[11px]">
-                  Pcs
+                  Per
                 </dt>
-                <dd className="font-semibold text-[#1A1A1A]">{product.pieces}</dd>
+                <dd className="font-semibold text-[#1A1A1A]">{perLabel}</dd>
               </div>
             )}
           </dl>

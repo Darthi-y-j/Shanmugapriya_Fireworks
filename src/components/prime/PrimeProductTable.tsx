@@ -169,6 +169,7 @@ function PrimeProductRow({ product, index }: { product: Product; index: number }
   const stripe = index % 2 === 0 ? 'bg-white' : 'bg-[#FFF8E1]/40'
 
   const brand = getDisplayBrand(product.brand)
+  const packagingLabel = formatProductPackagingLabel(product)
 
   return (
     <>
@@ -249,9 +250,11 @@ function PrimeProductRow({ product, index }: { product: Product; index: number }
             <p className="truncate text-sm font-semibold leading-snug text-slate-900 lg:text-[15px]">
               {product.name}
             </p>
-            <div className="mt-1">
-              <ProductPackagingBadge product={product} compact className="max-w-full whitespace-normal" />
-            </div>
+            {packagingLabel ? (
+              <p className="mt-0.5 text-[11px] font-bold uppercase tracking-wide text-[#0077B6] lg:text-xs">
+                {packagingLabel}
+              </p>
+            ) : null}
             <div className="mt-0.5 flex flex-wrap items-center gap-1">
               <ProductHighlightBadges product={product} compact />
             </div>

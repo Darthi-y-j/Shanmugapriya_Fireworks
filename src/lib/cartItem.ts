@@ -1,4 +1,5 @@
 import type { CartItem, Product } from '@/types/database'
+import { getPriceListPerLabel } from '@/lib/packaging'
 
 export function buildCartItemFromProduct(
   product: Product,
@@ -12,6 +13,7 @@ export function buildCartItemFromProduct(
     imageUrl: product.image_url,
     price,
     pieces: product.pieces ?? null,
+    per: getPriceListPerLabel(product.specifications),
     description: product.description,
     quantity,
   }

@@ -47,7 +47,7 @@ function extractSize(name, category) {
   if (/20\s*PLY/i.test(name)) return '20 ply roll'
 
   const pcs = name.match(/\((\d+)\s*Pcs?\)/i)
-  if (pcs) return `${pcs[1]} pieces per box`
+  if (pcs) return null
 
   if (/BIJILI/i.test(name)) return 'Standard bijili size'
   if (/SPARKLER/i.test(name) || category === 'Sparklers') return 'Standard sparkler length'
@@ -349,19 +349,19 @@ for (const section of PRICE_LIST_SECTIONS) {
     const duration = durationFor(section.name, item.name, effect)
 
     let specifications = {
-      Size: size,
       Type: type,
       Effect: effect,
       Duration: duration,
-      Pack: item.per,
+      Per: item.per,
     }
+    if (size) specifications.Size = size
     if (item.sno === 6) {
       specifications = {
         Size: '2 3/4 inch',
         Type: 'Crackers',
         Effect: 'Loud Sound',
         Duration: '3–5 seconds',
-        Pack: item.per,
+        Per: item.per,
       }
     }
 

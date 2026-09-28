@@ -16,10 +16,48 @@ export const CATALOG_INTERNAL_SPEC_KEYS = ['code', 'sell_unit', 'per'] as const
 export const SELL_UNITS = [
   { value: 'pack', label: 'Pack' },
   { value: 'box', label: 'Box' },
+  { value: 'bag', label: 'Bag' },
   { value: 'bundle', label: 'Bundle' },
   { value: 'carton', label: 'Carton' },
   { value: 'piece', label: 'Piece (single item)' },
 ] as const
+
+export const PER_SPEC_KEY = 'per'
+
+export function normalizeProductSpecifications(
+  specifications: Record<string, string> | string | null | undefined,
+): Record<string, string> | null {
+  if (!specifications) return null
+  if (typeof specifications === 'string') {
+    try {
+      const parsed = JSON.parse(specifications) as Record<string, string>
+      return parsed && typeof parsed === 'object' ? parsed : null
+    } catch {
+      return null
+    }
+  }
+  return specifications
+}
+
+/** Exact PER column from Shanmuga price list (e.g. "1 Pkt", "1 Bag", "1 Box"). */
+export function getPriceListPerLabel(
+  specifications: Record<string, string> | string | null | undefined,
+): string | null {
+  const specs = normalizeProductSpecifications(specifications)
+  if (!specs) return null
+
+  const per = specs[PER_SPEC_KEY]?.trim()
+  if (per) return per
+  const legacy = specs.Per?.trim() || specs.PER?.trim() || specs.Pack?.trim()
+  if (legacy) return legacy
+
+  const sellUnit = specs[SELL_UNIT_SPEC_KEY]?.trim().toLowerCase()
+  if (sellUnit === 'bag') return '1 Bag'
+  if (sellUnit === 'box') return '1 Box'
+  if (sellUnit === 'pack') return '1 Pkt'
+
+  return null
+}
 
 export type SellUnit = (typeof SELL_UNITS)[number]['value']
 
@@ -156,9 +194,16 @@ export function formatPackagingPreview(input: PackagingPreviewInput): string {
 }
 
 export function formatProductPackagingLabel(
-  product: { pieces: number | null; specifications: Record<string, string> | null },
+  product: {
+    pieces: number | null
+    specifications: Record<string, string> | string | null
+  },
 ): string | null {
-  const packaging = readPackagingFromSpecifications(product.specifications)
+  const specs = normalizeProductSpecifications(product.specifications)
+  const perLabel = getPriceListPerLabel(specs)
+  if (perLabel) return perLabel
+
+  const packaging = readPackagingFromSpecifications(specs)
 
   const label = formatPackagingLabel({
     sellUnit: packaging.sell_unit,

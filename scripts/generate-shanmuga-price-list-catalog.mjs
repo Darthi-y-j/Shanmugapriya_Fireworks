@@ -24,7 +24,7 @@ function slugify(text) {
 function sellUnitFromPer(per) {
   const lower = per.toLowerCase()
   if (lower.includes('box')) return 'box'
-  if (lower.includes('bag')) return 'pack'
+  if (lower.includes('bag')) return 'bag'
   if (lower.includes('pkt') || lower.includes('pack')) return 'pack'
   return 'pack'
 }
@@ -77,7 +77,7 @@ for (const section of PRICE_LIST_SECTIONS) {
       price: item.after,
       original_price: item.before,
       discount_percentage: discountPercent(item.before, item.after),
-      pieces: 1,
+      pieces: null,
       stock_quantity: 100,
       stock_alert_limit: 5,
       brand: SHANMUGA_BRAND_NAME,
@@ -110,7 +110,7 @@ export interface CatalogProduct {
   price: number
   original_price: number | null
   discount_percentage: number | null
-  pieces: number
+  pieces: number | null
   stock_quantity: number
   stock_alert_limit: number
   brand: string

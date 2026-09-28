@@ -10,7 +10,7 @@ export const PRICE_LIST_SECTIONS = [
       { sno: 2, name: '4" DELUXE LAKSHMI CRACKERS', per: '1 Pkt', before: 130, after: 26 },
       { sno: 3, name: '4" SUPER DELUXE LAKSHMI / TIGER', per: '1 Pkt', before: 190, after: 38 },
       { sno: 4, name: '3 ½" LAKSHMI', per: '1 Pkt', before: 70, after: 14 },
-      { sno: 5, name: '2 ¾" KURUV', per: '1 Pkt', before: 40, after: 8 },
+      { sno: 5, name: '2 ¾" KURUVI', per: '1 Pkt', before: 40, after: 8 },
       { sno: 6, name: 'GOLD LAKSHMI', per: '1 Pkt', before: 205, after: 41 },
       { sno: 7, name: '5" SPIDERMAN / LAKSHMI', per: '1 Pkt', before: 230, after: 46 },
       { sno: 8, name: '6" FIGHTER', per: '1 Pkt', before: 270, after: 54 },

@@ -91,6 +91,8 @@ export interface CartItem {
   price: number | null
   quantity: number
   pieces?: number | null
+  /** Price-list PER column (e.g. "1 Box", "1 Pkt"). */
+  per?: string | null
   description?: string | null
   isGiftBox?: boolean
   giftBoxItems?: GiftBoxContentItem[]

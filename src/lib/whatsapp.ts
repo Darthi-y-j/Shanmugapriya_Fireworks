@@ -34,8 +34,12 @@ export function buildCartWhatsAppMessage(data: CartEnquiryFormData): string {
 
   data.items.forEach((item, index) => {
     const priceStr = item.price != null ? ` (${formatPrice(item.price)} each)` : ''
-    const piecesStr = item.pieces != null ? `, ${item.pieces} pcs/pack` : ''
-    lines.push(`${index + 1}. ${item.productName} — Qty: ${item.quantity}${piecesStr}${priceStr}`)
+    const perStr = item.per?.trim()
+      ? `, ${item.per.trim()}`
+      : item.pieces != null
+        ? `, ${item.pieces} pcs`
+        : ''
+    lines.push(`${index + 1}. ${item.productName} — Qty: ${item.quantity}${perStr}${priceStr}`)
 
     if (item.isGiftBox && item.giftBoxItems?.length) {
       item.giftBoxItems.forEach((inner) => {
