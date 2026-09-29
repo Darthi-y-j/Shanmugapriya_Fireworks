@@ -61,20 +61,33 @@ export async function fetchPlaceReviewsLegacy(apiKey, cid = DEFAULT_PLACE_CID) {
   return mapLegacyResult(json.result)
 }
 
-/** Prefer Places API (New); fall back to legacy Place Details if enabled. */
+/**
+ * Legacy Place Details returns review text; Places API (New) REST often omits `reviews`
+ * unless Enterprise SKU is enabled — try legacy first when available.
+ */
 export async function fetchPlaceReviews(apiKey, options = {}) {
   const placeId = options.placeId || process.env.GOOGLE_PLACE_ID || DEFAULT_PLACE_ID
   const cid = options.cid || process.env.GOOGLE_PLACE_CID || DEFAULT_PLACE_CID
 
+  let legacyError = null
   try {
-    return await fetchPlaceReviewsNew(apiKey, placeId)
-  } catch (newError) {
-    try {
-      return await fetchPlaceReviewsLegacy(apiKey, cid)
-    } catch {
-      throw newError
-    }
+    const legacy = await fetchPlaceReviewsLegacy(apiKey, cid)
+    if ((legacy.reviews?.length ?? 0) > 0) return legacy
+    legacyError = new Error('Legacy Place Details returned no reviews')
+  } catch (error) {
+    legacyError = error instanceof Error ? error : new Error('Legacy Place Details failed')
   }
+
+  const modern = await fetchPlaceReviewsNew(apiKey, placeId)
+  if ((modern.reviews?.length ?? 0) > 0) return modern
+
+  if (legacyError && (modern.user_ratings_total ?? 0) > 0) {
+    throw new Error(
+      `${legacyError.message}. Enable the legacy "Places API" in Google Cloud (in addition to Places API New) to load review text, or upgrade to Places Enterprise.`,
+    )
+  }
+
+  return modern
 }
 
 function mapReviewsResponse(result) {
