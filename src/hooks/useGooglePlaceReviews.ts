@@ -36,6 +36,13 @@ export function useGooglePlaceReviews(): State {
       } catch (clientError) {
         const clientMessage =
           clientError instanceof Error ? clientError.message : 'Could not load reviews in browser'
+
+        if (import.meta.env.DEV) {
+          console.warn('[Google reviews]', clientMessage)
+          if (!cancelled) setState({ status: 'error', message: clientMessage })
+          return
+        }
+
         try {
           const data = await loadFromServer()
           if (!cancelled) setState({ status: 'ready', data })

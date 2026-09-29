@@ -202,43 +202,39 @@ export function HomeTestimonials() {
         {reviews.length > 0 ? <GoogleReviewsCarousel reviews={reviews} /> : null}
 
         {reviewsState.status === 'error' || (reviewsState.status === 'ready' && reviews.length === 0) ? (
-          <div className="mx-auto mt-6 max-w-lg text-center text-sm text-[#062B63]/75">
-            <p>We couldn&apos;t load Google reviews right now.</p>
-            {reviewsState.status === 'error' && reviewsState.message ? (
-              <p className="mt-2 text-xs text-[#8B7355] break-words">{reviewsState.message}</p>
-            ) : null}
-            {reviewsState.status === 'error' ? (
-              <p className="mt-2 text-xs font-semibold text-[#062B63]/80">
-                Console shows <code className="text-[10px]">RefererNotAllowedMapError</code>? Add{' '}
-                <code className="text-[10px]">http://localhost:5173/*</code> under API key → HTTP
-                referrers, save, wait 1–2 min, restart dev.
-              </p>
-            ) : null}
-            <ul className="mt-3 space-y-1 text-left text-xs text-[#8B7355] sm:mx-auto sm:max-w-md">
-              <li>1. Link a <strong>billing account</strong> on the Google Cloud project.</li>
-              <li>
-                2. Enable <strong>Maps JavaScript API</strong>, <strong>Places API (New)</strong>, and{' '}
-                <strong>Places API</strong> (legacy).
-              </li>
-              <li>
-                3. API key → HTTP referrers: <code className="text-[10px]">http://localhost:5173/*</code>{' '}
-                and your live domain.
-              </li>
-              <li>
-                4. <code className="text-[10px]">VITE_GOOGLE_MAPS_API_KEY</code> in <code className="text-[10px]">.env</code>{' '}
-                — restart <code className="text-[10px]">npm run dev</code>.
-              </li>
-            </ul>
-            <a
-              href={STORE_GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 font-semibold text-[#0077B6] underline-offset-2 hover:underline"
-            >
-              Open reviews on Google Maps
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
+          import.meta.env.DEV ? (
+            <p className="mx-auto mt-6 max-w-md text-center text-sm text-[#8B7355]">
+              Reviews carousel runs on the live site.{' '}
+              <a
+                href={STORE_GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
+                Open on Google Maps
+              </a>
+              <span className="mt-1 block text-[11px] text-[#8B7355]/80">
+                To preview here: add <code className="text-[10px]">http://localhost:5173/*</code> to your API
+                key referrers (see browser console).
+              </span>
+            </p>
+          ) : (
+            <div className="mx-auto mt-6 max-w-lg text-center text-sm text-[#062B63]/75">
+              <p>We couldn&apos;t load Google reviews right now.</p>
+              {reviewsState.status === 'error' && reviewsState.message ? (
+                <p className="mt-2 text-xs text-[#8B7355] break-words">{reviewsState.message}</p>
+              ) : null}
+              <a
+                href={STORE_GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
+                Open reviews on Google Maps
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          )
         ) : null}
 
         {summary && reviews.length > 0 ? (
