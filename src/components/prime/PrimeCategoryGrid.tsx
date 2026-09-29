@@ -50,6 +50,11 @@ function CategoryShowcaseCard({
       <Link
         to="/products"
         onClick={(event) => {
+          const viewport = (event.currentTarget.closest('[data-category-marquee]') as HTMLElement | null)
+          if (viewport?.dataset.dragging === '1') {
+            event.preventDefault()
+            return
+          }
           event.preventDefault()
           warmupProductsPage()
           onCategory(cat.id)
@@ -102,13 +107,34 @@ function CategoryShowcaseCard({
 
 const CATEGORY_MARQUEE_PX_PER_FRAME = 0.55
 
+function normalizeMarqueeOffset(offset: number, loopHalfWidth: number): number {
+  if (loopHalfWidth <= 0) return offset
+  let next = offset
+  while (-next >= loopHalfWidth) next += loopHalfWidth
+  while (next > 0) next -= loopHalfWidth
+  return next
+}
+
+function getMarqueeStepPx(track: HTMLDivElement): number {
+  const first = track.querySelector('article')
+  if (!first) return 170
+  const style = getComputedStyle(track)
+  const gap = parseFloat(style.columnGap || style.gap || '10') || 10
+  return first.getBoundingClientRect().width + gap
+}
+
+function applyMarqueeTransform(track: HTMLDivElement, offset: number) {
+  track.style.transform = `translate3d(${offset}px,0,0)`
+}
+
 export function PrimeCategoryGrid() {
   const { scrollToCategory } = usePrimeShop()
   const [categories, setCategories] = useState<Category[]>(() => getCachedCatalogueCategories() ?? [])
-  const [marqueePaused, setMarqueePaused] = useState(false)
+  const viewportRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const offsetRef = useRef(0)
-  const pausedRef = useRef(false)
+  const loopHalfWidthRef = useRef(0)
+  const userDraggingRef = useRef(false)
 
   useEffect(() => {
     const load = async () => {
@@ -140,26 +166,25 @@ export function PrimeCategoryGrid() {
   )
 
   useEffect(() => {
-    pausedRef.current = marqueePaused
-  }, [marqueePaused])
-
-  useEffect(() => {
     const track = trackRef.current
-    const viewport = track?.parentElement
-    if (!track || displayCategories.length === 0) return
+    const viewport = viewportRef.current
+    if (!track || !viewport || displayCategories.length === 0) return
 
     offsetRef.current = 0
-    track.style.transform = 'translate3d(0,0,0)'
+    applyMarqueeTransform(track, 0)
 
-    let loopHalfWidth = 0
-    let hovered = false
     let raf = 0
+    let dragStartX = 0
+    let dragStartOffset = 0
+    let activePointerId: number | null = null
+    let dragEngaged = false
+    const dragThresholdPx = 8
 
     const measure = () => {
-      loopHalfWidth = track.scrollWidth / 2
-      while (loopHalfWidth > 0 && -offsetRef.current >= loopHalfWidth) {
-        offsetRef.current += loopHalfWidth
-      }
+      const half = track.scrollWidth / 2
+      loopHalfWidthRef.current = half
+      offsetRef.current = normalizeMarqueeOffset(offsetRef.current, half)
+      applyMarqueeTransform(track, offsetRef.current)
     }
 
     measure()
@@ -167,23 +192,63 @@ export function PrimeCategoryGrid() {
       typeof ResizeObserver === 'function' ? new ResizeObserver(measure) : null
     resizeObserver?.observe(track)
 
-    const onEnter = () => {
-      hovered = true
+    track.querySelectorAll('img').forEach((img) => {
+      if (!img.complete) img.addEventListener('load', measure, { once: true })
+    })
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return
+      activePointerId = event.pointerId
+      dragEngaged = false
+      dragStartX = event.clientX
+      dragStartOffset = offsetRef.current
+      viewport.setPointerCapture(event.pointerId)
     }
-    const onLeave = () => {
-      hovered = false
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (activePointerId !== event.pointerId) return
+      const deltaX = event.clientX - dragStartX
+      if (!dragEngaged && Math.abs(deltaX) < dragThresholdPx) return
+      if (!dragEngaged) {
+        dragEngaged = true
+        userDraggingRef.current = true
+        viewport.dataset.dragging = '1'
+      }
+      const half = loopHalfWidthRef.current
+      offsetRef.current = dragStartOffset + deltaX
+      offsetRef.current = normalizeMarqueeOffset(offsetRef.current, half)
+      applyMarqueeTransform(track, offsetRef.current)
     }
-    viewport?.addEventListener('mouseenter', onEnter)
-    viewport?.addEventListener('mouseleave', onLeave)
+
+    const endDrag = (event: PointerEvent) => {
+      if (activePointerId !== event.pointerId) return
+      activePointerId = null
+      userDraggingRef.current = false
+      dragEngaged = false
+      delete viewport.dataset.dragging
+      try {
+        if (viewport.hasPointerCapture(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId)
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+
+    viewport.addEventListener('pointerdown', onPointerDown)
+    viewport.addEventListener('pointermove', onPointerMove)
+    viewport.addEventListener('pointerup', endDrag)
+    viewport.addEventListener('pointercancel', endDrag)
 
     const tick = () => {
-      const paused = pausedRef.current || hovered
-      if (!paused && loopHalfWidth > 0) {
+      if (loopHalfWidthRef.current <= 0) {
+        measure()
+      }
+      const loopHalfWidth = loopHalfWidthRef.current
+      if (loopHalfWidth > 0 && !userDraggingRef.current) {
         offsetRef.current -= CATEGORY_MARQUEE_PX_PER_FRAME
-        if (-offsetRef.current >= loopHalfWidth) {
-          offsetRef.current += loopHalfWidth
-        }
-        track.style.transform = `translate3d(${offsetRef.current}px,0,0)`
+        offsetRef.current = normalizeMarqueeOffset(offsetRef.current, loopHalfWidth)
+        applyMarqueeTransform(track, offsetRef.current)
       }
       raf = requestAnimationFrame(tick)
     }
@@ -193,18 +258,22 @@ export function PrimeCategoryGrid() {
     return () => {
       cancelAnimationFrame(raf)
       resizeObserver?.disconnect()
-      viewport?.removeEventListener('mouseenter', onEnter)
-      viewport?.removeEventListener('mouseleave', onLeave)
+      viewport.removeEventListener('pointerdown', onPointerDown)
+      viewport.removeEventListener('pointermove', onPointerMove)
+      viewport.removeEventListener('pointerup', endDrag)
+      viewport.removeEventListener('pointercancel', endDrag)
     }
   }, [displayCategories.length])
 
-  const pauseMarquee = useCallback(() => {
-    setMarqueePaused(true)
-    window.setTimeout(() => setMarqueePaused(false), 4000)
-  }, [])
-
-  const resumeMarquee = useCallback(() => {
-    setMarqueePaused(false)
+  const nudgeMarquee = useCallback((direction: 'left' | 'right') => {
+    const track = trackRef.current
+    if (!track) return
+    const step = getMarqueeStepPx(track)
+    const half = loopHalfWidthRef.current || track.scrollWidth / 2
+    loopHalfWidthRef.current = half
+    offsetRef.current += direction === 'left' ? step : -step
+    offsetRef.current = normalizeMarqueeOffset(offsetRef.current, half)
+    applyMarqueeTransform(track, offsetRef.current)
   }, [])
 
   return (
@@ -237,17 +306,17 @@ export function PrimeCategoryGrid() {
             <div className="flex shrink-0 items-center gap-1.5 self-end sm:gap-2">
               <button
                 type="button"
-                onClick={pauseMarquee}
+                onClick={() => nudgeMarquee('left')}
                 className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E8DFD0] bg-[#FFFCF7] text-slate-500 shadow-sm transition hover:border-[#0077B6]/40 hover:text-[#0077B6] sm:h-10 sm:w-10"
-                aria-label="Pause category carousel"
+                aria-label="Scroll categories left"
               >
                 <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </button>
               <button
                 type="button"
-                onClick={resumeMarquee}
+                onClick={() => nudgeMarquee('right')}
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0077B6] text-white shadow-sm transition hover:bg-[#0096D6] sm:h-10 sm:w-10"
-                aria-label="Play category carousel"
+                aria-label="Scroll categories right"
               >
                 <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </button>
@@ -260,7 +329,9 @@ export function PrimeCategoryGrid() {
             <p className="text-center text-sm text-slate-500">Loading categories…</p>
           ) : (
             <div
-              className={`category-marquee featured-marquee pb-2 ${marqueePaused ? 'marquee-paused' : ''}`}
+              ref={viewportRef}
+              data-category-marquee
+              className="category-marquee featured-marquee cursor-grab touch-pan-y pb-2 active:cursor-grabbing"
               aria-label="Product categories carousel"
             >
               <div

@@ -555,7 +555,7 @@
   }
 
   @media (hover: hover) {
-    .featured-marquee:hover .featured-marquee-track {
+    .featured-marquee:not(.category-marquee):hover .featured-marquee-track {
       animation-play-state: paused;
     }
   }
