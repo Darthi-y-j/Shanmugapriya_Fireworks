@@ -6,6 +6,18 @@ type State =
   | { status: 'ready'; data: GooglePlaceReviewsPayload }
   | { status: 'error'; message?: string }
 
+async function loadFromServer(): Promise<GooglePlaceReviewsPayload> {
+  const response = await fetch('/api/google-reviews')
+  const body = (await response.json()) as GooglePlaceReviewsPayload & {
+    error?: string
+    message?: string
+  }
+  if (!response.ok) {
+    throw new Error(body.message || body.error || `HTTP ${response.status}`)
+  }
+  return body
+}
+
 export function useGooglePlaceReviews(): State {
   const [state, setState] = useState<State>({ status: 'loading' })
 
@@ -14,23 +26,27 @@ export function useGooglePlaceReviews(): State {
 
     const load = async () => {
       try {
-        const response = await fetch('/api/google-reviews')
-        const body = (await response.json()) as GooglePlaceReviewsPayload & {
-          error?: string
-          message?: string
-        }
-        if (!response.ok) {
+        const { loadGooglePlaceReviewsClient } = await import('@/lib/googlePlaceReviewsClient')
+        const data = await loadGooglePlaceReviewsClient()
+        if (!cancelled) setState({ status: 'ready', data })
+        return
+      } catch (clientError) {
+        const clientMessage =
+          clientError instanceof Error ? clientError.message : 'Could not load reviews in browser'
+        try {
+          const data = await loadFromServer()
+          if (!cancelled) setState({ status: 'ready', data })
+          return
+        } catch (serverError) {
+          const serverMessage =
+            serverError instanceof Error ? serverError.message : 'Server reviews failed'
           if (!cancelled) {
             setState({
               status: 'error',
-              message: body.message || body.error || `HTTP ${response.status}`,
+              message: `${clientMessage}. ${serverMessage}`,
             })
           }
-          return
         }
-        if (!cancelled) setState({ status: 'ready', data: body })
-      } catch {
-        if (!cancelled) setState({ status: 'error' })
       }
     }
 

@@ -5,6 +5,8 @@ interface ImportMetaEnv {
   readonly VITE_SUPABASE_ANON_KEY: string
   readonly VITE_SITE_URL?: string
   readonly VITE_GOOGLE_SITE_VERIFICATION?: string
+  /** Browser key — Maps JavaScript API + Places (reviews on home page). */
+  readonly VITE_GOOGLE_MAPS_API_KEY?: string
   readonly VITE_CHATBOT_ENABLED?: string
   readonly VITE_CHATBOT_API?: string
 }

@@ -208,8 +208,9 @@ export function HomeTestimonials() {
               <p className="mt-2 text-xs text-[#8B7355]">{reviewsState.message}</p>
             ) : null}
             <p className="mt-2 text-xs text-[#8B7355]">
-              In Google Cloud, enable <strong>Places API (New)</strong> for your API key, then redeploy
-              with <code className="text-[11px]">GOOGLE_PLACES_API_KEY</code> on Vercel.
+              Enable <strong>Maps JavaScript API</strong> and <strong>Places API (New)</strong>, add{' '}
+              <code className="text-[11px]">VITE_GOOGLE_MAPS_API_KEY</code> (website key) in Vercel, and
+              redeploy.
             </p>
             <a
               href={STORE_GOOGLE_MAPS_URL}
