@@ -205,7 +205,14 @@ export function HomeTestimonials() {
           <div className="mx-auto mt-6 max-w-lg text-center text-sm text-[#062B63]/75">
             <p>We couldn&apos;t load Google reviews right now.</p>
             {reviewsState.status === 'error' && reviewsState.message ? (
-              <p className="mt-2 text-xs text-[#8B7355]">{reviewsState.message}</p>
+              <p className="mt-2 text-xs text-[#8B7355] break-words">{reviewsState.message}</p>
+            ) : null}
+            {reviewsState.status === 'error' ? (
+              <p className="mt-2 text-xs font-semibold text-[#062B63]/80">
+                Console shows <code className="text-[10px]">RefererNotAllowedMapError</code>? Add{' '}
+                <code className="text-[10px]">http://localhost:5173/*</code> under API key → HTTP
+                referrers, save, wait 1–2 min, restart dev.
+              </p>
             ) : null}
             <ul className="mt-3 space-y-1 text-left text-xs text-[#8B7355] sm:mx-auto sm:max-w-md">
               <li>1. Link a <strong>billing account</strong> on the Google Cloud project.</li>

@@ -4,6 +4,20 @@ import type { GooglePlaceReviewsPayload } from '@/types/googleReviews'
 
 let loaderConfigured = false
 
+const LOAD_TIMEOUT_MS = 20_000
+
+function withTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => {
+      window.setTimeout(
+        () => reject(new Error(`${label} timed out — check API key referrers include http://localhost:5173/*`)),
+        LOAD_TIMEOUT_MS,
+      )
+    }),
+  ])
+}
+
 function getApiKey(): string {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined
   if (!apiKey?.trim()) {
@@ -104,6 +118,12 @@ async function loadViaPlaceClass(placeId: string): Promise<GooglePlaceReviewsPay
 export async function loadGooglePlaceReviewsClient(
   placeId = STORE_GOOGLE_PLACE_ID,
 ): Promise<GooglePlaceReviewsPayload> {
+  return withTimeout(loadGooglePlaceReviewsClientInner(placeId), 'Google reviews')
+}
+
+async function loadGooglePlaceReviewsClientInner(
+  placeId: string,
+): Promise<GooglePlaceReviewsPayload> {
   await ensureMapsLoader()
 
   try {
@@ -116,11 +136,11 @@ export async function loadGooglePlaceReviewsClient(
   try {
     const modern = await loadViaPlaceClass(placeId)
     if (modern.reviews.length > 0) return modern
-    return modern
+    throw new Error('No review text returned from Google for this place.')
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Place.fetchFields failed'
     throw new Error(
-      `${message}. Also enable legacy "Places API" (not only Places API New), link billing, and allow http://localhost:5173/* on your API key.`,
+      `${message} Fix RefererNotAllowedMapError: Google Cloud → Credentials → your key → HTTP referrers → add http://localhost:5173/* and your live site. Enable Maps JavaScript API, Places API (New), and Places API (legacy).`,
     )
   }
 }

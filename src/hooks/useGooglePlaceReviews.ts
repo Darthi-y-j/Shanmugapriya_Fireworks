@@ -28,8 +28,11 @@ export function useGooglePlaceReviews(): State {
       try {
         const { loadGooglePlaceReviewsClient } = await import('@/lib/googlePlaceReviewsClient')
         const data = await loadGooglePlaceReviewsClient()
-        if (!cancelled) setState({ status: 'ready', data })
-        return
+        if (data.reviews.length > 0) {
+          if (!cancelled) setState({ status: 'ready', data })
+          return
+        }
+        throw new Error('Google returned no review text for this listing.')
       } catch (clientError) {
         const clientMessage =
           clientError instanceof Error ? clientError.message : 'Could not load reviews in browser'
