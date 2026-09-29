@@ -1,9 +1,15 @@
-/** Shanmugapriya Pyrotech — Google Maps share link. */
-export const STORE_GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/2HsFncwsQqWZu71N7'
+/** Store listing — https://maps.app.goo.gl/qXnU2NoDvUKoYvXT7 */
+export const STORE_GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/qXnU2NoDvUKoYvXT7'
+
+/**
+ * Google Business CID for Place Details (reviews). Hex 0x68f27e70b2eb5d54 from the share link.
+ * Override with GOOGLE_PLACE_CID on the server if the listing changes.
+ */
+export const STORE_GOOGLE_PLACE_CID = '7562245746811690324'
 
 /** Embedded map (coordinates from the share link above). */
 export const STORE_MAP_EMBED_URL =
-  'https://maps.google.com/maps?q=9.4997253,77.9359665&hl=en&z=17&output=embed'
+  'https://maps.google.com/maps?q=9.499722,77.9361479&hl=en&z=17&output=embed'
 
 /** @deprecated Use STORE_GOOGLE_MAPS_URL */
 export const PRIME_CRACKERS_GOOGLE_MAPS_URL = STORE_GOOGLE_MAPS_URL
