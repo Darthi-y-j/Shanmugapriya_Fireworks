@@ -4,7 +4,7 @@ import type { GooglePlaceReviewsPayload } from '@/types/googleReviews'
 type State =
   | { status: 'loading' }
   | { status: 'ready'; data: GooglePlaceReviewsPayload }
-  | { status: 'error' }
+  | { status: 'error'; message?: string }
 
 export function useGooglePlaceReviews(): State {
   const [state, setState] = useState<State>({ status: 'loading' })
@@ -15,12 +15,20 @@ export function useGooglePlaceReviews(): State {
     const load = async () => {
       try {
         const response = await fetch('/api/google-reviews')
+        const body = (await response.json()) as GooglePlaceReviewsPayload & {
+          error?: string
+          message?: string
+        }
         if (!response.ok) {
-          if (!cancelled) setState({ status: 'error' })
+          if (!cancelled) {
+            setState({
+              status: 'error',
+              message: body.message || body.error || `HTTP ${response.status}`,
+            })
+          }
           return
         }
-        const data = (await response.json()) as GooglePlaceReviewsPayload
-        if (!cancelled) setState({ status: 'ready', data })
+        if (!cancelled) setState({ status: 'ready', data: body })
       } catch {
         if (!cancelled) setState({ status: 'error' })
       }

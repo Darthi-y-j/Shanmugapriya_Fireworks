@@ -21,7 +21,11 @@ function nonBlockingCssPlugin(): Plugin {
   }
 }
 
-function googleReviewsDevPlugin(apiKey: string | undefined, placeCid: string | undefined): Plugin {
+function googleReviewsDevPlugin(
+  apiKey: string | undefined,
+  placeCid: string | undefined,
+  placeId: string | undefined,
+): Plugin {
   return {
     name: 'google-reviews-dev-api',
     configureServer(server) {
@@ -41,7 +45,10 @@ function googleReviewsDevPlugin(apiKey: string | undefined, placeCid: string | u
 
         try {
           const { fetchPlaceReviews } = await import('./api/google-reviews.js')
-          const result = await fetchPlaceReviews(apiKey, placeCid)
+          const result = await fetchPlaceReviews(apiKey, {
+            cid: placeCid,
+            placeId,
+          })
           const body = {
             placeName: result.name,
             rating: result.rating ?? null,
@@ -96,13 +103,14 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const googlePlacesKey = env.GOOGLE_PLACES_API_KEY || env.GOOGLE_MAPS_API_KEY
   const googlePlaceCid = env.GOOGLE_PLACE_CID
+  const googlePlaceId = env.GOOGLE_PLACE_ID
 
   return {
   plugins: [
     react(),
     tailwindcss(),
     nonBlockingCssPlugin(),
-    googleReviewsDevPlugin(googlePlacesKey, googlePlaceCid),
+    googleReviewsDevPlugin(googlePlacesKey, googlePlaceCid, googlePlaceId),
   ],
   resolve: {
     dedupe: ['react', 'react-dom'],

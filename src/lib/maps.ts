@@ -1,9 +1,12 @@
 /** Store listing — https://maps.app.goo.gl/qXnU2NoDvUKoYvXT7 */
 export const STORE_GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/qXnU2NoDvUKoYvXT7'
 
+/** Places API (New) place id — derived from the Maps share link feature id. */
+export const STORE_GOOGLE_PLACE_ID = 'ChIJowo0h1szATsRVF3rsnB-8mg'
+
 /**
- * Google Business CID for Place Details (reviews). Hex 0x68f27e70b2eb5d54 from the share link.
- * Override with GOOGLE_PLACE_CID on the server if the listing changes.
+ * Google Business CID (legacy Place Details fallback).
+ * Hex 0x68f27e70b2eb5d54 from the share link.
  */
 export const STORE_GOOGLE_PLACE_CID = '7562245746811690324'
 
