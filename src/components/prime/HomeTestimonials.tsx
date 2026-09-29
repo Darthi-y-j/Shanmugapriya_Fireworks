@@ -207,11 +207,21 @@ export function HomeTestimonials() {
             {reviewsState.status === 'error' && reviewsState.message ? (
               <p className="mt-2 text-xs text-[#8B7355]">{reviewsState.message}</p>
             ) : null}
-            <p className="mt-2 text-xs text-[#8B7355]">
-              Enable <strong>Maps JavaScript API</strong> and <strong>Places API (New)</strong>, add{' '}
-              <code className="text-[11px]">VITE_GOOGLE_MAPS_API_KEY</code> (website key) in Vercel, and
-              redeploy.
-            </p>
+            <ul className="mt-3 space-y-1 text-left text-xs text-[#8B7355] sm:mx-auto sm:max-w-md">
+              <li>1. Link a <strong>billing account</strong> on the Google Cloud project.</li>
+              <li>
+                2. Enable <strong>Maps JavaScript API</strong>, <strong>Places API (New)</strong>, and{' '}
+                <strong>Places API</strong> (legacy).
+              </li>
+              <li>
+                3. API key → HTTP referrers: <code className="text-[10px]">http://localhost:5173/*</code>{' '}
+                and your live domain.
+              </li>
+              <li>
+                4. <code className="text-[10px]">VITE_GOOGLE_MAPS_API_KEY</code> in <code className="text-[10px]">.env</code>{' '}
+                — restart <code className="text-[10px]">npm run dev</code>.
+              </li>
+            </ul>
             <a
               href={STORE_GOOGLE_MAPS_URL}
               target="_blank"

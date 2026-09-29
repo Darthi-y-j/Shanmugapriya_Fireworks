@@ -4,6 +4,65 @@ import type { GooglePlaceReviewsPayload } from '@/types/googleReviews'
 
 let loaderConfigured = false
 
+function getApiKey(): string {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined
+  if (!apiKey?.trim()) {
+    throw new Error(
+      'Missing VITE_GOOGLE_MAPS_API_KEY in .env — restart npm run dev after adding it.',
+    )
+  }
+  return apiKey.trim()
+}
+
+async function ensureMapsLoader(): Promise<void> {
+  if (loaderConfigured) return
+  setOptions({ key: getApiKey(), v: 'weekly', language: 'en' })
+  loaderConfigured = true
+  await importLibrary('places')
+}
+
+function mapLegacyPlaceResult(place: google.maps.places.PlaceResult): GooglePlaceReviewsPayload {
+  const reviews = (place.reviews ?? [])
+    .map((review) => ({
+      authorName: review.author_name ?? 'Google user',
+      rating: review.rating ?? 0,
+      text: review.text ?? '',
+      relativeTime: review.relative_time_description ?? '',
+      profilePhotoUrl: review.profile_photo_url ?? null,
+    }))
+    .filter((item) => item.text.trim().length > 0)
+
+  return {
+    placeName: place.name ?? '',
+    rating: place.rating ?? null,
+    userRatingsTotal: place.user_ratings_total ?? 0,
+    mapsUrl: place.url ?? STORE_GOOGLE_MAPS_URL,
+    reviews,
+  }
+}
+
+/** Legacy PlacesService — returns review text when "Places API" (legacy) is enabled. */
+function loadViaPlacesService(placeId: string): Promise<GooglePlaceReviewsPayload> {
+  const host = document.createElement('div')
+  const service = new google.maps.places.PlacesService(host)
+
+  return new Promise((resolve, reject) => {
+    service.getDetails(
+      {
+        placeId,
+        fields: ['name', 'rating', 'user_ratings_total', 'reviews', 'url'],
+      },
+      (place, status) => {
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !place) {
+          reject(new Error(`PlacesService getDetails: ${status}`))
+          return
+        }
+        resolve(mapLegacyPlaceResult(place))
+      },
+    )
+  })
+}
+
 function reviewText(value: unknown): string {
   if (typeof value === 'string') return value
   if (value && typeof value === 'object' && 'text' in value) {
@@ -13,21 +72,8 @@ function reviewText(value: unknown): string {
   return ''
 }
 
-export async function loadGooglePlaceReviewsClient(
-  placeId = STORE_GOOGLE_PLACE_ID,
-): Promise<GooglePlaceReviewsPayload> {
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined
-  if (!apiKey?.trim()) {
-    throw new Error(
-      'Missing VITE_GOOGLE_MAPS_API_KEY. Use a browser key (Maps JavaScript API + Places API New).',
-    )
-  }
-
-  if (!loaderConfigured) {
-    setOptions({ key: apiKey.trim(), v: 'weekly' })
-    loaderConfigured = true
-  }
-
+/** New Place class — rating works; `reviews` often needs Enterprise (PERMISSION_DENIED). */
+async function loadViaPlaceClass(placeId: string): Promise<GooglePlaceReviewsPayload> {
   const places = await importLibrary('places')
   const place = new places.Place({ id: placeId })
 
@@ -52,5 +98,29 @@ export async function loadGooglePlaceReviewsClient(
     userRatingsTotal: place.userRatingCount ?? 0,
     mapsUrl: place.googleMapsURI ?? STORE_GOOGLE_MAPS_URL,
     reviews,
+  }
+}
+
+export async function loadGooglePlaceReviewsClient(
+  placeId = STORE_GOOGLE_PLACE_ID,
+): Promise<GooglePlaceReviewsPayload> {
+  await ensureMapsLoader()
+
+  try {
+    const legacy = await loadViaPlacesService(placeId)
+    if (legacy.reviews.length > 0) return legacy
+  } catch {
+    /* try new Place class next */
+  }
+
+  try {
+    const modern = await loadViaPlaceClass(placeId)
+    if (modern.reviews.length > 0) return modern
+    return modern
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Place.fetchFields failed'
+    throw new Error(
+      `${message}. Also enable legacy "Places API" (not only Places API New), link billing, and allow http://localhost:5173/* on your API key.`,
+    )
   }
 }
