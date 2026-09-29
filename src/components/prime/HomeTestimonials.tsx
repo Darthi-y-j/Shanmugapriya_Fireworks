@@ -214,8 +214,10 @@ export function HomeTestimonials() {
                 Open on Google Maps
               </a>
               <span className="mt-1 block text-[11px] text-[#8B7355]/80">
-                To preview here: add <code className="text-[10px]">http://localhost:5173/*</code> to your API
-                key referrers (see browser console).
+                Console shows <code className="text-[10px]">ApiTargetBlockedMapError</code>? In Credentials →
+                your key → <strong>API restrictions</strong>, allow Maps JavaScript API + Places API (New), or
+                choose Don&apos;t restrict key. Also add{' '}
+                <code className="text-[10px]">http://localhost:5173/*</code> under HTTP referrers.
               </span>
             </p>
           ) : (

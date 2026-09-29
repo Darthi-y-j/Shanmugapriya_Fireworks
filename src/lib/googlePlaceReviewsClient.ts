@@ -6,12 +6,18 @@ let loaderConfigured = false
 
 const LOAD_TIMEOUT_MS = 20_000
 
+const KEY_SETUP_HINT =
+  'Google Cloud → Credentials → open the SAME key as VITE_GOOGLE_MAPS_API_KEY → ' +
+  '(1) Application restrictions: None OR add http://localhost:5173/* ' +
+  '(2) API restrictions: Don’t restrict key OR allow Maps JavaScript API + Places API (New). ' +
+  'ApiTargetBlockedMapError means the key is missing Maps JavaScript API in API restrictions.'
+
 function withTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
   return Promise.race([
     promise,
     new Promise<T>((_, reject) => {
       window.setTimeout(
-        () => reject(new Error(`${label} timed out — check API key referrers include http://localhost:5173/*`)),
+        () => reject(new Error(`${label} timed out. ${KEY_SETUP_HINT}`)),
         LOAD_TIMEOUT_MS,
       )
     }),
@@ -28,53 +34,25 @@ function getApiKey(): string {
   return apiKey.trim()
 }
 
+function normalizeError(error: unknown): string {
+  const message = error instanceof Error ? error.message : String(error)
+  if (/ApiTargetBlockedMapError/i.test(message) || /api target blocked/i.test(message)) {
+    return `ApiTargetBlockedMapError: your API key’s API restrictions block Maps/Places. ${KEY_SETUP_HINT}`
+  }
+  if (/RefererNotAllowedMapError/i.test(message) || /referer/i.test(message)) {
+    return `RefererNotAllowedMapError: add http://localhost:5173/* under HTTP referrers for this key.`
+  }
+  if (/PERMISSION_DENIED/i.test(message) && /review/i.test(message)) {
+    return `Google blocked the reviews field (PERMISSION_DENIED). Fix API restrictions first; if it persists, review text may require a higher Places billing tier. ${KEY_SETUP_HINT}`
+  }
+  return message
+}
+
 async function ensureMapsLoader(): Promise<void> {
   if (loaderConfigured) return
   setOptions({ key: getApiKey(), v: 'weekly', language: 'en' })
   loaderConfigured = true
   await importLibrary('places')
-}
-
-function mapLegacyPlaceResult(place: google.maps.places.PlaceResult): GooglePlaceReviewsPayload {
-  const reviews = (place.reviews ?? [])
-    .map((review) => ({
-      authorName: review.author_name ?? 'Google user',
-      rating: review.rating ?? 0,
-      text: review.text ?? '',
-      relativeTime: review.relative_time_description ?? '',
-      profilePhotoUrl: review.profile_photo_url ?? null,
-    }))
-    .filter((item) => item.text.trim().length > 0)
-
-  return {
-    placeName: place.name ?? '',
-    rating: place.rating ?? null,
-    userRatingsTotal: place.user_ratings_total ?? 0,
-    mapsUrl: place.url ?? STORE_GOOGLE_MAPS_URL,
-    reviews,
-  }
-}
-
-/** Legacy PlacesService — returns review text when "Places API" (legacy) is enabled. */
-function loadViaPlacesService(placeId: string): Promise<GooglePlaceReviewsPayload> {
-  const host = document.createElement('div')
-  const service = new google.maps.places.PlacesService(host)
-
-  return new Promise((resolve, reject) => {
-    service.getDetails(
-      {
-        placeId,
-        fields: ['name', 'rating', 'user_ratings_total', 'reviews', 'url'],
-      },
-      (place, status) => {
-        if (status !== google.maps.places.PlacesServiceStatus.OK || !place) {
-          reject(new Error(`PlacesService getDetails: ${status}`))
-          return
-        }
-        resolve(mapLegacyPlaceResult(place))
-      },
-    )
-  })
 }
 
 function reviewText(value: unknown): string {
@@ -86,15 +64,7 @@ function reviewText(value: unknown): string {
   return ''
 }
 
-/** New Place class — rating works; `reviews` often needs Enterprise (PERMISSION_DENIED). */
-async function loadViaPlaceClass(placeId: string): Promise<GooglePlaceReviewsPayload> {
-  const places = await importLibrary('places')
-  const place = new places.Place({ id: placeId })
-
-  await place.fetchFields({
-    fields: ['displayName', 'rating', 'userRatingCount', 'reviews', 'googleMapsURI'],
-  })
-
+function mapPlaceToPayload(place: google.maps.places.Place): GooglePlaceReviewsPayload {
   const rawReviews: google.maps.places.Review[] = place.reviews ?? []
   const reviews = rawReviews
     .map((review: google.maps.places.Review) => ({
@@ -115,6 +85,35 @@ async function loadViaPlaceClass(placeId: string): Promise<GooglePlaceReviewsPay
   }
 }
 
+/** Place class (recommended). PlacesService is not available to new Google Cloud customers. */
+async function loadViaPlaceClass(placeId: string): Promise<GooglePlaceReviewsPayload> {
+  const places = await importLibrary('places')
+  const place = new places.Place({ id: placeId })
+
+  try {
+    await place.fetchFields({
+      fields: ['displayName', 'rating', 'userRatingCount', 'reviews', 'googleMapsURI'],
+    })
+    return mapPlaceToPayload(place)
+  } catch (error) {
+    const normalized = normalizeError(error)
+    try {
+      await place.fetchFields({
+        fields: ['displayName', 'rating', 'userRatingCount', 'googleMapsURI'],
+      })
+      const partial = mapPlaceToPayload(place)
+      if (partial.rating != null) {
+        throw new Error(
+          `${normalized} Place rating loaded (${partial.rating}★) but review text did not.`,
+        )
+      }
+    } catch (inner) {
+      throw new Error(normalizeError(inner))
+    }
+    throw new Error(normalized)
+  }
+}
+
 export async function loadGooglePlaceReviewsClient(
   placeId = STORE_GOOGLE_PLACE_ID,
 ): Promise<GooglePlaceReviewsPayload> {
@@ -127,20 +126,14 @@ async function loadGooglePlaceReviewsClientInner(
   await ensureMapsLoader()
 
   try {
-    const legacy = await loadViaPlacesService(placeId)
-    if (legacy.reviews.length > 0) return legacy
-  } catch {
-    /* try new Place class next */
-  }
-
-  try {
-    const modern = await loadViaPlaceClass(placeId)
-    if (modern.reviews.length > 0) return modern
-    throw new Error('No review text returned from Google for this place.')
+    const result = await loadViaPlaceClass(placeId)
+    if (result.reviews.length === 0 && (result.userRatingsTotal ?? 0) > 0) {
+      throw new Error(
+        `Google lists ${result.userRatingsTotal} reviews but did not return review text. ${KEY_SETUP_HINT}`,
+      )
+    }
+    return result
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Place.fetchFields failed'
-    throw new Error(
-      `${message} Fix RefererNotAllowedMapError: Google Cloud → Credentials → your key → HTTP referrers → add http://localhost:5173/* and your live site. Enable Maps JavaScript API, Places API (New), and Places API (legacy).`,
-    )
+    throw new Error(normalizeError(error))
   }
 }
