@@ -71,7 +71,7 @@ export function PrimeLayout() {
         {showCartBar && <PrimeCartBar />}
         {!isContactPage && !isAuthPage && (
           <FloatingActionButtons
-            showYouTube={isHome}
+            showYouTube={!isHome}
             className={showCartBar ? 'bottom-24 sm:bottom-28' : undefined}
           />
         )}

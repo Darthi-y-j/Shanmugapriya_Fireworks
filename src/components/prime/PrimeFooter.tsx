@@ -19,6 +19,22 @@ import { STORE_GOOGLE_MAPS_URL } from '@/lib/maps'
 import { HOME_SEO_NAV_LINKS } from '@/lib/seoInternalLinks'
 import { buildTelUrl, buildWhatsAppContactUrl } from '@/lib/whatsapp'
 
+/** Shorter labels so the footer site map fits on one row on desktop. */
+const FOOTER_SITEMAP_SHORT_LABEL: Record<string, string> = {
+  'Shop all fireworks': 'Shop',
+  'About Shanmuga Priya': 'About',
+  'Contact & location': 'Contact',
+  'Delivery information': 'Delivery',
+  'Safety guide': 'Safety',
+  'Why no online payment': 'Payment',
+  'Shopping cart': 'Cart',
+  'Saved favourites': 'Wishlist',
+  'Customer login': 'Login',
+  'Create account': 'Register',
+  'Privacy policy': 'Privacy',
+  'Terms of service': 'Terms',
+}
+
 const QUICK_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/products', label: 'Shop' },
@@ -295,34 +311,47 @@ export function PrimeFooter() {
         </div>
 
         <nav
-          className="mt-6 border-t border-white/10 pt-4 sm:mt-8"
+          className="mt-3 border-t border-white/10 pt-2.5 sm:mt-4 sm:pt-3"
           aria-label="All pages on this website"
         >
           <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/55">Site map</p>
-          <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5">
-            {HOME_SEO_NAV_LINKS.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} className="text-[11px] text-white/75 underline-offset-2 hover:text-[#E8C56A] hover:underline">
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul
+            className="mt-1 flex flex-nowrap items-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {HOME_SEO_NAV_LINKS.map((item, index) => {
+              const label = FOOTER_SITEMAP_SHORT_LABEL[item.label] ?? item.label
+              return (
+                <li key={item.href} className="flex shrink-0 items-center">
+                  <a
+                    href={item.href}
+                    className="whitespace-nowrap px-0.5 text-[10px] text-white/75 underline-offset-2 hover:text-[#E8C56A] hover:underline sm:text-[11px]"
+                  >
+                    {label}
+                  </a>
+                  {index < HOME_SEO_NAV_LINKS.length - 1 ? (
+                    <span className="px-1.5 text-[10px] text-white/35 select-none sm:px-2" aria-hidden="true">
+                      ·
+                    </span>
+                  ) : null}
+                </li>
+              )
+            })}
           </ul>
         </nav>
 
         {/* Bottom bar */}
-        <div className="mt-6 flex flex-col items-center gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:pt-5">
+        <div className="mt-3 flex flex-col items-center gap-2 border-t border-white/10 pt-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:pt-3.5">
           <div className="text-center sm:text-left">
             <p className="text-[11px] text-white/70">
               © {year} {businessName}. All rights reserved.
             </p>
-            <p className="mt-1.5 text-[10px] text-white/50">
+            <p className="mt-1.5 text-[10px] text-white/55 sm:text-[11px]">
               {DEVELOPER_CREDIT.label}{' '}
               <a
                 href={DEVELOPER_CREDIT.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition hover:text-white/70"
+                className="font-semibold tracking-wide text-[#E8C56A] underline decoration-[#C9A24A]/60 underline-offset-2 transition hover:text-white hover:decoration-[#E8C56A]"
               >
                 {DEVELOPER_CREDIT.name}
               </a>

@@ -2,13 +2,14 @@ import { ArrowRight, Flower2 } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { NewsletterSubscribeForm } from '@/components/customer/NewsletterSubscribeForm'
+import { HomeCelebrationSocial } from '@/components/prime/HomeCelebrationSocial'
 import { HOME_IMAGES } from '@/lib/homeImages'
 
 export function HomeNewsletterCard() {
   return (
     <AnimateIn animation="fade-up" delay={280} duration={800}>
       <div
-        className="relative mt-6 overflow-hidden rounded-xl shadow-[0_12px_40px_rgba(6,43,99,0.22)] sm:mt-14 sm:rounded-[2rem] sm:shadow-[0_20px_60px_rgba(6,43,99,0.28)]"
+        className="relative mt-3 overflow-hidden rounded-xl shadow-[0_12px_40px_rgba(6,43,99,0.22)] sm:mt-6 sm:rounded-[2rem] sm:shadow-[0_20px_60px_rgba(6,43,99,0.28)]"
         aria-labelledby="home-newsletter-heading"
       >
         <OptimizedImage
@@ -26,7 +27,8 @@ export function HomeNewsletterCard() {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 flex flex-col gap-4 px-4 py-5 sm:gap-8 sm:px-10 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-14 lg:py-14">
+        <div className="relative z-10 flex flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-md lg:max-w-lg">
             <div className="flex items-center gap-2 sm:gap-3">
               <span
@@ -60,6 +62,11 @@ export function HomeNewsletterCard() {
               </>
             }
           />
+          </div>
+
+          <div className="border-t border-[#C9A24A]/35 pt-6 sm:pt-8">
+            <HomeCelebrationSocial theme="dark" />
+          </div>
         </div>
       </div>
     </AnimateIn>
