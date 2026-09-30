@@ -29,7 +29,7 @@ export const DEVELOPER_CREDIT = {
 } as const
 
 export const DEFAULT_DESCRIPTION =
-  'Diwali crackers from Sivakasi — Shanmuga Priya Crackers. Wholesale and retail fireworks with all-India delivery. Order on WhatsApp.'
+  'Sivakasi Diwali crackers wholesale and retail. Shanmuga Priya Crackers. All-India delivery. Order on WhatsApp.'
 
 /** Homepage document title — ~50 chars, aligned with on-page H1 keywords. */
 export const HOME_PAGE_TITLE = 'Sivakasi Diwali Fireworks Wholesale | Shanmuga Priya Crackers'
@@ -40,7 +40,7 @@ export const OG_IMAGE_HEIGHT = 630
 
 /** Homepage meta description — under ~155 characters for SERP / pixel limits. */
 export const HOME_PAGE_DESCRIPTION =
-  'Diwali crackers from Sivakasi — Shanmuga Priya Crackers. Wholesale and retail fireworks with all-India delivery. Order on WhatsApp.'
+  'Sivakasi Diwali crackers wholesale and retail. Shanmuga Priya Crackers. All-India delivery. Order on WhatsApp.'
 
 /** Bump when favicon assets change — busts aggressive browser favicon cache. */
 export const FAVICON_VERSION = '2'

@@ -3,6 +3,7 @@ import { PrimeHero } from '@/components/prime/PrimeHero'
 import { PrimeServiceBar } from '@/components/prime/PrimeServiceBar'
 import { PrimeCategoryGrid } from '@/components/prime/PrimeCategoryGrid'
 import { HomeAboutSection } from '@/components/prime/HomeAboutSection'
+import { HomeInternalLinksBar } from '@/components/prime/HomeInternalLinksBar'
 import { HomePageSeoSection } from '@/components/prime/HomePageSeoSection'
 import { HomePostAboutSections } from '@/components/prime/HomePostAboutSections'
 import { HOME_PAGE_DESCRIPTION, HOME_PAGE_TITLE } from '@/lib/siteConfig'
@@ -15,6 +16,7 @@ export function HomePage() {
       <SEO title={HOME_PAGE_TITLE} description={HOME_PAGE_DESCRIPTION} url="/" titleIsFull />
       <div className={cn('relative overflow-x-hidden bg-white', underNavPullClass)}>
         <PrimeHero />
+        <HomeInternalLinksBar />
         <PrimeCategoryGrid />
         <PrimeServiceBar />
         <HomeAboutSection />

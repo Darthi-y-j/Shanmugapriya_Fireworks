@@ -1,18 +1,6 @@
-import { Link } from 'react-router-dom'
-import { AnimateIn } from '@/components/customer/AnimateIn'
 import { HomeSocialShare } from '@/components/prime/HomeSocialShare'
 import { STORE_GOOGLE_MAPS_URL } from '@/lib/maps'
-
-const INTERNAL_LINKS = [
-  { to: '/products', label: 'Shop all Diwali crackers' },
-  { to: '/about', label: 'About Shanmuga Priya Crackers' },
-  { to: '/contact', label: 'Contact & store location' },
-  { to: '/delivery', label: 'Delivery across India' },
-  { to: '/safety', label: 'Fireworks safety guide' },
-  { to: '/faq', label: 'Frequently asked questions' },
-  { to: '/privacy', label: 'Privacy policy' },
-  { to: '/terms', label: 'Terms of service' },
-] as const
+import { absoluteInternalPath, HOME_SEO_NAV_LINKS } from '@/lib/seoInternalLinks'
 
 export function HomePageSeoSection() {
   return (
@@ -21,7 +9,7 @@ export function HomePageSeoSection() {
       aria-labelledby="home-seo-guide-heading"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <AnimateIn animation="fade-up" duration={650}>
+        <div>
           <h2
             id="home-seo-guide-heading"
             className="font-display text-lg font-bold text-[#062B63] sm:text-xl"
@@ -52,13 +40,19 @@ export function HomePageSeoSection() {
                 find us on Google Maps
               </a>
               . Read the{' '}
-              <Link to="/safety" className="font-semibold text-[#0077B6] underline-offset-2 hover:underline">
+              <a
+                href={absoluteInternalPath('/safety')}
+                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
                 safety guide
-              </Link>{' '}
+              </a>{' '}
               before lighting fireworks, and check{' '}
-              <Link to="/delivery" className="font-semibold text-[#0077B6] underline-offset-2 hover:underline">
+              <a
+                href={absoluteInternalPath('/delivery')}
+                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
                 delivery information
-              </Link>{' '}
+              </a>{' '}
               for dispatch timelines and service areas.
             </p>
           </div>
@@ -68,21 +62,21 @@ export function HomePageSeoSection() {
               Explore the store
             </p>
             <ul className="mt-3 flex flex-wrap gap-2">
-              {INTERNAL_LINKS.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
+              {HOME_SEO_NAV_LINKS.map((item) => (
+                <li key={`${item.href}-${item.label}`}>
+                  <a
+                    href={item.href}
                     className="inline-flex rounded-full border border-[#C9A24A]/40 bg-white/80 px-3 py-1.5 text-xs font-medium text-[#062B63] transition hover:border-[#0077B6]/50 hover:text-[#0077B6] sm:text-sm"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
 
           <HomeSocialShare className="mt-8" />
-        </AnimateIn>
+        </div>
       </div>
     </section>
   )

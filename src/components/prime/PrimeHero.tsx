@@ -5,6 +5,7 @@ import { OptimizedImage } from '@/components/customer/OptimizedImage'
 import { HOME_IMAGES } from '@/lib/homeImages'
 import { heroBackgroundSrcSet } from '@/lib/responsiveImages'
 import { SHANMUGA_BRAND } from '@/lib/shanmugaBrand'
+import { absoluteInternalPath } from '@/lib/seoInternalLinks'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
 
 const TRUST_ITEMS = [
@@ -62,7 +63,10 @@ export function PrimeHero() {
         </AnimateIn>
 
         <AnimateIn animation="fade-up" delay={160} eager>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#062B63]/80 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm font-semibold text-[#062B63]/90 sm:text-base">
+            Sivakasi Diwali fireworks wholesale and retail
+          </p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[#062B63]/80 sm:text-base">
             {SHANMUGA_BRAND.heroSubtext}
           </p>
         </AnimateIn>
@@ -84,6 +88,20 @@ export function PrimeHero() {
               Dealer Enquiry
             </Link>
           </div>
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-[#062B63]/75 sm:text-sm">
+            <a href={absoluteInternalPath('/about')} className="underline-offset-2 hover:underline">
+              About
+            </a>
+            <a href={absoluteInternalPath('/delivery')} className="underline-offset-2 hover:underline">
+              Delivery
+            </a>
+            <a href={absoluteInternalPath('/safety')} className="underline-offset-2 hover:underline">
+              Safety
+            </a>
+            <a href={absoluteInternalPath('/faq')} className="underline-offset-2 hover:underline">
+              FAQ
+            </a>
+          </p>
         </AnimateIn>
 
         <AnimateIn animation="fade-up" delay={280} eager>
