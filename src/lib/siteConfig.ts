@@ -114,7 +114,8 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}${OG_IMAGE_PATH}`
 
 /** Public social profiles for Organization schema (sameAs) — add URLs when client provides them. */
 export const BRAND_SOCIAL_PROFILES: readonly string[] = [
-  'https://www.youtube.com/channel/UCoTElmkU6uwyUs8Xm9ArFkw',
+  'https://www.youtube.com/@Shanmugapriyafireworks',
+  'https://wa.me/919790558173',
 ]
 
 /** Static public routes included in the sitemap (no auth/admin/user-only pages). */

@@ -14,19 +14,9 @@ export type GooglePlaceDetailsResult = {
   reviews?: GooglePlaceDetailsReview[]
 }
 
-export function fetchPlaceReviewsNew(
-  apiKey: string,
-  placeId?: string,
-): Promise<GooglePlaceDetailsResult>
-
-export function fetchPlaceReviewsLegacy(
-  apiKey: string,
-  cid?: string,
-): Promise<GooglePlaceDetailsResult>
-
 export function fetchPlaceReviews(
   apiKey: string,
-  options?: { placeId?: string; cid?: string },
+  cid?: string,
 ): Promise<GooglePlaceDetailsResult>
 
 export default function handler(

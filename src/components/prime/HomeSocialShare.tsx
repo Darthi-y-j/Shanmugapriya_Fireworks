@@ -1,6 +1,9 @@
 import { useCallback, useState } from 'react'
 import { Link2, MessageCircle, Share2 } from 'lucide-react'
-import { BRAND_SOCIAL_PROFILES, SITE_URL } from '@/lib/siteConfig'
+import { PUBLIC_SOCIAL } from '@/lib/publicSocial'
+import { SITE_URL } from '@/lib/siteConfig'
+import { getWhatsAppNumbers } from '@/lib/businessInfo'
+import { buildWhatsAppContactUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 
 type HomeSocialShareProps = {
@@ -12,9 +15,12 @@ export function HomeSocialShare({ className }: HomeSocialShareProps) {
   const shareUrl = `${SITE_URL}/`
   const shareText = 'Shanmuga Priya Crackers — Diwali fireworks from Sivakasi'
 
-  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${shareUrl}`)}`
+  const whatsappNumber = getWhatsAppNumbers()[0]
+  const whatsappHref = whatsappNumber
+    ? buildWhatsAppContactUrl(whatsappNumber, `${shareText}\n${shareUrl}`)
+    : `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${shareUrl}`)}`
   const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
-  const youtubeUrl = BRAND_SOCIAL_PROFILES[0]
+  const youtubeUrl = PUBLIC_SOCIAL.youtube
 
   const copyLink = useCallback(async () => {
     try {

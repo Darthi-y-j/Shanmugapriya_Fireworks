@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight, ExternalLink, Star } from 'lucide-react'
+import { ExternalLink, Star } from 'lucide-react'
 import { AnimateIn } from '@/components/customer/AnimateIn'
 import { OptimizedBackground } from '@/components/customer/OptimizedBackground'
 import { HomeNewsletterCard } from '@/components/prime/HomeNewsletter'
@@ -7,9 +6,6 @@ import { useGooglePlaceReviews } from '@/hooks/useGooglePlaceReviews'
 import { ABOUT_IMAGES } from '@/lib/aboutTokens'
 import { STORE_GOOGLE_MAPS_URL } from '@/lib/maps'
 import type { GooglePlaceReview } from '@/types/googleReviews'
-import { cn } from '@/lib/utils'
-
-const REVIEW_ROTATE_MS = 7000
 
 function StarRating({ rating }: { rating: number }) {
   const full = Math.min(5, Math.max(0, Math.round(rating)))
@@ -18,7 +14,7 @@ function StarRating({ rating }: { rating: number }) {
       {Array.from({ length: 5 }, (_, index) => (
         <Star
           key={index}
-          className={`h-4 w-4 sm:h-[1.125rem] sm:w-[1.125rem] ${
+          className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${
             index < full ? 'fill-[#C9A24A] text-[#C9A24A]' : 'fill-transparent text-[#C9A24A]/35'
           }`}
           aria-hidden="true"
@@ -28,120 +24,54 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-function GoogleReviewSlide({ review }: { review: GooglePlaceReview }) {
+function GoogleReviewCard({ review, index }: { review: GooglePlaceReview; index: number }) {
   return (
-    <figure className="mx-auto flex max-w-2xl flex-col border-l-2 border-[#C9A24A]/75 bg-white/60 px-4 py-4 backdrop-blur-[2px] sm:px-8 sm:py-7">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <StarRating rating={review.rating} />
-        {review.relativeTime ? (
-          <span className="text-[10px] text-[#8B7355]/85 sm:text-xs">{review.relativeTime}</span>
-        ) : null}
-      </div>
-      <blockquote>
-        <p className="text-sm leading-relaxed text-[#062B63]/88 whitespace-pre-wrap sm:text-base sm:leading-relaxed">
-          “{review.text}”
-        </p>
-      </blockquote>
-      <figcaption className="mt-4 flex items-center gap-3 text-sm font-medium text-[#8B7355]">
-        {review.profilePhotoUrl ? (
-          <img
-            src={review.profilePhotoUrl}
-            alt=""
-            className="h-9 w-9 rounded-full object-cover ring-2 ring-[#C9A24A]/35"
-            loading="lazy"
-            decoding="async"
-            referrerPolicy="no-referrer"
-          />
-        ) : null}
-        <span>{review.authorName}</span>
-        <span className="text-[10px] font-normal uppercase tracking-wider text-[#8B7355]/70">
-          Google review
-        </span>
-      </figcaption>
-    </figure>
+    <AnimateIn animation="fade-up" delay={60 + index * 50} duration={650}>
+      <figure className="flex h-full flex-col border-l-2 border-[#C9A24A]/75 bg-white/55 px-3 py-2.5 backdrop-blur-[2px] sm:px-5 sm:py-5">
+        <div className="mb-1.5 flex items-center justify-between gap-2 sm:mb-2">
+          <StarRating rating={review.rating} />
+          {review.relativeTime ? (
+            <span className="shrink-0 text-[9px] text-[#8B7355]/80 sm:text-[10px]">{review.relativeTime}</span>
+          ) : null}
+        </div>
+        <blockquote className="min-h-0 flex-1">
+          <p className="text-[11px] leading-snug text-[#062B63]/82 whitespace-pre-wrap sm:text-sm sm:leading-relaxed">
+            {review.text}
+          </p>
+        </blockquote>
+        <figcaption className="mt-1.5 flex items-center gap-2 text-[10px] font-medium text-[#8B7355] sm:mt-3 sm:text-xs">
+          {review.profilePhotoUrl ? (
+            <img
+              src={review.profilePhotoUrl}
+              alt=""
+              className="h-6 w-6 rounded-full object-cover ring-1 ring-[#C9A24A]/30"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+            />
+          ) : null}
+          <span>— {review.authorName}</span>
+        </figcaption>
+      </figure>
+    </AnimateIn>
   )
 }
 
-function GoogleReviewsCarousel({ reviews }: { reviews: GooglePlaceReview[] }) {
-  const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const count = reviews.length
-
-  const go = useCallback(
-    (next: number) => {
-      if (count === 0) return
-      setIndex(((next % count) + count) % count)
-    },
-    [count],
-  )
-
-  useEffect(() => {
-    if (count < 2 || paused) return
-    const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % count)
-    }, REVIEW_ROTATE_MS)
-    return () => window.clearInterval(timer)
-  }, [count, paused])
-
-  const review = reviews[index]
-  if (!review) return null
-
+function GoogleReviewsFallback() {
   return (
-    <div
-      className="mx-auto mt-6 max-w-3xl sm:mt-10"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
-      <div
-        className="relative min-h-[12rem] sm:min-h-[14rem]"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        <GoogleReviewSlide key={`${review.authorName}-${index}`} review={review} />
-      </div>
-
-      <div className="mt-4 flex items-center justify-center gap-3 sm:mt-5">
-        <button
-          type="button"
-          onClick={() => go(index - 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E8DFD0] bg-white/80 text-[#062B63] shadow-sm transition hover:border-[#0077B6]/40 hover:text-[#0077B6]"
-          aria-label="Previous review"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </button>
-
-        <div className="flex items-center gap-1.5" role="tablist" aria-label="Review slides">
-          {reviews.map((item, dotIndex) => (
-            <button
-              key={`${item.authorName}-dot-${dotIndex}`}
-              type="button"
-              role="tab"
-              aria-selected={dotIndex === index}
-              aria-label={`Review ${dotIndex + 1} of ${count}`}
-              onClick={() => go(dotIndex)}
-              className={cn(
-                'h-2 rounded-full transition-all',
-                dotIndex === index ? 'w-6 bg-[#0077B6]' : 'w-2 bg-[#C9A24A]/45 hover:bg-[#C9A24A]/70',
-              )}
-            />
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={() => go(index + 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E8DFD0] bg-white/80 text-[#062B63] shadow-sm transition hover:border-[#0077B6]/40 hover:text-[#0077B6]"
-          aria-label="Next review"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </button>
-      </div>
-
-      <p className="mt-2 text-center text-[10px] text-[#8B7355]/80 sm:text-xs">
-        Review {index + 1} of {count} · changes every few seconds
+    <div className="mx-auto mt-5 max-w-lg text-center sm:mt-8">
+      <p className="text-sm text-[#062B63]/75">
+        Read what customers say on Google Maps.
       </p>
+      <a
+        href={STORE_GOOGLE_MAPS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+      >
+        View Google reviews
+        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+      </a>
     </div>
   )
 }
@@ -199,55 +129,31 @@ export function HomeTestimonials() {
           <p className="mx-auto mt-6 text-center text-sm text-[#8B7355]">Loading Google reviews…</p>
         ) : null}
 
-        {reviews.length > 0 ? <GoogleReviewsCarousel reviews={reviews} /> : null}
-
-        {reviewsState.status === 'error' || (reviewsState.status === 'ready' && reviews.length === 0) ? (
-          import.meta.env.DEV ? (
-            <p className="mx-auto mt-6 max-w-md text-center text-sm text-[#8B7355]">
-              Reviews carousel runs on the live site.{' '}
-              <a
-                href={STORE_GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
-              >
-                Open on Google Maps
-              </a>
-              <span className="mt-1 block text-[11px] text-[#8B7355]/80">
-                Console shows <code className="text-[10px]">ApiTargetBlockedMapError</code>? In Credentials →
-                your key → <strong>API restrictions</strong>, allow Maps JavaScript API + Places API (New), or
-                choose Don&apos;t restrict key. Also add{' '}
-                <code className="text-[10px]">http://localhost:5173/*</code> under HTTP referrers.
-              </span>
-            </p>
-          ) : (
-            <div className="mx-auto mt-6 max-w-lg text-center text-sm text-[#062B63]/75">
-              <p>We couldn&apos;t load Google reviews right now.</p>
-              {reviewsState.status === 'error' && reviewsState.message ? (
-                <p className="mt-2 text-xs text-[#8B7355] break-words">{reviewsState.message}</p>
-              ) : null}
-              <a
-                href={STORE_GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 font-semibold text-[#0077B6] underline-offset-2 hover:underline"
-              >
-                Open reviews on Google Maps
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
-          )
+        {reviews.length > 0 ? (
+          <div
+            className={`mx-auto mt-5 grid max-w-5xl gap-2.5 sm:mt-8 sm:gap-5 ${
+              reviews.length >= 3 ? 'sm:grid-cols-3' : reviews.length === 2 ? 'sm:grid-cols-2' : ''
+            }`}
+          >
+            {reviews.map((item, index) => (
+              <GoogleReviewCard key={`${item.authorName}-${index}`} review={item} index={index} />
+            ))}
+          </div>
         ) : null}
 
-        {summary && reviews.length > 0 ? (
-          <p className="mx-auto mt-5 text-center sm:mt-6">
+        {reviewsState.status === 'error' || (reviewsState.status === 'ready' && reviews.length === 0) ? (
+          <GoogleReviewsFallback />
+        ) : null}
+
+        {summary ? (
+          <p className="mx-auto mt-5 max-w-5xl text-center sm:mt-6">
             <a
               href={summary.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0077B6]/90 underline-offset-2 hover:text-[#0077B6] hover:underline sm:text-sm"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0077B6] underline-offset-2 hover:underline sm:text-sm"
             >
-              More on Google Maps
+              See all reviews on Google Maps
               <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
             </a>
           </p>

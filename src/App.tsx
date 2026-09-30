@@ -17,8 +17,8 @@ import { ForgotPasswordPage } from '@/pages/customer/ForgotPasswordPage'
 import { ResetPasswordPage } from '@/pages/customer/ResetPasswordPage'
 import { AdminLoginPage } from '@/pages/admin/AdminLoginPage'
 import { warmupProductsPage } from '@/lib/prefetchProductsRoute'
+import { HomePage } from '@/pages/customer/HomePage'
 
-const HomePage = lazy(() => import('@/pages/customer/HomePage').then((m) => ({ default: m.HomePage })))
 const AboutPage = lazy(() => import('@/pages/customer/AboutPage').then((m) => ({ default: m.AboutPage })))
 const ContactPage = lazy(() =>
   import('@/pages/customer/ContactPage').then((m) => ({ default: m.ContactPage })),

@@ -16,7 +16,7 @@ import { SITE_LOGO_PATH } from '@/lib/siteConfig'
 import type { WebsiteSettings } from '@/types/database'
 
 export const SOCIAL_LINKS = {
-  youtube: 'https://www.youtube.com/channel/UCoTElmkU6uwyUs8Xm9ArFkw',
+  youtube: 'https://www.youtube.com/@Shanmugapriyafireworks',
   facebook: '',
   instagram: '',
 } as const

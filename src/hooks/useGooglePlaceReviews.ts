@@ -4,19 +4,7 @@ import type { GooglePlaceReviewsPayload } from '@/types/googleReviews'
 type State =
   | { status: 'loading' }
   | { status: 'ready'; data: GooglePlaceReviewsPayload }
-  | { status: 'error'; message?: string }
-
-async function loadFromServer(): Promise<GooglePlaceReviewsPayload> {
-  const response = await fetch('/api/google-reviews')
-  const body = (await response.json()) as GooglePlaceReviewsPayload & {
-    error?: string
-    message?: string
-  }
-  if (!response.ok) {
-    throw new Error(body.message || body.error || `HTTP ${response.status}`)
-  }
-  return body
-}
+  | { status: 'error' }
 
 export function useGooglePlaceReviews(): State {
   const [state, setState] = useState<State>({ status: 'loading' })
@@ -26,37 +14,15 @@ export function useGooglePlaceReviews(): State {
 
     const load = async () => {
       try {
-        const { loadGooglePlaceReviewsClient } = await import('@/lib/googlePlaceReviewsClient')
-        const data = await loadGooglePlaceReviewsClient()
-        if (data.reviews.length > 0) {
-          if (!cancelled) setState({ status: 'ready', data })
+        const response = await fetch('/api/google-reviews')
+        if (!response.ok) {
+          if (!cancelled) setState({ status: 'error' })
           return
         }
-        throw new Error('Google returned no review text for this listing.')
-      } catch (clientError) {
-        const clientMessage =
-          clientError instanceof Error ? clientError.message : 'Could not load reviews in browser'
-
-        if (import.meta.env.DEV) {
-          console.warn('[Google reviews]', clientMessage)
-          if (!cancelled) setState({ status: 'error', message: clientMessage })
-          return
-        }
-
-        try {
-          const data = await loadFromServer()
-          if (!cancelled) setState({ status: 'ready', data })
-          return
-        } catch (serverError) {
-          const serverMessage =
-            serverError instanceof Error ? serverError.message : 'Server reviews failed'
-          if (!cancelled) {
-            setState({
-              status: 'error',
-              message: `${clientMessage}. ${serverMessage}`,
-            })
-          }
-        }
+        const data = (await response.json()) as GooglePlaceReviewsPayload
+        if (!cancelled) setState({ status: 'ready', data })
+      } catch {
+        if (!cancelled) setState({ status: 'error' })
       }
     }
 
