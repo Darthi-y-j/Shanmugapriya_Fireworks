@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Facebook, Link2, MessageCircle } from 'lucide-react'
+import { Link2, MessageCircle, Share2 } from 'lucide-react'
 import { SITE_URL } from '@/lib/siteConfig'
 import { cn } from '@/lib/utils'
 
@@ -44,7 +44,7 @@ export function HomeSocialShare({ className }: HomeSocialShareProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full bg-[#1877F2] px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:brightness-105 sm:text-sm"
         >
-          <Facebook className="h-4 w-4" aria-hidden="true" />
+          <Share2 className="h-4 w-4" aria-hidden="true" />
           Facebook
         </a>
         <button
