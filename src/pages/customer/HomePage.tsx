@@ -3,6 +3,7 @@ import { PrimeHero } from '@/components/prime/PrimeHero'
 import { PrimeServiceBar } from '@/components/prime/PrimeServiceBar'
 import { PrimeCategoryGrid } from '@/components/prime/PrimeCategoryGrid'
 import { HomeAboutSection } from '@/components/prime/HomeAboutSection'
+import { HomePageSeoSection } from '@/components/prime/HomePageSeoSection'
 import { HomePostAboutSections } from '@/components/prime/HomePostAboutSections'
 import { HOME_PAGE_DESCRIPTION, HOME_PAGE_TITLE } from '@/lib/siteConfig'
 import { underNavPullClass } from '@/lib/underNavLayout'
@@ -18,6 +19,7 @@ export function HomePage() {
         <PrimeServiceBar />
         <HomeAboutSection />
         <HomePostAboutSections />
+        <HomePageSeoSection />
       </div>
     </>
   )

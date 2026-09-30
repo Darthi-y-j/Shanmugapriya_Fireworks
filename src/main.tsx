@@ -8,7 +8,8 @@ import { preconnectSupabase } from '@/lib/supabasePreconnect'
 preconnectSupabase()
 preloadRouteImages(window.location.pathname)
 
-document.getElementById('static-seo-fallback')?.remove()
+const staticSeoFallback = document.getElementById('static-seo-fallback')
+if (staticSeoFallback) staticSeoFallback.hidden = true
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

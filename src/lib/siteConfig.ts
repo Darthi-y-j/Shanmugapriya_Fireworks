@@ -1,7 +1,23 @@
+const PRODUCTION_SITE_ORIGIN = 'https://www.shanmugapriyacrackers.com'
+
+/** Always use www for shanmugapriyacrackers.com so canonical matches the live hostname. */
+export function normalizeSiteOrigin(url: string): string {
+  try {
+    const parsed = new URL(url)
+    if (parsed.hostname === 'shanmugapriyacrackers.com') {
+      parsed.hostname = 'www.shanmugapriyacrackers.com'
+    }
+    return parsed.origin
+  } catch {
+    return PRODUCTION_SITE_ORIGIN
+  }
+}
+
 /** Canonical production site URL — used for SEO meta tags, sitemap, and auth email redirects. */
-export const SITE_URL =
+export const SITE_URL = normalizeSiteOrigin(
   (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ||
-  'https://www.shanmugapriyacrackers.com'
+    PRODUCTION_SITE_ORIGIN,
+)
 
 export const SITE_NAME = 'Shanmugapriya Fire Works'
 
@@ -13,7 +29,7 @@ export const DEVELOPER_CREDIT = {
 } as const
 
 export const DEFAULT_DESCRIPTION =
-  'Shanmuga Priya Crackers — Your Festival, Our Passion. Buy Diwali crackers wholesale & retail from Sivakasi. Fancy items, rockets, sparklers & more. All-India delivery.'
+  'Diwali crackers from Sivakasi — Shanmuga Priya Crackers. Wholesale and retail fireworks with all-India delivery. Order on WhatsApp.'
 
 /** Homepage document title — ~50 chars, aligned with on-page H1 keywords. */
 export const HOME_PAGE_TITLE = 'Sivakasi Diwali Fireworks Wholesale | Shanmuga Priya Crackers'
@@ -22,9 +38,9 @@ export const HOME_PAGE_TITLE = 'Sivakasi Diwali Fireworks Wholesale | Shanmuga P
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
 
-/** Homepage meta description — natural brand + product intent without keyword stuffing. */
+/** Homepage meta description — under ~155 characters for SERP / pixel limits. */
 export const HOME_PAGE_DESCRIPTION =
-  'Shanmuga Priya Crackers — Your Festival, Our Passion. Buy Diwali crackers from Sivakasi. Wholesale & retail fireworks with all-India delivery. Enquire on WhatsApp.'
+  'Diwali crackers from Sivakasi — Shanmuga Priya Crackers. Wholesale and retail fireworks with all-India delivery. Order on WhatsApp.'
 
 /** Bump when favicon assets change — busts aggressive browser favicon cache. */
 export const FAVICON_VERSION = '2'
