@@ -8,7 +8,19 @@
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "shanmugapriyacrackers.com" }],
-      "destination": "https://www.shanmugapriyacrackers.com/:path*",
+      "destination": "https://www.shanmugapriyafireworks.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.shanmugapriyacrackers.com" }],
+      "destination": "https://www.shanmugapriyafireworks.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "shanmugapriyafireworks.com" }],
+      "destination": "https://www.shanmugapriyafireworks.com/:path*",
       "permanent": true
     }
   ],
@@ -53,7 +65,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "<https://www.shanmugapriyacrackers.com/>; rel=\"canonical\""
+          "value": "<https://www.shanmugapriyafireworks.com/>; rel=\"canonical\""
         }
       ]
     }

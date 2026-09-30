@@ -1,11 +1,17 @@
-const PRODUCTION_SITE_ORIGIN = 'https://www.shanmugapriyacrackers.com'
+const PRODUCTION_SITE_ORIGIN = 'https://www.shanmugapriyafireworks.com'
 
-/** Always use www for shanmugapriyacrackers.com so canonical matches the live hostname. */
+const LEGACY_HOSTS = new Set([
+  'shanmugapriyacrackers.com',
+  'www.shanmugapriyacrackers.com',
+  'shanmugapriyafireworks.com',
+])
+
+/** Canonical host is always www.shanmugapriyafireworks.com (legacy crackers domain redirects here). */
 export function normalizeSiteOrigin(url: string): string {
   try {
     const parsed = new URL(url)
-    if (parsed.hostname === 'shanmugapriyacrackers.com') {
-      parsed.hostname = 'www.shanmugapriyacrackers.com'
+    if (LEGACY_HOSTS.has(parsed.hostname)) {
+      parsed.hostname = 'www.shanmugapriyafireworks.com'
     }
     return parsed.origin
   } catch {

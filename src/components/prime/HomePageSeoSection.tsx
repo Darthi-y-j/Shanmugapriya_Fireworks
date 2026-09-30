@@ -30,6 +30,31 @@ export function HomePageSeoSection() {
               across Tamil Nadu and all-India delivery.
             </p>
             <p>
+              Our online shop lists crackers and fireworks by category so you can compare prices, add
+              favourites to your cart, and send a single WhatsApp enquiry for confirmation. Retail
+              customers, dealers, and event organisers use the same catalogue for transparent pricing
+              and fast responses during peak season.
+            </p>
+            <p>
+              Shanmuga Priya Crackers is rooted in Sivakasi&apos;s licensed manufacturing ecosystem. We
+              work with trusted makers, follow safety norms, and ship orders with care. For wholesale
+              rates, bulk packing, or help choosing gift boxes and display assortments, visit our{' '}
+              <a
+                href={absoluteInternalPath('/contact')}
+                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
+                contact page
+              </a>{' '}
+              or browse the{' '}
+              <a
+                href={absoluteInternalPath('/products')}
+                className="font-semibold text-[#0077B6] underline-offset-2 hover:underline"
+              >
+                full product list
+              </a>
+              .
+            </p>
+            <p>
               Visit our shop in Pattampudur (Virudhunagar district) or{' '}
               <a
                 href={STORE_GOOGLE_MAPS_URL}

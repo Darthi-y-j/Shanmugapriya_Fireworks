@@ -56,7 +56,10 @@ export function PrimeHero() {
 
         <AnimateIn animation="fade-up" delay={100} eager>
           <h1 className="mt-6 font-display text-[2.35rem] font-bold leading-[1.08] text-[#062B63] [text-shadow:0_1px_14px_rgba(255,255,255,0.65)] sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
-            <span className="block">Brighter</span>
+            <span className="block text-[1.05rem] font-semibold uppercase tracking-[0.12em] text-[#062B63]/85 sm:text-sm">
+              Sivakasi Diwali fireworks wholesale
+            </span>
+            <span className="mt-2 block">Brighter</span>
             <span className="mt-1 block text-[#8B6914]">Moments Happier</span>
             <span className="mt-1 block">Lives</span>
           </h1>

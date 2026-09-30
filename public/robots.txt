@@ -11,4 +11,4 @@ Disallow: /auth/
 Disallow: /cart
 Disallow: /wishlist
 
-Sitemap: https://www.shanmugapriyacrackers.com/sitemap.xml
+Sitemap: https://www.shanmugapriyafireworks.com/sitemap.xml
